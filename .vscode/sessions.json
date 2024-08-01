@@ -25,6 +25,12 @@
         ]
       },
       {
+        "name": "frontend",
+        "commands": [
+          "cd packages/frontend"
+        ]
+      },
+      {
         "name": "shared",
         "commands": [
           "cd packages/shared"
