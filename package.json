@@ -1,0 +1,32 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "clean": "lerna clean --yes && rm -rf node_modules",
+    "clean:deep": "lerna clean --yes && rm -rf node_modules && git checkout package-lock.json",
+    "clean:build": "npm run clean && npm i && npm run build",
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "lint": "lerna exec -- eslint . --ignore-path ../../.eslintignore",
+    "lint:fix": "lerna exec -- eslint . --ignore-path ../../.eslintignore --fix"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.8",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "lerna": "^8.0.1",
+    "prettier": "^3.2.2"
+  },
+  "overrides": {
+    "@types/d3-array": "3.0.8"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
+}

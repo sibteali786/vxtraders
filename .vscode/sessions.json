@@ -1,0 +1,35 @@
+{
+  "$schema": "https://cdn.statically.io/gh/nguyenngoclongdev/cdn/main/schema/v10/terminal-keeper.json",
+  "theme": "tribe",
+  "active": "default",
+  "activateOnStartup": true,
+  "keepExistingTerminals": false,
+  "sessions": {
+    "default": [
+      {
+        "name": "project",
+        "commands": [
+          ""
+        ]
+      },
+      {
+        "name": "awscdk",
+        "commands": [
+          "cd packages/awscdk"
+        ]
+      },
+      {
+        "name": "backend",
+        "commands": [
+          "cd packages/backend"
+        ]
+      },
+      {
+        "name": "shared",
+        "commands": [
+          "cd packages/shared"
+        ]
+      }
+    ]
+  }
+}
