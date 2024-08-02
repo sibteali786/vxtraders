@@ -4,7 +4,8 @@
   "description": "Backend for Vx Traders",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "tsx ./src/dev-server.ts",
+    "dev": "nodemon --watch './src/**/*' --exec 'tsx' ./src/dev-server.ts",
+    "start": "tsx ./src/dev-server.ts",
     "build": "esbuild src/index.ts --bundle --platform=node --target=node20 --outfile=build/index.js",
     "clean": "rm -rf build"
   },
@@ -25,6 +26,7 @@
     "esbuild": "^0.19.11",
     "jest": "^29.7.0",
     "jest-mock-extended": "^3.0.5",
+    "nodemon": "^3.1.4",
     "ts-jest": "^29.1.1",
     "tsx": "^4.16.5",
     "typescript": "^5.3.3"
