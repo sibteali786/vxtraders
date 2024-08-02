@@ -8,6 +8,7 @@ export const publicProcedure = t.procedure;
 export const appRouter = router({
   userList: publicProcedure
     .query(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       return [{ id: 1, name: 'Alice' }, { id: 2, name: 'John' }];
     }),
   createUser: publicProcedure
