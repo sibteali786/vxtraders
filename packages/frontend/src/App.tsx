@@ -14,6 +14,7 @@ import { HorizontalMenu } from './components/horizontal-menu';
 import { Leaderboard } from './components/leaderboard';
 import { SelectAsset } from './components/select-asset';
 import { Help } from './components/help';
+import { Settings } from './components/settings';
 
 const baseUrl = import.meta.env.MODE === 'development' ? 'http://localhost:3000' : 'https://tjfj3q2sck.execute-api.us-east-1.amazonaws.com/prod/';
 
@@ -45,6 +46,7 @@ function App() {
               <Route path="/select-asset" element={<SelectAsset />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/help" element={<Help />} />
+              <Route path="/settings" element={<Settings />} />
             </Routes>
             <HorizontalMenu />
           </Router>
