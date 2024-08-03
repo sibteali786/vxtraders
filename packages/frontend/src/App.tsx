@@ -12,6 +12,7 @@ import { Leaderboards } from './components/leaderboards';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { HorizontalMenu } from './components/horizontal-menu';
 import { Leaderboard } from './components/leaderboard';
+import { SelectAsset } from './components/select-asset';
 
 const baseUrl = import.meta.env.MODE === 'development' ? 'http://localhost:3000' : 'https://tjfj3q2sck.execute-api.us-east-1.amazonaws.com/prod/';
 
@@ -40,6 +41,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Leaderboards />} />
               <Route path="/leaderboards" element={<Leaderboards />} />
+              <Route path="/select-asset" element={<SelectAsset />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
             </Routes>
             <HorizontalMenu />

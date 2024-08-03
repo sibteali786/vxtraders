@@ -5,7 +5,7 @@ export function HorizontalMenu() {
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border">
       <div className="flex justify-around p-2">
         <Link
-          to={"/"}
+          to={"/select-asset"}
           className="flex flex-col items-center justify-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground sm:text-sm"
         >
           <ShuffleIcon className="h-5 w-5" />
