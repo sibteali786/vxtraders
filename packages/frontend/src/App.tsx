@@ -7,11 +7,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import { useState } from 'react';
 import { trpc } from './trpc';
-import { Leaderboard } from './components/leaderboard';
+import { Leaderboards } from './components/leaderboards';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Leaderboard2 } from './components/leaderboard2';
 import { HorizontalMenu } from './components/horizontal-menu';
+import { Leaderboard } from './components/leaderboard';
 
 const baseUrl = import.meta.env.MODE === 'development' ? 'http://localhost:3000' : 'https://tjfj3q2sck.execute-api.us-east-1.amazonaws.com/prod/';
 
@@ -38,8 +38,9 @@ function App() {
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <Router>
             <Routes>
-              <Route path="/" element={<Leaderboard />} />
-              <Route path="/leaderboard2" element={<Leaderboard2 />} />
+              <Route path="/" element={<Leaderboards />} />
+              <Route path="/leaderboards" element={<Leaderboards />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
             </Routes>
             <HorizontalMenu />
           </Router>

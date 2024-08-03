@@ -12,28 +12,28 @@ export function HorizontalMenu() {
           Trade
         </Link>
         <Link
-          to={"/leaderboard2"}
+          to={"/leaderboard"}
           className="flex flex-col items-center justify-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground sm:text-sm"
         >
           <PieChartIcon className="h-5 w-5" />
           Portfolio
         </Link>
         <Link
-          to={"/leaderboard2"}
+          to={"/leaderboards"}
           className="flex flex-col items-center justify-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground sm:text-sm"
         >
           <TrophyIcon className="h-5 w-5" />
           Leaderboards
         </Link>
         <Link
-          to={"/leaderboard2"}
+          to={"/leaderboard"}
           className="flex flex-col items-center justify-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground sm:text-sm"
         >
           <SettingsIcon className="h-5 w-5" />
           Settings
         </Link>
         <Link
-          to={"/leaderboard2"}
+          to={"/leaderboard"}
           className="flex flex-col items-center justify-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground sm:text-sm"
         >
           <CircleHelpIcon className="h-5 w-5" />
