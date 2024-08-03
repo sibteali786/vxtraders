@@ -12,7 +12,7 @@ export function HorizontalMenu() {
           Trade
         </Link>
         <Link
-          to={"/leaderboard"}
+          to={"/portfolio"}
           className="flex flex-col items-center justify-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground sm:text-sm"
         >
           <PieChartIcon className="h-5 w-5" />

@@ -28,5 +28,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/**/*.tsx"]
+  "include": ["src", "src/**/*.tsx", "src/components/portfolio-chart.tsx"]
 }
