@@ -14,6 +14,7 @@ import { SelectAsset } from './components/select-asset';
 import { Help } from './components/help';
 import { Settings } from './components/settings';
 import { Portfolio } from './components/portfolio';
+import { PageNotFound } from './components/page-not-found';
 
 const baseUrl = import.meta.env.MODE === 'development' ? 'http://localhost:3000' : 'https://tjfj3q2sck.execute-api.us-east-1.amazonaws.com/prod/';
 
@@ -45,6 +46,7 @@ function App() {
               <Route path="/help" element={<Help />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
             <HorizontalMenu />
           </Router>
