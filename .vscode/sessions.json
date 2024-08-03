@@ -35,6 +35,12 @@
         "commands": [
           "cd packages/shared"
         ]
+      },
+      {
+        "name": "dev",
+        "commands": [
+          "npm run dev"
+        ]
       }
     ]
   }
