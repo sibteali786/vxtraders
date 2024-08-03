@@ -21,6 +21,6 @@ export class VxTradersCdkApp extends cdk.App {
     this.websiteStack = new WebsiteStack(this, `WebsiteStack-${stage}`, stackProps);
     this.apiStack = new ApiStack(this, `ApiStack-${stage}`, stackProps);
 
-    this.apiStack.addDependency(this.websiteStack);
+    this.websiteStack.addDependency(this.apiStack);
   }
 }
