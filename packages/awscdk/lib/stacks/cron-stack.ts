@@ -12,8 +12,8 @@ export class CronStack extends cdk.Stack {
     this.lambda = new cdk.aws_lambda.Function(this, `CronLambdaCdk-${stage}`, {
       functionName: `CronStackLambda-${stage}`,
       runtime: cdk.aws_lambda.Runtime.NODEJS_20_X,
-      code: cdk.aws_lambda.Code.fromAsset("../backend"),
-      handler: "build/index.cronHandler",
+      code: cdk.aws_lambda.Code.fromAsset("../backend/build"),
+      handler: "index.cronHandler",
       environment: Configuration.getAppConfig().env,
       timeout: cdk.Duration.seconds(60),
       tracing: cdk.aws_lambda.Tracing.ACTIVE,

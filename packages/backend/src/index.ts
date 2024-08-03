@@ -1,2 +1,3 @@
 export * from "./cron/handler";
-export { AppRouter } from "./trpc";
+export { appRouter, trpcHandlerLambda } from "./trpc";
+export type { AppRouter } from "./trpc";

@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "deploy": "lerna run build && lerna run cdk:deploy --scope @vxtraders/awscdk",
     "dev": "lerna run dev",
     "clean": "lerna clean --yes && rm -rf node_modules",
     "clean:deep": "lerna clean --yes && rm -rf node_modules && git checkout package-lock.json",

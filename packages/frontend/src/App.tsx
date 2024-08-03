@@ -9,18 +9,20 @@ import { useState } from 'react';
 import { trpc } from './trpc';
 import { Leaderboard } from './components/leaderboard';
 
+const baseUrl = import.meta.env.MODE === 'development' ? 'http://localhost:3000' : 'https://tjfj3q2sck.execute-api.us-east-1.amazonaws.com/prod/';
+
 function App() {
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient] = useState(() =>
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: 'http://localhost:3000',
-          async headers() {
-            return {
-              authorization: "Bearer 123",
-            };
-          },
+          url: baseUrl,
+          // async headers() {
+          //   return {
+          //     authorization: "Bearer 123",
+          //   };
+          // },
         }),
       ],
     }),

@@ -1,5 +1,8 @@
+import { awsLambdaRequestHandler } from '@trpc/server/adapters/aws-lambda';
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
+import middy from '@middy/core';
+import cors from '@middy/http-cors';
 
 const t = initTRPC.create();
 export const router = t.router;
@@ -8,7 +11,7 @@ export const publicProcedure = t.procedure;
 export const appRouter = router({
   leaderboard: publicProcedure
     .query(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       return [
         { rank: 1, displayName: 'Alice Smith', username: '@alice', roi: 50 },
         { rank: 2, displayName: 'Bob Johnson', username: '@bob', roi: 40 },
@@ -26,3 +29,11 @@ export const appRouter = router({
 });
 
 export type AppRouter = typeof appRouter;
+
+const rawHandler = awsLambdaRequestHandler({
+  router: appRouter,
+});
+
+const handler = middy(rawHandler).use(cors());
+
+export { handler as trpcHandlerLambda };
