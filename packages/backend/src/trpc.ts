@@ -1,8 +1,5 @@
-import { awsLambdaRequestHandler } from '@trpc/server/adapters/aws-lambda';
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
-import middy from '@middy/core';
-import cors from '@middy/http-cors';
 
 const t = initTRPC.create();
 export const router = t.router;
@@ -29,11 +26,3 @@ export const appRouter = router({
 });
 
 export type AppRouter = typeof appRouter;
-
-const rawHandler = awsLambdaRequestHandler({
-  router: appRouter,
-});
-
-const handler = middy(rawHandler).use(cors());
-
-export { handler as trpcHandlerLambda };
