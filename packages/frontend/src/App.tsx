@@ -1,6 +1,5 @@
 import './App.css'
 import './globals.css'
-// import { ComingSoon } from "./components/coming-soon"
 import { ThemeProvider } from "@/components/theme-provider"
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -11,7 +10,6 @@ import { Leaderboards } from './components/leaderboards';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { HorizontalMenu } from './components/horizontal-menu';
-import { Leaderboard } from './components/leaderboard';
 import { SelectAsset } from './components/select-asset';
 import { Help } from './components/help';
 import { Settings } from './components/settings';
@@ -43,9 +41,7 @@ function App() {
           <Router>
             <Routes>
               <Route path="/" element={<Leaderboards />} />
-              <Route path="/leaderboards" element={<Leaderboards />} />
               <Route path="/select-asset" element={<SelectAsset />} />
-              <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/help" element={<Help />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/portfolio" element={<Portfolio />} />

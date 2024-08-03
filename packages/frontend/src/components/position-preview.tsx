@@ -3,7 +3,6 @@ import { Badge } from "@/components/ui/badge"
 import { Card } from "./ui/card"
 
 export function PositionPreview(props: any) {
-  console.log(props);
   return (
     <Card className="flex justify-between items-center p-3 rounded-lg space-x-4">
       <div className="flex items-center rounded-lg space-x-4">

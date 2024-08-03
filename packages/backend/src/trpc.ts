@@ -8,7 +8,7 @@ export const publicProcedure = t.procedure;
 export const appRouter = router({
   leaderboard: publicProcedure
     .query(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 500));
       return [
         { rank: 1, displayName: 'Alice Smith', username: '@alice', roi: 50 },
         { rank: 2, displayName: 'Bob Johnson', username: '@bob', roi: 40 },
@@ -19,7 +19,7 @@ export const appRouter = router({
     }),
   leaderboards: publicProcedure
     .query(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 500));
       return {
         traders: [
           { rank: 1, displayName: 'Alice Smith', username: '@alice', roi: 50 },
@@ -39,7 +39,7 @@ export const appRouter = router({
     }),
     searchAssets: publicProcedure
       .query(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 500));
         return [
           { name: "Bitcoin", symbol: "BTC", price: 50000, change: 5 },
           { name: "Ethereum", symbol: "ETH", price: 3000, change: 10 },
