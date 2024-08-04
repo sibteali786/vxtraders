@@ -1,7 +1,12 @@
-import { initTRPC } from '@trpc/server';
-import { leaderboardsInputSchema, leaderboardsOutputSchema, searchAssetsInputSchema, searchAssetsOutputSchema } from '@vxtraders/shared';
-import { leaderboardsController } from './controllers/leaderboards-controller';
-import { searchAssetController } from './controllers/search-asset-controller';
+import { initTRPC } from "@trpc/server";
+import {
+  leaderboardsInputSchema,
+  leaderboardsOutputSchema,
+  searchAssetsInputSchema,
+  searchAssetsOutputSchema,
+} from "@vxtraders/shared";
+import { leaderboardsController } from "./controllers/leaderboards-controller";
+import { searchAssetController } from "./controllers/search-asset-controller";
 
 const t = initTRPC.create();
 export const router = t.router;

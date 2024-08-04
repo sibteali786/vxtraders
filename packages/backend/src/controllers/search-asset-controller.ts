@@ -1,6 +1,6 @@
 import { SearchAssetsInput, SearchAssetsOutput } from "@vxtraders/shared";
 
-export const searchAssetController = async (opts: {input: SearchAssetsInput}): Promise<SearchAssetsOutput> => {
+export const searchAssetController = async (opts: { input: SearchAssetsInput }): Promise<SearchAssetsOutput> => {
   console.info("searchAssetController", opts);
   return [
     { name: "Bitcoin", symbol: "BTC", price: 50000, change: 5 },
