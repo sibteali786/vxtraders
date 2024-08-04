@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 export function SelectAsset() {
   const location = useLocation();
-  const assets = trpc.searchAssets.useQuery();
+  const assets = trpc.searchAssets.useQuery({ keyword: '' });
 
   useEffect(() => {
     assets.refetch();

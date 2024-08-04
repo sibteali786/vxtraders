@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 export function Leaderboards() {
   const location = useLocation();
-  const leaderboards = trpc.leaderboards.useQuery();
+  const leaderboards = trpc.leaderboards.useQuery({});
 
   useEffect(() => {
     leaderboards.refetch();

@@ -14,7 +14,8 @@
     "axios": "^1.6.5",
     "crypto-js": "^4.2.0",
     "jsonwebtoken": "^9.0.2",
-    "luxon": "^3.4.4"
+    "luxon": "^3.4.4",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.1",

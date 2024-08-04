@@ -1,8 +1,9 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "./ui/card"
+import { PositionSummary } from "@vxtraders/shared";
 
-export function PositionPreview(props: any) {
+export function PositionPreview(props: { position: PositionSummary}) {
   return (
     <Card className="flex justify-between items-center p-3 rounded-lg space-x-4">
       <div className="flex items-center rounded-lg space-x-4">

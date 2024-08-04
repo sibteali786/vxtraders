@@ -1,8 +1,9 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Card } from "./ui/card"
 import { ArrowUpIcon } from "lucide-react";
+import { TraderSummary } from "@vxtraders/shared";
 
-export function TraderPreview(props: any) {
+export function TraderPreview(props: { trader: TraderSummary }) {
   return (
     <Card className="flex items-center p-3">
       <Avatar className="mr-4">

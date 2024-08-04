@@ -1,8 +1,9 @@
+import { SearchAsset } from "@vxtraders/shared";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card"
 import { BitcoinIcon } from "lucide-react";
 
-export function AssetPreview(props: any) {
+export function AssetPreview(props: { asset: SearchAsset }) {
   return (
     <Card className="flex items-center p-3">
       <BitcoinIcon className="w-10 h-8 text-yellow-500" />
