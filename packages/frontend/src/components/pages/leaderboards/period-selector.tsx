@@ -1,15 +1,15 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export function PeriodSelector() {
   return (
     <Select>
       <SelectTrigger id="timeframe" className="w-24">
-        <SelectValue placeholder="All" />
+        <SelectValue placeholder="24h" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="All">All</SelectItem>
+        <SelectItem value="24h">24h</SelectItem>
+        <SelectItem value="7d">7d</SelectItem>
         <SelectItem value="30d">30d</SelectItem>
-        <SelectItem value="60d">60d</SelectItem>
         <SelectItem value="90d">90d</SelectItem>
       </SelectContent>
     </Select>

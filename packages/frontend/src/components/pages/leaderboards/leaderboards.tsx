@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button"
-import { PositionPreview } from "./position-preview"
-import { TraderPreview } from "./trader-preview"
 import { PeriodSelector } from "./period-selector"
 import { trpc } from "@/trpc";
-import { PreviewSkeleton } from "./preview-skeleton";
+import { PreviewSkeleton } from "@/components/common/preview-skeleton";
+import { TraderPreview } from "@/components/common/trader-preview";
+import { PositionPreview } from "@/components/common/position-preview";
 
 export function Leaderboards() {
   const topTraders = trpc.topTraders.useQuery({

@@ -1,4 +1,4 @@
-import { ChartContainer } from "./ui/chart"
+import { ChartContainer } from "@/components/ui/chart"
 import { XAxis, AreaChart, Area } from "recharts"
 
 export function PortfolioChart() {

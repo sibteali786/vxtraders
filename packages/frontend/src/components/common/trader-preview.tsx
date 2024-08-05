@@ -1,5 +1,5 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Card } from "./ui/card"
+import { Card } from "../ui/card"
 import { ArrowUpIcon } from "lucide-react";
 import { TraderSummary } from "@vxtraders/shared";
 

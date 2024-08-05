@@ -6,15 +6,15 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import { useState } from 'react';
 import { trpc } from './trpc';
-import { Leaderboards } from './components/leaderboards';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { HorizontalMenu } from './components/horizontal-menu';
-import { SelectAsset } from './components/select-asset';
-import { Help } from './components/help';
-import { Settings } from './components/settings';
-import { Portfolio } from './components/portfolio';
-import { PageNotFound } from './components/page-not-found';
+import { Help } from './components/pages/help/help';
+import { Settings } from './components/pages/settings/settings';
+import { Portfolio } from './components/pages/portfolio/portfolio';
+import { PageNotFound } from './components/pages/page-not-found';
+import { Leaderboards } from './components/pages/leaderboards/leaderboards';
+import { SelectAsset } from './components/pages/trade/select-asset';
 
 const baseUrl = import.meta.env.MODE === 'development' ? 'http://localhost:3000' : 'https://tjfj3q2sck.execute-api.us-east-1.amazonaws.com/prod/';
 

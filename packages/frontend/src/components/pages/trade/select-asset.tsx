@@ -1,6 +1,6 @@
+import { AssetPreview } from "@/components/common/asset-preview";
+import { PreviewSkeleton } from "@/components/common/preview-skeleton";
 import { trpc } from "@/trpc";
-import { PreviewSkeleton } from "./preview-skeleton";
-import { AssetPreview } from "./asset-preview";
 
 export function SelectAsset() {
   const assets = trpc.searchAssets.useQuery({ keyword: '' });

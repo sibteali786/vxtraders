@@ -1,5 +1,6 @@
-import { Card } from "./ui/card";
-import { Skeleton } from "./ui/skeleton";
+import { Card } from "../ui/card";
+import { Skeleton } from "../ui/skeleton";
+
 
 export function PreviewSkeleton() {
   return (

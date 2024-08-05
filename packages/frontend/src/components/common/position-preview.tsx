@@ -1,7 +1,7 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import { Card } from "./ui/card"
 import { PositionSummary } from "@vxtraders/shared";
+import { Card } from "../ui/card";
 
 export function PositionPreview(props: { position: PositionSummary}) {
   return (

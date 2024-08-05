@@ -1,6 +1,6 @@
 import { SearchAsset } from "@vxtraders/shared";
-import { Button } from "./ui/button";
-import { Card } from "./ui/card"
+import { Button } from "../ui/button";
+import { Card } from "../ui/card"
 import { BitcoinIcon } from "lucide-react";
 
 export function AssetPreview(props: { asset: SearchAsset }) {

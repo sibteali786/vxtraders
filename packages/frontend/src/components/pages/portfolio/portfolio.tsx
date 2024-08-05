@@ -1,6 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { PositionPreview } from "@/components/common/position-preview";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 import { PortfolioChart } from "./portfolio-chart";
-import { PositionPreview } from "./position-preview";
 import { PositionSummary } from "@vxtraders/shared";
 
 export function Portfolio() {
