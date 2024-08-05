@@ -1,8 +1,16 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { PeriodState, usePeriodStore } from "@/stores/useState";
 
 export function PeriodSelector() {
+  const setPeriod = usePeriodStore((state: PeriodState) => state.setPeriod);
   return (
-    <Select>
+    <Select onValueChange={(value: PeriodState["selectedPeriod"]) => setPeriod(value)}>
       <SelectTrigger id="timeframe" className="w-24">
         <SelectValue placeholder="24h" />
       </SelectTrigger>

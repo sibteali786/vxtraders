@@ -4,16 +4,18 @@ import { trpc } from "@/trpc";
 import { PreviewSkeleton } from "@/components/common/preview-skeleton";
 import { TraderPreview } from "@/components/common/trader-preview";
 import { PositionPreview } from "@/components/common/position-preview";
+import { usePeriodStore } from "@/stores/useState";
 
 export function Leaderboards() {
+  const selectedPeriod = usePeriodStore((state) => state.selectedPeriod);
   const topTraders = trpc.topTraders.useQuery({
     count: 5,
-    timeframe: "24h",
+    timeframe: selectedPeriod,
   });
 
   const topPositions = trpc.topPositions.useQuery({
     count: 5,
-    timeframe: "24h",
+    timeframe: selectedPeriod,
   });
 
   return (
