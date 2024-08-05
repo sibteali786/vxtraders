@@ -15,7 +15,8 @@ import { Portfolio } from "./components/pages/portfolio/portfolio";
 import { PageNotFound } from "./components/pages/page-not-found";
 import { Leaderboards } from "./components/pages/leaderboards/leaderboards";
 import { SelectAsset } from "./components/pages/trade/select-asset";
-import { TopTraders } from "./components/pages/leaderboards/top-traders/topTraders";
+import { TopTraders } from "./components/pages/leaderboards/topTraders/topTraders";
+import { TopPositions } from "./components/pages/leaderboards/topPositions/topPositions";
 
 const baseUrl =
   import.meta.env.MODE === "development"
@@ -61,6 +62,7 @@ function MainRouting() {
       <Routes>
         <Route path="/" element={<Leaderboards />} />
         <Route path="/topTraders" element={<TopTraders />} />
+        <Route path="/topPositions" element={<TopPositions />} />
         <Route path="/select-asset" element={<SelectAsset />} />
         <Route path="/help" element={<Help />} />
         <Route path="/settings" element={<Settings />} />

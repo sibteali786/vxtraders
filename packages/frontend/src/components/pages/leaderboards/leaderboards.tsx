@@ -34,7 +34,7 @@ export function Leaderboards() {
           : topTraders.data?.traders.map((trader, i) => <TraderPreview key={i} trader={trader} />)}
       </div>
       {topTraders.isFetched && (
-        <Button className="w-full">
+        <Button className="w-full" asChild>
           <Link to="topTraders" className="text-white hover:text-white hover:underline">
             View More
           </Link>
@@ -56,7 +56,13 @@ export function Leaderboards() {
               <PositionPreview key={i} position={position} />
             ))}
       </div>
-      {topPositions.isFetched && <Button className="w-full">View More</Button>}
+      {topPositions.isFetched && (
+        <Button className="w-full" asChild>
+          <Link to="topPositions" className="text-white hover:text-white hover:underline">
+            View More
+          </Link>
+        </Button>
+      )}
 
       <div className="w-full p-10"></div>
     </div>
