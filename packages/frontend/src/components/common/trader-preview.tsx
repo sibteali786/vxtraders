@@ -1,6 +1,6 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Card } from "../ui/card"
-import { ArrowUpIcon } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Card } from "../ui/card";
+import { ChevronUp } from "lucide-react";
 import { TraderSummary } from "@vxtraders/shared";
 
 export function TraderPreview(props: { trader: TraderSummary }) {
@@ -16,7 +16,7 @@ export function TraderPreview(props: { trader: TraderSummary }) {
       </div>
       <div className="flex items-center">
         <p className="font-semibold mr-2">+{props.trader.roi}%</p>
-        <ArrowUpIcon className="text-green-500 w-4 h-4" />
+        <ChevronUp className="text-green-500 w-4 h-4" />
       </div>
     </Card>
   );
