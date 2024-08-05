@@ -19,7 +19,7 @@ export function SelectAsset() {
       <div className="space-y-2">
         {assets.isFetching ?
           Array(15).fill(0).map((_, i) => (<PreviewSkeleton key={i} />)) :
-          assets.data?.map((asset, i) => (<AssetPreview key={i} asset={asset} />))}
+          assets.data?.assets.map((asset, i) => (<AssetPreview key={i} asset={asset} />))}
       </div>
 
       <div className="w-full p-6"></div>

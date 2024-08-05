@@ -9,7 +9,7 @@ export function AssetPreview(props: { asset: SearchAsset }) {
       <BitcoinIcon className="w-10 h-8 text-yellow-500" />
       <div className="flex-1">
         <p className="font-semibold">{props.asset.name}</p>
-        <p className="text-sm text-muted-foreground">{props.asset.symbol}</p>
+        <p className="text-sm text-muted-foreground">{props.asset.ticker}</p>
       </div>
       <div className="flex-1">
         <p className="font-semibold">${props.asset.price}</p>

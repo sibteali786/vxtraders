@@ -9,10 +9,19 @@ import { useEffect } from "react";
 
 export function Leaderboards() {
   const location = useLocation();
-  const leaderboards = trpc.leaderboards.useQuery({});
+  const topTraders = trpc.topTraders.useQuery({
+    count: 5,
+    timeframe: "24h",
+  });
+
+  const topPositions = trpc.topPositions.useQuery({
+    count: 5,
+    timeframe: "24h",
+  });
 
   useEffect(() => {
-    leaderboards.refetch();
+    topTraders.refetch();
+    topPositions.refetch();
   }, [location]);
 
   return (
@@ -23,11 +32,11 @@ export function Leaderboards() {
         <PeriodSelector />
       </div>
       <div className="space-y-2">
-        {leaderboards.isFetching ?
+        {topTraders.isFetching ?
           Array(5).fill(0).map((_, i) => (<PreviewSkeleton key={i} />)) :
-          leaderboards.data?.traders.map((trader, i) => (<TraderPreview key={i} trader={trader} />))}
+          topTraders.data?.traders.map((trader, i) => (<TraderPreview key={i} trader={trader} />))}
       </div>
-      { leaderboards.isFetched && <Button className="w-full">View More</Button> }
+      { topTraders.isFetched && <Button className="w-full">View More</Button> }
 
       <div className="w-full p-3"></div>
 
@@ -36,11 +45,11 @@ export function Leaderboards() {
         <PeriodSelector />
       </div>
       <div className="space-y-2">
-        {leaderboards.isFetching ?
+        {topPositions.isFetching ?
           Array(5).fill(0).map((_, i) => (<PreviewSkeleton key={i} />)) :
-          leaderboards.data?.positions.map((position, i) => (<PositionPreview key={i} position={position} />))}
+          topPositions.data?.positions.map((position, i) => (<PositionPreview key={i} position={position} />))}
       </div>
-      { leaderboards.isFetched && <Button className="w-full">View More</Button> }
+      { topPositions.isFetched && <Button className="w-full">View More</Button> }
 
       <div className="w-full p-6"></div>
     </div>

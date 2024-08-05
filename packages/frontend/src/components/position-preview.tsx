@@ -13,17 +13,17 @@ export function PositionPreview(props: { position: PositionSummary}) {
         </Avatar>
         <div className="flex flex-col space-y-1">
           <div className="flex items-center space-x-2">
-            <span className="text-white font-medium">{ props.position.asset }</span>
+            <span className="text-white font-medium">{ props.position.asset.name }</span>
             <BitcoinIcon className="w-4 h-4 text-yellow-500" />
           </div>
           <div className="flex items-center space-x-2">
             <span>{props.position.leverage}</span>
-            <Badge variant="default">{props.position.mode}</Badge>
+            <Badge variant="default">{props.position.tradeMode}</Badge>
           </div>
         </div>
       </div>
       <div className="ml-auto text-right">
-        <div className="text-white">${props.position.entry} → ${props.position.exit}</div>
+        <div className="text-white">${props.position.entryPrice} → ${props.position.exitPrice}</div>
         <div className="text-green-500">+{props.position.roi}%</div>
       </div>
     </Card>

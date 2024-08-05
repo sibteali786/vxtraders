@@ -1,14 +1,15 @@
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { PortfolioChart } from "./portfolio-chart";
 import { PositionPreview } from "./position-preview";
+import { PositionSummary } from "@vxtraders/shared";
 
 export function Portfolio() {
-  const positions = [
-    { asset: "Bitcion", leverage: '10x', mode: 'LONG', entry: 50000, exit: 60000, roi: 140 },
-    { asset: "Ethereum", leverage: '20x', mode: 'SHORT', entry: 3000, exit: 2000, roi: 70 },
-    { asset: "Litecoin", leverage: '5x', mode: 'LONG', entry: 200, exit: 300, roi: 50 },
-    { asset: "Ripple", leverage: '10x', mode: 'SHORT', entry: 1, exit: 0.5, roi: 50 },
-    { asset: "Dogecoin", leverage: '20x', mode: 'LONG', entry: 0.1, exit: 0.2, roi: 50},
+  const positions: PositionSummary[] = [
+    { asset: { name: "Bitcion", ticker: "BTC", image: "" }, leverage: 10, tradeMode: "LONG", entryPrice: 50000, exitPrice: 60000, roi: 140 },
+    { asset: { name: "Ethereum", ticker: "ETH", image: "" }, leverage: 20, tradeMode: "SHORT", entryPrice: 3000, exitPrice: 2000, roi: 70 },
+    { asset: { name: "Litecoin", ticker: "LTC", image: "" }, leverage: 5, tradeMode: "LONG", entryPrice: 200, exitPrice: 300, roi: 50 },
+    { asset: { name: "Ripple", ticker: "XRP", image: "" }, leverage: 10, tradeMode: "SHORT", entryPrice: 1, exitPrice: 0.5, roi: 50 },
+    { asset: { name: "Dogecoin", ticker: "DOGE", image: "" }, leverage: 20, tradeMode: "LONG", entryPrice: 0.1, exitPrice: 0.2, roi: 50 },
   ];
   return (
     <div className="p-4 space-y-4">
