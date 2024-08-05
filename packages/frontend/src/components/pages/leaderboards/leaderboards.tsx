@@ -5,6 +5,7 @@ import { PreviewSkeleton } from "@/components/common/preview-skeleton";
 import { TraderPreview } from "@/components/common/trader-preview";
 import { PositionPreview } from "@/components/common/position-preview";
 import { usePeriodStore } from "@/stores/useState";
+import { Link } from "react-router-dom";
 
 export function Leaderboards() {
   const selectedPeriod = usePeriodStore((state) => state.selectedPeriod);
@@ -32,7 +33,13 @@ export function Leaderboards() {
               .map((_, i) => <PreviewSkeleton key={i} />)
           : topTraders.data?.traders.map((trader, i) => <TraderPreview key={i} trader={trader} />)}
       </div>
-      {topTraders.isFetched && <Button className="w-full">View More</Button>}
+      {topTraders.isFetched && (
+        <Button className="w-full">
+          <Link to="topTraders" className="text-white hover:text-white hover:underline">
+            View More
+          </Link>
+        </Button>
+      )}
 
       <div className="w-full p-3"></div>
 
