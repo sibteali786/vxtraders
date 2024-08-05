@@ -3,7 +3,7 @@ import { TopPositionsInput, TopPositionsOutput } from "@vxtraders/shared";
 export const topPositionsController = async (opts: {
   input: TopPositionsInput;
 }): Promise<TopPositionsOutput> => {
-  console.info("Top traders controller called with input", opts.input);
+  console.info("Top positions controller called with input", opts.input);
   return {
     positions: [
       {

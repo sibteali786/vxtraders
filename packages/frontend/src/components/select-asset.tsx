@@ -1,16 +1,9 @@
 import { trpc } from "@/trpc";
 import { PreviewSkeleton } from "./preview-skeleton";
 import { AssetPreview } from "./asset-preview";
-import { useLocation } from 'react-router-dom';
-import { useEffect } from "react";
 
 export function SelectAsset() {
-  const location = useLocation();
   const assets = trpc.searchAssets.useQuery({ keyword: '' });
-
-  useEffect(() => {
-    assets.refetch();
-  }, [location]);
 
   return (
     <div className="p-4 space-y-4">

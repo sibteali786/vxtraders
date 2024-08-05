@@ -3,7 +3,7 @@ import { SearchAssetsInput, SearchAssetsOutput } from "@vxtraders/shared";
 export const searchAssetController = async (opts: {
   input: SearchAssetsInput;
 }): Promise<SearchAssetsOutput> => {
-  console.info("searchAssetController", opts);
+  console.info("searchAssetController", opts.input);
   return {
     assets: [
       { name: "Bitcoin", ticker: "BTC", image: "", price: 50000, change: 5 },

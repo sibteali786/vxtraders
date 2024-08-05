@@ -4,11 +4,8 @@ import { TraderPreview } from "./trader-preview"
 import { PeriodSelector } from "./period-selector"
 import { trpc } from "@/trpc";
 import { PreviewSkeleton } from "./preview-skeleton";
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
 export function Leaderboards() {
-  const location = useLocation();
   const topTraders = trpc.topTraders.useQuery({
     count: 5,
     timeframe: "24h",
@@ -18,11 +15,6 @@ export function Leaderboards() {
     count: 5,
     timeframe: "24h",
   });
-
-  useEffect(() => {
-    topTraders.refetch();
-    topPositions.refetch();
-  }, [location]);
 
   return (
     <div className="p-4 space-y-4">
