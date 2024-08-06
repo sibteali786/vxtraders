@@ -10,7 +10,7 @@ import { Error } from "../Error/Error";
 export const TradersList: React.FC = () => {
   const selectedTopTradersPeriod = useTopTradersPeriodStore((state) => state.selectedPeriod);
   const setTradersPeriod = useTopTradersPeriodStore((state) => state.setPeriod);
-  const topTraders = trpc.topTraders.useQuery({
+  const { isLoading, isError, error, data, isFetched } = trpc.topTraders.useQuery({
     count: 5,
     timeframe: selectedTopTradersPeriod,
   });
@@ -22,17 +22,17 @@ export const TradersList: React.FC = () => {
       </div>
       <div className="flex flex-col space-y-7">
         <div className="space-y-3">
-          {topTraders.isLoading ? (
+          {isLoading ? (
             Array(5)
               .fill(0)
               .map((_, i) => <PreviewSkeleton key={i} />)
-          ) : topTraders.isError ? (
-            <Error>{topTraders.error || "Something went wrong please try again !"}</Error>
+          ) : isError ? (
+            <Error>{error.message || "Something went wrong please try again !"}</Error>
           ) : (
-            topTraders.data?.traders.map((trader, i) => <TraderPreview key={i} trader={trader} />)
+            data?.traders.map((trader, i) => <TraderPreview key={i} trader={trader} />)
           )}
         </div>
-        {topTraders.isFetched && (
+        {isFetched && (
           <Button className="w-full" asChild>
             <Link to="topTraders" className="text-white hover:text-white hover:underline">
               View More

@@ -10,7 +10,7 @@ import { PositionPreview } from "../positionCard";
 export const PositionsList: React.FC = () => {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
   const setPositionsPeriod = useTopPositionsPeriodStore((state) => state.setPeriod);
-  const topPositions = trpc.topPositions.useQuery({
+  const { isLoading, isError, error, data, isFetched } = trpc.topPositions.useQuery({
     count: 5,
     timeframe: selectedTopPositionsPeriod,
   });
@@ -22,19 +22,17 @@ export const PositionsList: React.FC = () => {
       </div>
       <div className="flex flex-col space-y-7">
         <div className="space-y-3">
-          {topPositions.isLoading ? (
+          {isLoading ? (
             Array(5)
               .fill(0)
               .map((_, i) => <PreviewSkeleton key={i} />)
-          ) : topPositions.isError ? (
-            <Error>{topPositions.error || "Something went wrong please try again !"}</Error>
+          ) : isError ? (
+            <Error>{error.message || "Something went wrong please try again !"}</Error>
           ) : (
-            topPositions.data?.positions.map((position, i) => (
-              <PositionPreview key={i} position={position} />
-            ))
+            data?.positions.map((position, i) => <PositionPreview key={i} position={position} />)
           )}
         </div>
-        {topPositions.isFetched && (
+        {isFetched && (
           <Button className="w-full" asChild>
             <Link to="topPositions" className="text-white hover:text-white hover:underline">
               View More
