@@ -4,19 +4,22 @@ import { trpc } from "@/trpc";
 import { PreviewSkeleton } from "@/components/common/preview-skeleton";
 import { TraderPreview } from "@/components/common/trader-preview";
 import { PositionPreview } from "@/components/common/position-preview";
-import { usePeriodStore } from "@/stores/useState";
 import { Link } from "react-router-dom";
+import { useTopPositionsPeriodStore, useTopTradersPeriodStore } from "@/stores/useState";
 
 export function Leaderboards() {
-  const selectedPeriod = usePeriodStore((state) => state.selectedPeriod);
+  const selectedTopTradersPeriod = useTopTradersPeriodStore((state) => state.selectedPeriod);
+  const setTradersPeriod = useTopTradersPeriodStore((state) => state.setPeriod);
+  const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
+  const setPositionsPeriod = useTopPositionsPeriodStore((state) => state.setPeriod);
   const topTraders = trpc.topTraders.useQuery({
     count: 5,
-    timeframe: selectedPeriod,
+    timeframe: selectedTopTradersPeriod,
   });
 
   const topPositions = trpc.topPositions.useQuery({
     count: 5,
-    timeframe: selectedPeriod,
+    timeframe: selectedTopPositionsPeriod,
   });
 
   return (
@@ -24,7 +27,7 @@ export function Leaderboards() {
       <h1 className="text-3xl font-bold">Leaderboards</h1>
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold">Top Traders</h2>
-        <PeriodSelector />
+        <PeriodSelector period={selectedTopTradersPeriod} setPeriod={setTradersPeriod} />
       </div>
       <div className="space-y-2">
         {topTraders.isFetching
@@ -45,7 +48,7 @@ export function Leaderboards() {
 
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold">Top Positions</h2>
-        <PeriodSelector />
+        <PeriodSelector period={selectedTopPositionsPeriod} setPeriod={setPositionsPeriod} />
       </div>
       <div className="space-y-2">
         {topPositions.isFetching

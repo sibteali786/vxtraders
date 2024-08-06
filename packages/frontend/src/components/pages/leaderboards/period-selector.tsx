@@ -5,12 +5,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { PeriodState, usePeriodStore } from "@/stores/useState";
+import { PeriodState } from "@/stores/useState";
 
-export function PeriodSelector() {
-  const setPeriod = usePeriodStore((state: PeriodState) => state.setPeriod);
+export type PeriodProps = {
+  period: PeriodState["selectedPeriod"];
+  setPeriod: PeriodState["setPeriod"];
+};
+
+export function PeriodSelector({ period, setPeriod }: PeriodProps) {
   return (
-    <Select onValueChange={(value: PeriodState["selectedPeriod"]) => setPeriod(value)}>
+    <Select
+      onValueChange={(value: PeriodState["selectedPeriod"]) => setPeriod(value)}
+      value={period}
+    >
       <SelectTrigger id="timeframe" className="w-24">
         <SelectValue placeholder="24h" />
       </SelectTrigger>

@@ -1,21 +1,22 @@
 import { PeriodSelector } from "../period-selector";
 import { trpc } from "@/trpc";
 import { PreviewSkeleton } from "@/components/common/preview-skeleton";
-import { usePeriodStore } from "@/stores/useState";
+import { useTopPositionsPeriodStore } from "@/stores/useState";
 import { PositionPreview } from "@/components/common/position-preview";
 
 export function TopPositions() {
-  const selectedPeriod = usePeriodStore((state) => state.selectedPeriod);
+  const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
+  const setPositionsPeriod = useTopPositionsPeriodStore((state) => state.setPeriod);
   const topPositions = trpc.topPositions.useQuery({
     count: 10,
-    timeframe: selectedPeriod,
+    timeframe: selectedTopPositionsPeriod,
   });
 
   return (
     <div className="p-4 space-y-7 h-fit">
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold">Top Positions</h2>
-        <PeriodSelector />
+        <PeriodSelector period={selectedTopPositionsPeriod} setPeriod={setPositionsPeriod} />
       </div>
       <div className="space-y-3">
         {topPositions.isFetching

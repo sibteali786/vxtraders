@@ -5,7 +5,12 @@ export type PeriodState = {
   setPeriod: (selectedPeriod: PeriodState["selectedPeriod"]) => void;
 };
 
-export const usePeriodStore = create<PeriodState>((set) => ({
-  selectedPeriod: "90d",
-  setPeriod: (selectedPeriod) => set(() => ({ selectedPeriod: selectedPeriod })),
+export const useTopTradersPeriodStore = create<PeriodState>((set) => ({
+  selectedPeriod: "24h",
+  setPeriod: (selectedPeriod) => set(() => ({ selectedPeriod })),
+}));
+
+export const useTopPositionsPeriodStore = create<PeriodState>((set) => ({
+  selectedPeriod: "24h",
+  setPeriod: (selectedPeriod) => set(() => ({ selectedPeriod })),
 }));

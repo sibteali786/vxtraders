@@ -55,7 +55,7 @@ function App() {
 
 function MainRouting() {
   const location = useLocation();
-  const subScreenPaths = ["/topTraders"];
+  const subScreenPaths = ["/topTraders", "/topPositions"];
   const hideNavBar = subScreenPaths.includes(location.pathname);
   return (
     <>

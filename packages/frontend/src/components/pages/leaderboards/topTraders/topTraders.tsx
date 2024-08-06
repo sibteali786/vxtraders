@@ -2,20 +2,21 @@ import { PeriodSelector } from "../period-selector";
 import { trpc } from "@/trpc";
 import { PreviewSkeleton } from "@/components/common/preview-skeleton";
 import { TraderPreview } from "@/components/common/trader-preview";
-import { usePeriodStore } from "@/stores/useState";
+import { useTopTradersPeriodStore } from "@/stores/useState";
 
 export function TopTraders() {
-  const selectedPeriod = usePeriodStore((state) => state.selectedPeriod);
+  const selectedTopTradersPeriod = useTopTradersPeriodStore((state) => state.selectedPeriod);
+  const setTradersPeriod = useTopTradersPeriodStore((state) => state.setPeriod);
   const topTraders = trpc.topTraders.useQuery({
     count: 10,
-    timeframe: selectedPeriod,
+    timeframe: selectedTopTradersPeriod,
   });
 
   return (
     <div className="p-4 space-y-7 h-fit">
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold">Top Traders</h2>
-        <PeriodSelector />
+        <PeriodSelector period={selectedTopTradersPeriod} setPeriod={setTradersPeriod} />
       </div>
       <div className="space-y-3">
         {topTraders.isFetching
