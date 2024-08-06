@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { PreviewSkeleton } from "../previewSkeleton";
 import { useTopPositionsPeriodStore } from "@/stores/useState";
 import { trpc } from "@/trpc";
-import { Error } from "../Error/Error";
 import { PositionPreview } from "../positionCard";
+import withErrorHandling from "../hoc/withErrorHandling";
 
 export const PositionsList: React.FC = () => {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
@@ -14,6 +14,14 @@ export const PositionsList: React.FC = () => {
     count: 5,
     timeframe: selectedTopPositionsPeriod,
   });
+  const List = () => {
+    return (
+      <div>
+        {data?.positions.map((position, i) => <PositionPreview key={i} position={position} />)}
+      </div>
+    );
+  };
+  const WrappedList = withErrorHandling(List);
   return (
     <div className="space-y-5">
       <div className="flex justify-between items-center">
@@ -26,10 +34,8 @@ export const PositionsList: React.FC = () => {
             Array(5)
               .fill(0)
               .map((_, i) => <PreviewSkeleton key={i} />)
-          ) : isError ? (
-            <Error>{error.message || "Something went wrong please try again !"}</Error>
           ) : (
-            data?.positions.map((position, i) => <PositionPreview key={i} position={position} />)
+            <WrappedList isError={isError} error={error?.message} />
           )}
         </div>
         {isFetched && (

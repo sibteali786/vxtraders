@@ -6,6 +6,7 @@ import { PreviewSkeleton } from "../previewSkeleton";
 import { useTopTradersPeriodStore } from "@/stores/useState";
 import { trpc } from "@/trpc";
 import { Error } from "../Error/Error";
+import withErrorHandling from "../hoc/withErrorHandling";
 
 export const TradersList: React.FC = () => {
   const selectedTopTradersPeriod = useTopTradersPeriodStore((state) => state.selectedPeriod);
@@ -14,6 +15,10 @@ export const TradersList: React.FC = () => {
     count: 5,
     timeframe: selectedTopTradersPeriod,
   });
+  const List = () => {
+    return <div>{data?.traders.map((trader, i) => <TraderPreview key={i} trader={trader} />)}</div>;
+  };
+  const WrappedList = withErrorHandling(List);
   return (
     <div className="space-y-5">
       <div className="flex justify-between items-center">
@@ -26,10 +31,8 @@ export const TradersList: React.FC = () => {
             Array(5)
               .fill(0)
               .map((_, i) => <PreviewSkeleton key={i} />)
-          ) : isError ? (
-            <Error>{error.message || "Something went wrong please try again !"}</Error>
           ) : (
-            data?.traders.map((trader, i) => <TraderPreview key={i} trader={trader} />)
+            <WrappedList isError={isError} error={error?.message} />
           )}
         </div>
         {isFetched && (
