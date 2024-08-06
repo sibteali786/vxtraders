@@ -1,7 +1,7 @@
 import { PeriodSelector } from "../period-selector";
 import { trpc } from "@/trpc";
-import { PreviewSkeleton } from "@/components/common/preview-skeleton";
-import { TraderPreview } from "@/components/common/trader-preview";
+import { PreviewSkeleton } from "@/components/common/previewSkeleton";
+import { TraderPreview } from "@/components/common/traderCard";
 import { useTopTradersPeriodStore } from "@/stores/useState";
 
 export function TopTraders() {
@@ -13,7 +13,7 @@ export function TopTraders() {
   });
 
   return (
-    <div className="p-4 space-y-7 h-fit">
+    <div className="py-4 space-y-7 h-fit">
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold">Top Traders</h2>
         <PeriodSelector period={selectedTopTradersPeriod} setPeriod={setTradersPeriod} />

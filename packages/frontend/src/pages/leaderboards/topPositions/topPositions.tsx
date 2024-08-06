@@ -1,8 +1,8 @@
 import { PeriodSelector } from "../period-selector";
 import { trpc } from "@/trpc";
-import { PreviewSkeleton } from "@/components/common/preview-skeleton";
+import { PreviewSkeleton } from "@/components/common/previewSkeleton";
 import { useTopPositionsPeriodStore } from "@/stores/useState";
-import { PositionPreview } from "@/components/common/position-preview";
+import { PositionPreview } from "@/components/common/positionCard";
 
 export function TopPositions() {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
@@ -13,7 +13,7 @@ export function TopPositions() {
   });
 
   return (
-    <div className="p-4 space-y-7 h-fit">
+    <div className="py-4 space-y-7 h-fit">
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold">Top Positions</h2>
         <PeriodSelector period={selectedTopPositionsPeriod} setPeriod={setPositionsPeriod} />

@@ -1,6 +1,6 @@
 export function Settings() {
   return (
-    <div className="p-4 space-y-4">
+    <div className="py-4 space-y-4">
       <h1 className="text-3xl font-bold">Settings</h1>
       <div className="space-y-2">
         <div className="flex justify-between">

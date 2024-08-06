@@ -9,14 +9,14 @@ import { trpc } from "./trpc";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import { HorizontalMenu } from "./components/horizontal-menu";
-import { Help } from "./components/pages/help/help";
-import { Settings } from "./components/pages/settings/settings";
-import { Portfolio } from "./components/pages/portfolio/portfolio";
-import { PageNotFound } from "./components/pages/page-not-found";
-import { Leaderboards } from "./components/pages/leaderboards/leaderboards";
-import { SelectAsset } from "./components/pages/trade/select-asset";
-import { TopTraders } from "./components/pages/leaderboards/topTraders/topTraders";
-import { TopPositions } from "./components/pages/leaderboards/topPositions/topPositions";
+import { Help } from "./pages/help/help";
+import { Settings } from "./pages/settings/settings";
+import { Portfolio } from "./pages/portfolio/portfolio";
+import { PageNotFound } from "./pages/page-not-found";
+import { Leaderboards } from "./pages/leaderboards/leaderboards";
+import { SelectAsset } from "./pages/trade/select-asset";
+import { TopTraders } from "./pages/leaderboards/topTraders/topTraders";
+import { TopPositions } from "./pages/leaderboards/topPositions/topPositions";
 
 const baseUrl =
   import.meta.env.MODE === "development"
@@ -58,7 +58,7 @@ function MainRouting() {
   const subScreenPaths = ["/topTraders", "/topPositions"];
   const hideNavBar = subScreenPaths.includes(location.pathname);
   return (
-    <>
+    <div className="px-[24px]">
       <Routes>
         <Route path="/" element={<Leaderboards />} />
         <Route path="/topTraders" element={<TopTraders />} />
@@ -70,7 +70,7 @@ function MainRouting() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       {!hideNavBar && <HorizontalMenu />}
-    </>
+    </div>
   );
 }
 
