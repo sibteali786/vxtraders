@@ -5,7 +5,6 @@ import { TraderPreview } from "../traderCard";
 import { PreviewSkeleton } from "../previewSkeleton";
 import { useTopTradersPeriodStore } from "@/stores/useState";
 import { trpc } from "@/trpc";
-import { Error } from "../Error/Error";
 import withErrorHandling from "../hoc/withErrorHandling";
 
 export const TradersList: React.FC = () => {
@@ -15,9 +14,11 @@ export const TradersList: React.FC = () => {
     count: 5,
     timeframe: selectedTopTradersPeriod,
   });
+  // List
   const List = () => {
-    return <div>{data?.traders.map((trader, i) => <TraderPreview key={i} trader={trader} />)}</div>;
+    return <>{data?.traders.map((trader, i) => <TraderPreview key={i} trader={trader} />)}</>;
   };
+  // Error handled List
   const WrappedList = withErrorHandling(List);
   return (
     <div className="space-y-5">

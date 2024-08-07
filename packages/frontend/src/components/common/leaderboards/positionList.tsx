@@ -16,9 +16,9 @@ export const PositionsList: React.FC = () => {
   });
   const List = () => {
     return (
-      <div>
+      <>
         {data?.positions.map((position, i) => <PositionPreview key={i} position={position} />)}
-      </div>
+      </>
     );
   };
   const WrappedList = withErrorHandling(List);
