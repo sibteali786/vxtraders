@@ -6,7 +6,7 @@ export function SelectAsset() {
   const assets = trpc.searchAssets.useQuery({ keyword: '' });
 
   return (
-    <div className="py-4 space-y-4">
+    <div className="pt-4 pb-[80px] space-y-4 px-default">
       <h1 className="text-3xl font-bold">Select Asset</h1>
       <input type="text" className="w-full p-2 border rounded-lg" placeholder="Search for an asset" />
       <div className="space-y-2">

@@ -2,7 +2,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 
 export function Help() {
   return (
-    <div className="py-4 space-y-4">
+    <div className="py-4 space-y-4 px-default">
       <h1 className="text-3xl font-bold">Get help</h1>
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">

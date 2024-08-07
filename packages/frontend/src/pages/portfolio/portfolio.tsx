@@ -47,8 +47,8 @@ export function Portfolio() {
     },
   ];
   return (
-    <div className="py-4 space-y-4">
-      <div className="flex justify-between items-center p-3">
+    <div className="pt-4 space-y-4 pb-[80px]">
+      <div className="flex justify-between items-center py-3 px-default">
         <div className="flex items-center space-x-4">
           <Avatar>
             <AvatarImage src="/placeholder-user.jpg" alt="Maxine Shu" />
@@ -65,11 +65,14 @@ export function Portfolio() {
         </div>
       </div>
       <PortfolioChart />
-      <h2 className="text-lg font-semibold">Closed positions</h2>
-      {positions.map((position, i) => (
-        <PositionPreview key={i} position={position} />
-      ))}
-      <div className="w-full p-6"></div>
+      <div className="space-y-4 px-default">
+        <h2 className="text-2xl font-semibold">Closed positions</h2>
+        <div className="space-y-3">
+          {positions.map((position, i) => (
+            <PositionPreview key={i} position={position} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
