@@ -16,9 +16,6 @@ const navLinkClasses = cva(
   },
 );
 
-// responsible for icon size in menu
-const iconClasses = cva(["h-5", "w-5"]);
-
 export function HorizontalMenu() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background w-full flex justify-center h-[70px]">
@@ -27,11 +24,11 @@ export function HorizontalMenu() {
           to="/select-asset"
           className={({ isActive }) => navLinkClasses({ active: isActive })}
         >
-          <ShuffleIcon className={iconClasses} />
+          <ShuffleIcon />
           Trade
         </NavLink>
         <NavLink to="/portfolio" className={({ isActive }) => navLinkClasses({ active: isActive })}>
-          <PieChartIcon className={iconClasses} />
+          <PieChartIcon />
           Portfolio
         </NavLink>
         <NavLink
@@ -44,11 +41,11 @@ export function HorizontalMenu() {
           Leaderboard
         </NavLink>
         <NavLink to="/settings" className={({ isActive }) => navLinkClasses({ active: isActive })}>
-          <SettingsIcon className={iconClasses} />
+          <SettingsIcon />
           Settings
         </NavLink>
         <NavLink to="/help" className={({ isActive }) => navLinkClasses({ active: isActive })}>
-          <CircleHelpIcon className={iconClasses} />
+          <CircleHelpIcon />
           Help
         </NavLink>
       </div>
