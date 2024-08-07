@@ -22,7 +22,7 @@ const iconClasses = cva(["h-5", "w-5"]);
 export function HorizontalMenu() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background w-full flex justify-center h-[70px]">
-      <div className="flex justify-around max-w-[600px] border-t border-border w-full">
+      <div className="flex justify-around max-w-global border-t border-border w-full">
         <NavLink
           to="/select-asset"
           className={({ isActive }) => navLinkClasses({ active: isActive })}
