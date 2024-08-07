@@ -2,6 +2,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { PositionSummary } from "@vxtraders/shared";
 import { Card } from "../ui/card";
+import { formatCurrency } from "@/lib/utils";
 
 export function PositionPreview(props: { position: PositionSummary }) {
   return (
@@ -24,7 +25,7 @@ export function PositionPreview(props: { position: PositionSummary }) {
       </div>
       <div className="ml-auto text-right">
         <div className="text-white text-base">
-          ${props.position.entryPrice} → ${props.position.exitPrice}
+          {formatCurrency(props.position.entryPrice)} → {formatCurrency(props.position.exitPrice)}
         </div>
         <div className="text-success text-base">+{props.position.roi}%</div>
       </div>
