@@ -1,3 +1,6 @@
+import { Divider } from "@/components/common/divider";
+import { ScreenLink } from "@/components/common/screeLink";
+
 export function Settings() {
   return (
     <div className="py-4 space-y-10">
@@ -5,17 +8,19 @@ export function Settings() {
       <div className="space-y-8">
         <h2 className="text-muted-foreground text-xl">Account Settings</h2>
         <div className="space-y-4">
-          <div className="flex justify-between">
-            <p className="font-semibold text-lg">Edit profile</p>
-            <p className="font-semibold">&gt;</p>
-          </div>
-          <div className="flex justify-between">
-            <p className="font-semibold text-lg">Channel integration</p>
-            <p className="font-semibold">&gt;</p>
-          </div>
+          <ScreenLink link="editProfile" title="Edit Profile" />
+          <ScreenLink link='integration' title="Channel Integration" />
         </div>
       </div>
-
+      <Divider />
+      <div className="space-y-8">
+        <h2 className="text-muted-foreground text-xl">More</h2>
+        <div className="space-y-4">
+          <ScreenLink link='aboutUs' title="About Us" />
+          <ScreenLink link='privacyPolicy' title="Privacy Policy" />
+          <ScreenLink link='termsConditions' title="Terms and Conditions" />
+        </div>
+      </div>
       <div className="w-full p-6"></div>
     </div>
   );
