@@ -13,6 +13,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* remove when finished with app dev */
+  border: 1px solid white;
+}
+
 a {
   font-weight: 500;
   color: #646cff;

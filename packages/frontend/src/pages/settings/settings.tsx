@@ -15,5 +15,5 @@ export function Settings() {
 
       <div className="w-full p-6"></div>
     </div>
-  )
+  );
 }

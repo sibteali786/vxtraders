@@ -58,7 +58,7 @@ function MainRouting() {
   const subScreenPaths = ["/topTraders", "/topPositions"];
   const hideNavBar = subScreenPaths.includes(location.pathname);
   return (
-    <div className="px-[24px]">
+    <div className="w-full max-w-[600px] flex flex-col justify-center px-[16px]">
       <Routes>
         <Route path="/" element={<Leaderboards />} />
         <Route path="/topTraders" element={<TopTraders />} />
