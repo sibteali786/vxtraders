@@ -1,6 +1,5 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "../ui/card";
-import { ChevronUp } from "lucide-react";
 import { TraderSummary } from "@vxtraders/shared";
 
 export function TraderPreview(props: { trader: TraderSummary }) {
@@ -15,8 +14,7 @@ export function TraderPreview(props: { trader: TraderSummary }) {
         <p className="text-sm text-muted-foreground">{props.trader.username}</p>
       </div>
       <div className="flex items-center">
-        <p className="font-semibold mr-2">+{props.trader.roi}%</p>
-        <ChevronUp className="text-green-500 w-4 h-4" />
+        <p className="font-semibold text-success mr-2">+{props.trader.roi}%</p>
       </div>
     </Card>
   );
