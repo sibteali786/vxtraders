@@ -55,7 +55,7 @@ export const theme = {
         foreground: "hsl(var(--popover-foreground))",
       },
       success: {
-        DEFAULT: colors.green['500'],
+        DEFAULT: colors.green["500"],
       },
       card: {
         DEFAULT: "hsl(var(--card))",

@@ -40,7 +40,7 @@ export const PositionsList: React.FC = () => {
         </div>
         {isFetched && (
           <Button className="w-full" asChild>
-            <Link to="topPositions" className="text-white hover:text-white hover:underline">
+            <Link to="topPositions" className="text-white hover:text-white">
               View More
             </Link>
           </Button>

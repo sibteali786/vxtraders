@@ -10,11 +10,11 @@ export function TraderPreview(props: { trader: TraderSummary }) {
         <AvatarFallback>MS</AvatarFallback>
       </Avatar>
       <div className="flex-1">
-        <p className="font-semibold">{props.trader.displayName}</p>
+        <p className="font-semibold text-base">{props.trader.displayName}</p>
         <p className="text-sm text-muted-foreground">{props.trader.username}</p>
       </div>
       <div className="flex items-center">
-        <p className="font-semibold text-success mr-2">+{props.trader.roi}%</p>
+        <p className="font-semibold text-base text-success mr-2">+{props.trader.roi}%</p>
       </div>
     </Card>
   );

@@ -17,16 +17,16 @@ export function PositionPreview(props: { position: PositionSummary }) {
             <BitcoinIcon className="w-4 h-4 text-yellow-500" />
           </div>
           <div className="flex items-center space-x-2">
-            <span>{props.position.leverage}x</span>
+            <span className="text-muted-foreground text-xs">{props.position.leverage}x</span>
             <Badge variant="default">{props.position.tradeMode}</Badge>
           </div>
         </div>
       </div>
       <div className="ml-auto text-right">
-        <div className="text-white">
+        <div className="text-white text-base">
           ${props.position.entryPrice} → ${props.position.exitPrice}
         </div>
-        <div className="text-success">+{props.position.roi}%</div>
+        <div className="text-success text-base">+{props.position.roi}%</div>
       </div>
     </Card>
   );
