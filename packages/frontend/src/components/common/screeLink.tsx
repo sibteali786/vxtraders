@@ -1,3 +1,4 @@
+import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 type ScreenLinkProps = {
@@ -7,10 +8,10 @@ type ScreenLinkProps = {
 
 export const ScreenLink: React.FC<ScreenLinkProps> = ({ title, link }) => {
   return (
-    <Link to={link} className="text-white hover:text-white/80">
+    <Link to={link} className="text-white hover:text-white/80 hover:cursor-pointer">
       <div className="flex justify-between">
         <p className="font-semibold text-lg">{title}</p>
-        <p className="font-semibold">&gt;</p>
+        <ChevronRight size={20} />
       </div>
     </Link>
   );
