@@ -1,9 +1,10 @@
+import { MainHeading } from "@/components/common/mainHeading";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../components/ui/accordion";
 
 export function Help() {
   return (
     <div className="py-4 space-y-4 px-default">
-      <h1 className="text-3xl font-bold">Get help</h1>
+      <MainHeading title = "Get Help"/>
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
           <AccordionTrigger className="bg-transparent text-left">What is Vx Traders and how does it work?</AccordionTrigger>

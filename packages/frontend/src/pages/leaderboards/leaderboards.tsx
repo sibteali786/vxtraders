@@ -1,10 +1,11 @@
 import { TradersList } from "@/components/common/leaderboards/tradersList";
 import { PositionsList } from "@/components/common/leaderboards/positionList";
+import { MainHeading } from "@/components/common/mainHeading";
 
 export function Leaderboards() {
   return (
     <div className="py-4 space-y-10 pb-[8rem] h-full px-default">
-      <h1 className="text-3xl font-bold">Leaderboards</h1>
+      <MainHeading title="Leaderboards" />
       <div className="space-y-10">
         <TradersList />
         <PositionsList />

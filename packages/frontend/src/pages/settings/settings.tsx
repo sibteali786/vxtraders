@@ -1,11 +1,12 @@
 import { Divider } from "@/components/common/divider";
+import { MainHeading } from "@/components/common/mainHeading";
 import { ScreenLink } from "@/components/common/screeLink";
 
 export function Settings() {
   return (
     <div className="py-4 space-y-10">
       <div className="space-y-10 px-default">
-        <h1 className="text-3xl font-bold">Settings</h1>
+        <MainHeading title='Settings' />
         <div className="flex flex-col gap-4">
           <h2 className="text-muted-foreground text-xl">Account Settings</h2>
           <div className="flex flex-col gap-2">
