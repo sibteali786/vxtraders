@@ -19,6 +19,7 @@ import { SelectAsset } from "./pages/trade/select-asset";
 import { TopTraders } from "./pages/leaderboards/topTraders/topTraders";
 import { TopPositions } from "./pages/leaderboards/topPositions/topPositions";
 import { EditProfile } from "./pages/settings/editProfile/editProfile";
+import PrivacyPolicy from "./pages/settings/Privacy policy/privacyPolicy";
 
 const baseUrl =
   import.meta.env.MODE === "development"
@@ -57,7 +58,7 @@ function App() {
 
 function MainRouting() {
   const location = useLocation();
-  const subScreenPaths = ["/topTraders", "/topPositions", "/settings/editProfile"];
+  const subScreenPaths = ["/topTraders", "/topPositions", "/settings/editProfile", "/settings/privacyPolicy"];
   const hideNavBar = subScreenPaths.includes(location.pathname);
   return (
     <div className="w-full max-w-[600px] flex flex-col justify-center">
@@ -74,6 +75,7 @@ function MainRouting() {
             <Route path="settings">
               <Route index element={<Settings />} />
               <Route path="editProfile" element={<EditProfile />} />
+              <Route path="privacyPolicy" element={<PrivacyPolicy />} />
             </Route>
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="*" element={<PageNotFound />} />
