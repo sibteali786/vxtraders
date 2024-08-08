@@ -6,22 +6,34 @@ import { useTopPositionsPeriodStore } from "@/stores/useState";
 import { trpc } from "@/trpc";
 import { PositionPreview } from "../positionCard";
 import withErrorHandling from "../hoc/withErrorHandling";
+import { Error } from "../Error/Error";
+import { NoData } from "../EmptyState/NoData";
 
 export const PositionsList: React.FC = () => {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
   const setPositionsPeriod = useTopPositionsPeriodStore((state) => state.setPeriod);
-  const { isLoading, isError, error, data, isFetched } = trpc.topPositions.useQuery({
+  const { isLoading, isError, data, isFetched } = trpc.topPositions.useQuery({
     count: 5,
     timeframe: selectedTopPositionsPeriod,
   });
-  const List = () => {
+  if (isLoading) {
     return (
-      <>
-        {data?.positions.map((position, i) => <PositionPreview key={i} position={position} />)}
-      </>
+      <div className="space-y-3">
+        {Array(5)
+          .fill(0)
+          .map((_, i) => (
+            <PreviewSkeleton key={i} />
+          ))}
+      </div>
     );
-  };
-  const WrappedList = withErrorHandling(List);
+  }
+  if (isError) {
+    return <Error>{"Something went wrong, please try again!"}</Error>;
+  }
+
+  if (!data || data.positions.length === 0) {
+    return <NoData />;
+  }
   return (
     <div className="space-y-5">
       <div className="flex justify-between items-center">
@@ -30,13 +42,7 @@ export const PositionsList: React.FC = () => {
       </div>
       <div className="flex flex-col space-y-7">
         <div className="space-y-3">
-          {isLoading ? (
-            Array(5)
-              .fill(0)
-              .map((_, i) => <PreviewSkeleton key={i} />)
-          ) : (
-            <WrappedList isError={isError} error={error?.message} />
-          )}
+          {data?.positions.map((position, i) => <PositionPreview key={i} position={position} />)}
         </div>
         {isFetched && (
           <Button className="w-full" asChild>

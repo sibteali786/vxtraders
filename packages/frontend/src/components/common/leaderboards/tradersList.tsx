@@ -5,21 +5,33 @@ import { TraderPreview } from "../traderCard";
 import { PreviewSkeleton } from "../previewSkeleton";
 import { useTopTradersPeriodStore } from "@/stores/useState";
 import { trpc } from "@/trpc";
-import withErrorHandling from "../hoc/withErrorHandling";
+import { Error } from "../Error/Error";
+import { NoData } from "../EmptyState/NoData";
 
 export const TradersList: React.FC = () => {
   const selectedTopTradersPeriod = useTopTradersPeriodStore((state) => state.selectedPeriod);
   const setTradersPeriod = useTopTradersPeriodStore((state) => state.setPeriod);
-  const { isLoading, isError, error, data, isFetched } = trpc.topTraders.useQuery({
+  const { isLoading, isError, data } = trpc.topTraders.useQuery({
     count: 5,
     timeframe: selectedTopTradersPeriod,
   });
-  // List
-  const List = () => {
-    return <>{data?.traders.map((trader, i) => <TraderPreview key={i} trader={trader} />)}</>;
-  };
-  // Error handled List
-  const WrappedList = withErrorHandling(List);
+  if (isLoading) {
+    return (
+      <div className="space-y-3">
+        {Array(5)
+          .fill(0)
+          .map((_, i) => (
+            <PreviewSkeleton key={i} />
+          ))}
+      </div>
+    );
+  }
+  if (isError) {
+    return <Error>{"Something went wrong, please try again!"}</Error>;
+  }
+  if (!data || data.traders.length === 0) {
+    return <NoData />;
+  }
   return (
     <div className="space-y-5">
       <div className="flex justify-between items-center">
@@ -28,21 +40,15 @@ export const TradersList: React.FC = () => {
       </div>
       <div className="flex flex-col space-y-7">
         <div className="space-y-3">
-          {isLoading ? (
-            Array(5)
-              .fill(0)
-              .map((_, i) => <PreviewSkeleton key={i} />)
-          ) : (
-            <WrappedList isError={isError} error={error?.message} />
-          )}
+          {data.traders.map((trader, i) => (
+            <TraderPreview key={i} trader={trader} />
+          ))}
         </div>
-        {isFetched && (
-          <Button className="w-full" asChild>
-            <Link to="topTraders" className="text-white hover:text-white">
-              View More
-            </Link>
-          </Button>
-        )}
+        <Button className="w-full" asChild>
+          <Link to="topTraders" className="text-white hover:text-white">
+            View More
+          </Link>
+        </Button>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 import { ChannelOutput } from "@vxtraders/shared";
 import ChannelCard from "../channelCard";
 import { PreviewSkeleton } from "../previewSkeleton";
-import withErrorHandling from "../hoc/withErrorHandling";
+import { Error } from "../Error/Error";
+import { NoData } from "../EmptyState/NoData";
 
 type ChannelListProps = {
   channels?: ChannelOutput["channels"];
@@ -10,14 +11,27 @@ type ChannelListProps = {
   error?: string;
 };
 
-export const ChannelList = withErrorHandling(({ channels, isLoading }: ChannelListProps) => {
+export const ChannelList = ({ channels, isLoading, isError }: ChannelListProps) => {
+  if (isLoading) {
+    return (
+      <>
+        {Array(5)
+          .fill(0)
+          .map((_, i) => (
+            <PreviewSkeleton key={i} />
+          ))}
+      </>
+    );
+  }
+  if (isError) {
+    return <Error>{"Something went wrong, please try again!"}</Error>;
+  }
+  if (!channels || channels.length === 0) {
+    return <NoData />;
+  }
   return (
     <div className="mb-4">
-      {isLoading
-        ? Array(5)
-            .fill(0)
-            .map((_, i) => <PreviewSkeleton key={i} />)
-        : channels?.map((channel, i) => <ChannelCard key={i} channel={channel} />)}
+      {channels?.map((channel, i) => <ChannelCard key={i} channel={channel} />)}
     </div>
   );
-});
+};

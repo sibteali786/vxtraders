@@ -1,29 +1,22 @@
-import ChannelCard from "@/components/common/channelCard";
 import { Divider } from "@/components/common/divider";
 import { MainHeading } from "@/components/common/mainHeading";
-import { PreviewSkeleton } from "@/components/common/previewSkeleton";
 import { ChannelList } from "@/components/common/settings/channelsList";
 import { useGlobalValues } from "@/stores/useState";
 import { trpc } from "@/trpc";
 const ChannelIntegration = () => {
   const maxCount = useGlobalValues((state) => state.maxListCount);
-  const { isError, isLoading, data, error } = trpc.getChannelsForUser.useQuery({
+  const { isError, isLoading, data } = trpc.getChannelsForUser.useQuery({
     count: maxCount,
     user: "Ali",
   });
   return (
     <div className="bg-black text-white p-8 max-w-2xl mx-auto">
       <MainHeading title="Channels" />
-      <ChannelList
-        channels={data?.channels}
-        isLoading={isLoading}
-        isError={isError}
-        error={error?.message}
-      />
+      <ChannelList channels={data?.channels} isLoading={isLoading} isError={isError} />
       <Divider />
 
       <div className="mt-8">
-        <h2 className="text-3xl font-bold mb-4">How to add Channels?</h2>
+        <h2 className="text-2xl font-bold mb-4">How to add Channels?</h2>
         <p className="mb-4">
           Channel integration allows you to post your trades in channels that you own.
         </p>
