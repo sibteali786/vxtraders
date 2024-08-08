@@ -45,6 +45,14 @@ export const positionSummarySchema = z.object({
 });
 export type PositionSummary = z.infer<typeof positionSummarySchema>;
 
+export const ChannelCardSchema = z.object({
+  avatar: z.string(),
+  name: z.string(),
+  email: z.string(),
+});
+
+export type Channel = z.infer<typeof ChannelCardSchema>;
+
 export const topPositionsInputSchema = z.object({
   count: z.number().optional(),
   timeframe: timeframe.optional(),
