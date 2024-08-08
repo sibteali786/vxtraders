@@ -11,7 +11,7 @@ const ChannelCard = (props: { channel: Channel }) => {
       </Avatar>
       <div className="flex-1">
         <p className="font-semibold text-lg">{props.channel.name}</p>
-        <p className="text-sm text-muted-foreground">@{props.channel.avatar}</p>
+        <p className="text-sm text-muted-foreground">@{props.channel.handle}</p>
       </div>
     </Card>
   );
