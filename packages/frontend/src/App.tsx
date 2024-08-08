@@ -17,6 +17,7 @@ import { Leaderboards } from "./pages/leaderboards/leaderboards";
 import { SelectAsset } from "./pages/trade/select-asset";
 import { TopTraders } from "./pages/leaderboards/topTraders/topTraders";
 import { TopPositions } from "./pages/leaderboards/topPositions/topPositions";
+import { EditProfile } from "./pages/settings/editProfile/editProfile";
 
 const baseUrl =
   import.meta.env.MODE === "development"
@@ -55,17 +56,24 @@ function App() {
 
 function MainRouting() {
   const location = useLocation();
-  const subScreenPaths = ["/topTraders", "/topPositions"];
+  const subScreenPaths = ["/topTraders", "/topPositions", "/settings/editProfile"];
+  console.log(location.pathname);
   const hideNavBar = subScreenPaths.includes(location.pathname);
   return (
     <div className="w-full max-w-[600px] flex flex-col justify-center">
       <Routes>
-        <Route path="/" element={<Leaderboards />} />
-        <Route path="/topTraders" element={<TopTraders />} />
-        <Route path="/topPositions" element={<TopPositions />} />
+        <Route path="/">
+          <Route index element={<Leaderboards />} />
+          <Route path="/topTraders" element={<TopTraders />} />
+          <Route path="/topPositions" element={<TopPositions />} />
+        </Route>
+
         <Route path="/select-asset" element={<SelectAsset />} />
         <Route path="/help" element={<Help />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="settings">
+          <Route index element={<Settings />} />
+          <Route path="editProfile" element={<EditProfile />} />
+        </Route>
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
