@@ -21,9 +21,9 @@ export const theme = {
     maxWidth: {
       global: "var(--max-width)",
     },
-	padding : {
-		default: '16px'
-	},
+    padding: {
+      default: "16px",
+    },
     colors: {
       border: "hsl(var(--border))",
       input: "hsl(var(--input))",

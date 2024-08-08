@@ -1,6 +1,7 @@
 import "./App.css";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/client";
@@ -57,26 +58,28 @@ function App() {
 function MainRouting() {
   const location = useLocation();
   const subScreenPaths = ["/topTraders", "/topPositions", "/settings/editProfile"];
-  console.log(location.pathname);
   const hideNavBar = subScreenPaths.includes(location.pathname);
   return (
     <div className="w-full max-w-[600px] flex flex-col justify-center">
-      <Routes>
-        <Route path="/">
-          <Route index element={<Leaderboards />} />
-          <Route path="/topTraders" element={<TopTraders />} />
-          <Route path="/topPositions" element={<TopPositions />} />
-        </Route>
-
-        <Route path="/select-asset" element={<SelectAsset />} />
-        <Route path="/help" element={<Help />} />
-        <Route path="settings">
-          <Route index element={<Settings />} />
-          <Route path="editProfile" element={<EditProfile />} />
-        </Route>
-        <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
+      <TransitionGroup>
+        <CSSTransition key={location.key} timeout={300} classNames="fade">
+          <Routes location={location}>
+            <Route path="/">
+              <Route index element={<Leaderboards />} />
+              <Route path="/topTraders" element={<TopTraders />} />
+              <Route path="/topPositions" element={<TopPositions />} />
+            </Route>
+            <Route path="/select-asset" element={<SelectAsset />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="settings">
+              <Route index element={<Settings />} />
+              <Route path="editProfile" element={<EditProfile />} />
+            </Route>
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </CSSTransition>
+      </TransitionGroup>
       {!hideNavBar && <HorizontalMenu />}
     </div>
   );
