@@ -1,3 +1,4 @@
+import { Channel } from "./trpc";
 /* eslint @typescript-eslint/no-unused-vars: off */
 import { z } from "zod";
 
@@ -48,15 +49,28 @@ export type PositionSummary = z.infer<typeof positionSummarySchema>;
 export const ChannelCardSchema = z.object({
   avatar: z.string(),
   name: z.string(),
-  email: z.string(),
+  handle: z.string(),
 });
 
 export type Channel = z.infer<typeof ChannelCardSchema>;
+
+export const channelInputSchema = z.object({
+  count: z.number().optional(),
+  user: z.string().optional(),
+});
+
+export const channelOutputSchema = z.object({
+  channels: z.array(ChannelCardSchema),
+});
+
+export type ChannelInput = z.infer<typeof channelInputSchema>;
+export type ChannelOutput = z.infer<typeof channelOutputSchema>;
 
 export const topPositionsInputSchema = z.object({
   count: z.number().optional(),
   timeframe: timeframe.optional(),
 });
+
 export type TopPositionsInput = z.infer<typeof topPositionsInputSchema>;
 
 export const topPositionsOutputSchema = z.object({
