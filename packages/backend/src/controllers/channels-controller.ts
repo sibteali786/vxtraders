@@ -8,10 +8,10 @@ export const channelsController = async (opts: { input: ChannelInput }): Promise
   if (user) {
     return {
       channels: [
-        { avatar: "/avatar.png", name: "Trader Pro", handle: "@trdp" },
-        { avatar: "/avatar.png", name: "Crypto", handle: "@crypto" },
-        { avatar: "/avatar.png", name: "Stocks", handle: "@stocks" },
-        { avatar: "/avatar.png", name: "Forex", handle: "@forex" },
+        { avatar: "/avatar.png", name: "Trader Pro", handle: "trdp" },
+        { avatar: "/avatar.png", name: "Crypto", handle: "crypto" },
+        { avatar: "/avatar.png", name: "Stocks", handle: "stocks" },
+        { avatar: "/avatar.png", name: "Forex", handle: "forex" },
       ],
     };
   } else {

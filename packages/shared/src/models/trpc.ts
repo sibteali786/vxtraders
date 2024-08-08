@@ -1,4 +1,3 @@
-import { Channel } from "./trpc";
 /* eslint @typescript-eslint/no-unused-vars: off */
 import { z } from "zod";
 
