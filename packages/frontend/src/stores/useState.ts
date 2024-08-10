@@ -6,12 +6,12 @@ export type PeriodState = {
 };
 
 export const useTopTradersPeriodStore = create<PeriodState>((set) => ({
-  selectedPeriod: "24h",
+  selectedPeriod: "90d",
   setPeriod: (selectedPeriod) => set(() => ({ selectedPeriod })),
 }));
 
 export const useTopPositionsPeriodStore = create<PeriodState>((set) => ({
-  selectedPeriod: "24h",
+  selectedPeriod: "90d",
   setPeriod: (selectedPeriod) => set(() => ({ selectedPeriod })),
 }));
 
