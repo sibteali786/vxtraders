@@ -30,7 +30,7 @@ export const TradersList: React.FC = () => {
     return <Error>{"Something went wrong, please try again!"}</Error>;
   }
   if (!data || data.traders.length === 0) {
-    return <NoData />;
+    return <NoData message={`No Positions to show for ${selectedTopTradersPeriod} period`} />;
   }
   return (
     <div className="space-y-5">

@@ -5,7 +5,6 @@ import { PreviewSkeleton } from "../previewSkeleton";
 import { useTopPositionsPeriodStore } from "@/stores/useState";
 import { trpc } from "@/trpc";
 import { PositionPreview } from "../positionCard";
-import withErrorHandling from "../hoc/withErrorHandling";
 import { Error } from "../Error/Error";
 import { NoData } from "../EmptyState/NoData";
 
@@ -32,7 +31,7 @@ export const PositionsList: React.FC = () => {
   }
 
   if (!data || data.positions.length === 0) {
-    return <NoData />;
+    return <NoData message={`No Positions to show for ${selectedTopPositionsPeriod} period`} />;
   }
   return (
     <div className="space-y-5">

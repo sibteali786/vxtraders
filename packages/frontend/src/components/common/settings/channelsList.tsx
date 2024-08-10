@@ -27,7 +27,7 @@ export const ChannelList = ({ channels, isLoading, isError }: ChannelListProps) 
     return <Error>{"Something went wrong, please try again!"}</Error>;
   }
   if (!channels || channels.length === 0) {
-    return <NoData />;
+    return <NoData message="You have no data to show here!" />;
   }
   return (
     <div className="mb-4">
