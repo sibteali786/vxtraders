@@ -15,42 +15,51 @@ export const PositionsList: React.FC = () => {
     count: 5,
     timeframe: selectedTopPositionsPeriod,
   });
-  if (isLoading) {
-    return (
-      <div className="space-y-3">
-        {Array(5)
-          .fill(0)
-          .map((_, i) => (
-            <PreviewSkeleton key={i} />
-          ))}
-      </div>
-    );
-  }
-  if (isError) {
-    return <Error>{"Something went wrong, please try again!"}</Error>;
-  }
 
-  if (!data || data.positions.length === 0) {
-    return <NoData message={`No Positions to show for ${selectedTopPositionsPeriod} period`} />;
-  }
   return (
     <div className="space-y-5">
+      {/* Top section with title and period selector */}
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-semibold">Top Positions</h2>
         <PeriodSelector period={selectedTopPositionsPeriod} setPeriod={setPositionsPeriod} />
       </div>
-      <div className="flex flex-col space-y-7">
+
+      {/* Conditional rendering based on data */}
+      {isLoading ? (
         <div className="space-y-3">
-          {data?.positions.map((position, i) => <PositionPreview key={i} position={position} />)}
+          {Array(5)
+            .fill(0)
+            .map((_, i) => (
+              <PreviewSkeleton key={i} />
+            ))}
         </div>
-        {isFetched && (
-          <Button className="w-full" asChild>
-            <Link to="topPositions" className="text-white hover:text-white">
-              View More
-            </Link>
-          </Button>
-        )}
-      </div>
+      ) : isError ? (
+        <Error>{"Something went wrong, please try again!"}</Error>
+      ) : !data || data.positions.length !== 0 ? (
+        <NoData
+          illustrationSrc="/NoPositions.png"
+          title="No Positions"
+          message={`No positions to show for ${selectedTopPositionsPeriod} period.`}
+          buttonText="Start Trading"
+          onButtonClick={() => console.log("Navigate to trading platform")}
+          secondaryMessage="Open a position to see it listed here."
+        />
+      ) : (
+        <div className="flex flex-col space-y-7">
+          <div className="space-y-3">
+            {data.positions.map((position, i) => (
+              <PositionPreview key={i} position={position} />
+            ))}
+          </div>
+          {isFetched && (
+            <Button className="w-full" asChild>
+              <Link to="topPositions" className="text-white hover:text-white">
+                View More
+              </Link>
+            </Button>
+          )}
+        </div>
+      )}
     </div>
   );
 };
