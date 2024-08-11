@@ -14,13 +14,3 @@ export const useTopPositionsPeriodStore = create<PeriodState>((set) => ({
   selectedPeriod: "90d",
   setPeriod: (selectedPeriod) => set(() => ({ selectedPeriod })),
 }));
-
-// Globals
-
-type GlobalState = {
-  maxListCount: number;
-};
-
-export const useGlobalValues = create<GlobalState>(() => ({
-  maxListCount: 50,
-}));

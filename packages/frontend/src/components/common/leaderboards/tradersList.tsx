@@ -8,11 +8,15 @@ import { trpc } from "@/trpc";
 import { Error } from "../Error/Error";
 import { NoData } from "../EmptyState/NoData";
 
-export const TradersList: React.FC = () => {
+type TradersProps = {
+  maxCount: number;
+};
+
+export const TradersList: React.FC<TradersProps> = ({ maxCount }) => {
   const selectedTopTradersPeriod = useTopTradersPeriodStore((state) => state.selectedPeriod);
   const setTradersPeriod = useTopTradersPeriodStore((state) => state.setPeriod);
   const { isLoading, isError, data } = trpc.topTraders.useQuery({
-    count: 5,
+    count: maxCount,
     timeframe: selectedTopTradersPeriod,
   });
 

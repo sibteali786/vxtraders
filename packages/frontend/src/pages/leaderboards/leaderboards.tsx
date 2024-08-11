@@ -7,9 +7,9 @@ export function Leaderboards() {
     <div className="py-4 space-y-12 pb-[8rem] h-full px-default">
       <MainHeading title="Leaderboards" />
       <div className="space-y-10">
-        <TradersList />
+        <TradersList maxCount={5} />
         <hr className="border-muted" />
-        <PositionsList />
+        <PositionsList maxCount={5} />
       </div>
     </div>
   );

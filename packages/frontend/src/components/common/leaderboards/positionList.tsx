@@ -8,11 +8,15 @@ import { PositionPreview } from "../positionCard";
 import { Error } from "../Error/Error";
 import { NoData } from "../EmptyState/NoData";
 
-export const PositionsList: React.FC = () => {
+type PositionsProps = {
+  maxCount: number;
+};
+
+export const PositionsList: React.FC<PositionsProps> = ({ maxCount }) => {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
   const setPositionsPeriod = useTopPositionsPeriodStore((state) => state.setPeriod);
   const { isLoading, isError, data, isFetched } = trpc.topPositions.useQuery({
-    count: 5,
+    count: maxCount,
     timeframe: selectedTopPositionsPeriod,
   });
 

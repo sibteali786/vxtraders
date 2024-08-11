@@ -1,15 +1,15 @@
 import { PeriodSelector } from "../period-selector";
 import { trpc } from "@/trpc";
 import { PreviewSkeleton } from "@/components/common/previewSkeleton";
-import { useGlobalValues, useTopPositionsPeriodStore } from "@/stores/useState";
+import { useTopPositionsPeriodStore } from "@/stores/useState";
 import { PositionPreview } from "@/components/common/positionCard";
+import { MAX_LIST_COUNT } from "@/stores/constants";
 
 export function TopPositions() {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
   const setPositionsPeriod = useTopPositionsPeriodStore((state) => state.setPeriod);
-  const maxCount = useGlobalValues((state) => state.maxListCount);
   const topPositions = trpc.topPositions.useQuery({
-    count: maxCount,
+    count: MAX_LIST_COUNT,
     timeframe: selectedTopPositionsPeriod,
   });
 

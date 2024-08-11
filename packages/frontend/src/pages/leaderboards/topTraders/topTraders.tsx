@@ -2,14 +2,14 @@ import { PeriodSelector } from "../period-selector";
 import { trpc } from "@/trpc";
 import { PreviewSkeleton } from "@/components/common/previewSkeleton";
 import { TraderPreview } from "@/components/common/traderCard";
-import { useGlobalValues, useTopTradersPeriodStore } from "@/stores/useState";
+import { useTopTradersPeriodStore } from "@/stores/useState";
+import { MAX_LIST_COUNT } from "@/stores/constants";
 
 export function TopTraders() {
   const selectedTopTradersPeriod = useTopTradersPeriodStore((state) => state.selectedPeriod);
   const setTradersPeriod = useTopTradersPeriodStore((state) => state.setPeriod);
-  const maxCount = useGlobalValues((state) => state.maxListCount);
   const topTraders = trpc.topTraders.useQuery({
-    count: maxCount,
+    count: MAX_LIST_COUNT,
     timeframe: selectedTopTradersPeriod,
   });
 
