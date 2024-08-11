@@ -27,7 +27,7 @@ export function AssetPreview(props: { asset: SearchAsset }) {
     : "#f0f0f0"; // Default color if not found
 
   return (
-    <Card className="flex items-center p-4 space-x-4 rounded-lg border border-border">
+    <Card className="flex items-center px-3 py-3 space-x-4 rounded-lg border border-border">
       <IconComponent className="w-8 h-8" style={{ color: iconColor }} />
       <div className="flex-1">
         <p className="font-semibold text-white">{props.asset.name}</p>
