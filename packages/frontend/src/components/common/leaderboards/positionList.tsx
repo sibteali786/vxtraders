@@ -50,7 +50,7 @@ export const PositionsList: React.FC<PositionsProps> = ({ maxCount }) => {
         />
       ) : (
         <div className="flex flex-col space-y-7">
-          <div className="space-y-3">
+          <div className="flex flex-col gap-3">
             {data.positions.map((position, i) => (
               <PositionPreview key={i} position={position} />
             ))}

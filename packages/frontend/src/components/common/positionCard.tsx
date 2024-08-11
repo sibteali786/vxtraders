@@ -3,35 +3,38 @@ import { Badge } from "@/components/ui/badge";
 import { PositionSummary } from "@vxtraders/shared";
 import { Card } from "../ui/card";
 import { formatCurrency } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 export function PositionPreview(props: { position: PositionSummary }) {
   return (
-    <Card className="flex justify-between items-center py-3 px-6 rounded-lg space-x-4">
-      <div className="flex items-center rounded-lg space-x-4">
-        <Avatar>
-          <AvatarImage src="/avatar.png" alt="User Avatar" />
-          <AvatarFallback>U</AvatarFallback>
-        </Avatar>
-        <div className="flex flex-col space-y-1">
-          <div className="flex items-center space-x-2">
-            <span className="text-white font-medium text-base">{props.position.asset.name}</span>
-            <BitcoinIcon className="w-4 h-4 text-yellow-500" />
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-muted-foreground text-xs">{props.position.leverage}x</span>
-            <Badge variant="default">{props.position.tradeMode}</Badge>
+    <Link to="/position">
+      <Card className="flex justify-between items-center py-3 px-6 rounded-lg space-x-4">
+        <div className="flex items-center rounded-lg space-x-4">
+          <Avatar>
+            <AvatarImage src="/avatar.png" alt="User Avatar" />
+            <AvatarFallback>U</AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col space-y-1">
+            <div className="flex items-center space-x-2">
+              <span className="text-white font-medium text-base">{props.position.asset.name}</span>
+              <BitcoinIcon className="w-4 h-4 text-yellow-500" />
+            </div>
+            <div className="flex items-center space-x-2">
+              <span className="text-muted-foreground text-xs">{props.position.leverage}x</span>
+              <Badge variant="default">{props.position.tradeMode}</Badge>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="ml-auto text-right">
-        <div className="text-white text-base">
-          {formatCurrency(props.position.entryPrice)} → {formatCurrency(props.position.exitPrice)}
+        <div className="ml-auto text-right">
+          <div className="text-white text-base">
+            {formatCurrency(props.position.entryPrice)} → {formatCurrency(props.position.exitPrice)}
+          </div>
+          <p className={`text-sm ${props.position.roi >= 0 ? "text-green-500" : "text-red-500"}`}>
+            {props.position.roi >= 0 ? `+${props.position.roi}` : props.position.roi}%
+          </p>
         </div>
-        <p className={`text-sm ${props.position.roi >= 0 ? "text-green-500" : "text-red-500"}`}>
-          {props.position.roi >= 0 ? `+${props.position.roi}` : props.position.roi}%
-        </p>
-      </div>
-    </Card>
+      </Card>
+    </Link>
   );
 }
 

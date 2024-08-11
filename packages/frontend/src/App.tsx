@@ -21,6 +21,7 @@ import { TopPositions } from "./pages/leaderboards/topPositions/topPositions";
 import { EditProfile } from "./pages/settings/editProfile/editProfile";
 import PrivacyPolicy from "./pages/settings/Privacy policy/privacyPolicy";
 import ChannelIntegration from "./pages/settings/Channels/channelIntegration";
+import { Position } from "./components/common/Position/Position";
 
 const baseUrl =
   import.meta.env.MODE === "development"
@@ -65,6 +66,7 @@ function MainRouting() {
     "/settings/editProfile",
     "/settings/privacyPolicy",
     "/settings/integration",
+    "/position",	// TODO: change it so that each position is for a specific user id
   ];
   const hideNavBar = subScreenPaths.includes(location.pathname);
   return (
@@ -78,6 +80,7 @@ function MainRouting() {
               <Route path="/topPositions" element={<TopPositions />} />
             </Route>
             <Route path="/select-asset" element={<SelectAsset />} />
+            <Route path="/position" element={<Position />} />
             <Route path="/help" element={<Help />} />
             <Route path="settings">
               <Route index element={<Settings />} />
