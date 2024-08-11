@@ -1,12 +1,11 @@
 import { Divider } from "@/components/common/divider";
 import { MainHeading } from "@/components/common/mainHeading";
 import { ChannelList } from "@/components/common/settings/channelsList";
-import { useGlobalValues } from "@/stores/useState";
+import { MAX_LIST_COUNT } from "@/stores/constants";
 import { trpc } from "@/trpc";
 const ChannelIntegration = () => {
-  const maxCount = useGlobalValues((state) => state.maxListCount);
   const { isError, isLoading, data } = trpc.getChannelsForUser.useQuery({
-    count: maxCount,
+    count: MAX_LIST_COUNT,
     user: "Ali",
   });
   return (
