@@ -1,5 +1,5 @@
-import { ChartContainer } from "@/components/ui/chart"
-import { XAxis, AreaChart, Area } from "recharts"
+import { ChartContainer } from "@/components/ui/chart";
+import { XAxis, AreaChart, Area } from "recharts";
 
 export function PortfolioChart() {
   const chartConfig = {
@@ -7,7 +7,8 @@ export function PortfolioChart() {
       label: "Desktop",
       color: "hsl(var(--chart-1))",
     },
-  }
+  };
+
   const chartData = [
     { month: "January", desktop: 15 },
     { month: "February", desktop: 30 },
@@ -15,44 +16,44 @@ export function PortfolioChart() {
     { month: "April", desktop: 73 },
     { month: "May", desktop: 60 },
     { month: "June", desktop: 100 },
-  ]
+  ];
+
+  const formatXAxis = (tickItem) => {
+    // Since tickItem is already a month name, just return the first three letters
+    return tickItem.slice(0, 3);
+  };
+
   return (
     <ChartContainer config={chartConfig}>
-      <AreaChart accessibilityLayer data={chartData} margin={{ left: 12, right: 12 }}>
-        <XAxis
-          dataKey="month"
-          tickLine={false}
-          axisLine={false}
-          tickMargin={8}
-          tickFormatter={(value) => value.slice(0, 3)}
-        />
+      <AreaChart
+        data={chartData}
+        margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
+        style={{ filter: "drop-shadow(0px 0px 4px hsl(120, 100%, 50%))" }} // Adds glow effect
+      >
         <defs>
           <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="var(--color-desktop)" stopOpacity={0.8} />
-            <stop offset="95%" stopColor="var(--color-desktop)" stopOpacity={0.1} />
-          </linearGradient>
-          <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="var(--color-mobile)" stopOpacity={0.8} />
-            <stop offset="95%" stopColor="var(--color-mobile)" stopOpacity={0.1} />
+            <stop offset="0%" stopColor="#008000" stopOpacity={0.25} />
+            <stop offset="100%" stopColor="#008000" stopOpacity={0.01} />
           </linearGradient>
         </defs>
         <Area
-          dataKey="mobile"
-          type="natural"
-          fill="url(#fillMobile)"
-          fillOpacity={0.4}
-          stroke="var(--color-mobile)"
-          stackId="a"
-        />
-        <Area
+          type="monotone"
           dataKey="desktop"
-          type="natural"
+          stroke="hsl(120, 100%, 50%)"
+          fillOpacity={1}
           fill="url(#fillDesktop)"
-          fillOpacity={0.4}
-          stroke="var(--color-desktop)"
-          stackId="a"
+          strokeWidth={2}
+          dot={false}
+          activeDot={{ r: 5, stroke: "#fff", strokeWidth: 2 }}
+        />
+        <XAxis
+          dataKey="month" // Change to 'month' to match your data structure
+          tickLine={false}
+          axisLine={false}
+          tickFormatter={formatXAxis} // Format to show only month abbreviation
+          interval="preserveStartEnd" // Ensures that ticks are not too crowded
         />
       </AreaChart>
     </ChartContainer>
-  )
+  );
 }

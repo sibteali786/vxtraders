@@ -27,7 +27,9 @@ export function PositionPreview(props: { position: PositionSummary }) {
         <div className="text-white text-base">
           {formatCurrency(props.position.entryPrice)} → {formatCurrency(props.position.exitPrice)}
         </div>
-        <div className="text-success text-base">+{props.position.roi}%</div>
+        <p className={`text-sm ${props.position.roi >= 0 ? "text-green-500" : "text-red-500"}`}>
+          {props.position.roi >= 0 ? `+${props.position.roi}` : props.position.roi}%
+        </p>
       </div>
     </Card>
   );
