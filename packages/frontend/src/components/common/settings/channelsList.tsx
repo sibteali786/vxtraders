@@ -3,7 +3,6 @@ import ChannelCard from "../channelCard";
 import { PreviewSkeleton } from "../previewSkeleton";
 import { Error } from "../Error/Error";
 import { NoData } from "../EmptyState/NoData";
-import { RiChatNewLine } from "react-icons/ri";
 
 type ChannelListProps = {
   channels?: ChannelOutput["channels"];

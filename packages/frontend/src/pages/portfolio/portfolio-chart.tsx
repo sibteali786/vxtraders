@@ -18,7 +18,7 @@ export function PortfolioChart() {
     { month: "June", desktop: 100 },
   ];
 
-  const formatXAxis = (tickItem) => {
+  const formatXAxis = (tickItem: string) => {
     // Since tickItem is already a month name, just return the first three letters
     return tickItem.slice(0, 3);
   };
