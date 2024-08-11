@@ -38,7 +38,7 @@ export function Portfolio() {
       <PortfolioChart />
       <div className="px-default">
         <h2 className="text-2xl font-semibold mb-4">Closed Positions</h2>
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
           {positions?.data?.positions?.map((position, i) => (
             <PositionPreview key={i} position={position} />
           ))}
