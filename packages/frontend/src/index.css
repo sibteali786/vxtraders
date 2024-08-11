@@ -20,7 +20,8 @@
   flex-direction: column;
   align-items: center;
   /* remove when finished with app dev */
-  border: 1px solid white;
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
 }
 
 a {

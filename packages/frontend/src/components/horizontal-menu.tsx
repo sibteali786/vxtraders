@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { cva } from "class-variance-authority";
 import { ShuffleIcon, PieChartIcon, TrophyIcon, SettingsIcon, CircleHelpIcon } from "./Icons/Icons";
+
 const navLinkClasses = cva(
   "flex flex-col items-center justify-center gap-[3px] text-xs font-medium",
   {
@@ -19,7 +20,15 @@ const navLinkClasses = cva(
 export function HorizontalMenu() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-1000 bg-background w-full flex justify-center h-[70px]">
-      <div className="flex justify-around max-w-global border-t border-border w-full">
+      <div
+        className="flex justify-around max-w-global border-t border-border w-full"
+        style={{
+          maxWidth: "var(--max-width)",
+          border: "1px solid hsl(var(--border))", // Ensure the border matches your #root style
+          borderRadius: "8px",
+          borderTop: "none", // Prevent double border on top
+        }}
+      >
         <NavLink
           to="/select-asset"
           className={({ isActive }) => navLinkClasses({ active: isActive })}
