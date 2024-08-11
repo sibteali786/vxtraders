@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { cva } from "class-variance-authority";
-import { ShuffleIcon, PieChartIcon, TrophyIcon, SettingsIcon, CircleHelpIcon } from "./Icons/Icons";
+import { MdOutlineSwapHorizontalCircle, MdSwapHorizontalCircle } from "react-icons/md"; // BoxIcons
+import { MdPieChartOutline, MdPieChart } from "react-icons/md"; // Material Design icons
+import { AiOutlineTrophy, AiFillTrophy, AiFillQuestionCircle } from "react-icons/ai"; // Ant Design icons
+import { FiHelpCircle } from "react-icons/fi"; // Feather icons
+import { IoSettings, IoSettingsOutline } from "react-icons/io5";
 
 const navLinkClasses = cva(
   "flex flex-col items-center justify-center gap-[3px] text-xs font-medium",
@@ -24,38 +28,61 @@ export function HorizontalMenu() {
         className="flex justify-around max-w-global border-t border-border w-full"
         style={{
           maxWidth: "var(--max-width)",
-          border: "1px solid hsl(var(--border))", // Ensure the border matches your #root style
+          border: "1px solid hsl(var(--border))",
           borderRadius: "8px",
-          borderTop: "none", // Prevent double border on top
+          borderTop: "none",
         }}
       >
         <NavLink
           to="/select-asset"
           className={({ isActive }) => navLinkClasses({ active: isActive })}
         >
-          <ShuffleIcon />
-          Trade
+          {({ isActive }) => (
+            <>
+              {isActive ? (
+                <MdSwapHorizontalCircle size={24} />
+              ) : (
+                <MdOutlineSwapHorizontalCircle size={24} />
+              )}
+              Trade
+            </>
+          )}
         </NavLink>
+
         <NavLink to="/portfolio" className={({ isActive }) => navLinkClasses({ active: isActive })}>
-          <PieChartIcon />
-          Portfolio
+          {({ isActive }) => (
+            <>
+              {isActive ? <MdPieChart size={24} /> : <MdPieChartOutline size={24} />}
+              Portfolio
+            </>
+          )}
         </NavLink>
-        <NavLink
-          to="/"
-          className={({ isActive }) => {
-            return navLinkClasses({ active: isActive });
-          }}
-        >
-          <TrophyIcon />
-          Leaderboard
+
+        <NavLink to="/" className={({ isActive }) => navLinkClasses({ active: isActive })}>
+          {({ isActive }) => (
+            <>
+              {isActive ? <AiFillTrophy size={24} /> : <AiOutlineTrophy size={24} />}
+              Leaderboard
+            </>
+          )}
         </NavLink>
+
         <NavLink to="/settings" className={({ isActive }) => navLinkClasses({ active: isActive })}>
-          <SettingsIcon />
-          Settings
+          {({ isActive }) => (
+            <>
+              {isActive ? <IoSettings size={24} /> : <IoSettingsOutline size={24} />}
+              Settings
+            </>
+          )}
         </NavLink>
+
         <NavLink to="/help" className={({ isActive }) => navLinkClasses({ active: isActive })}>
-          <CircleHelpIcon />
-          Help
+          {({ isActive }) => (
+            <>
+              {isActive ? <AiFillQuestionCircle size={24} /> : <FiHelpCircle size={24} />}
+              Help
+            </>
+          )}
         </NavLink>
       </div>
     </nav>
