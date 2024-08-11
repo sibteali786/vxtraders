@@ -35,7 +35,7 @@ export const PositionsList: React.FC = () => {
         </div>
       ) : isError ? (
         <Error>{"Something went wrong, please try again!"}</Error>
-      ) : !data || data.positions.length !== 0 ? (
+      ) : !data || data.positions.length === 0 ? (
         <NoData
           illustrationSrc="/NoPositions.png"
           title="No Positions"

@@ -6,15 +6,15 @@ import { formatCurrency } from "@/lib/utils";
 
 export function PositionPreview(props: { position: PositionSummary }) {
   return (
-    <Card className="flex justify-between items-center p-3 rounded-lg space-x-4">
+    <Card className="flex justify-between items-center py-3 px-6 rounded-lg space-x-4">
       <div className="flex items-center rounded-lg space-x-4">
         <Avatar>
-          <AvatarImage src="/placeholder-user.jpg" alt="User Avatar" />
+          <AvatarImage src="/avatar.png" alt="User Avatar" />
           <AvatarFallback>U</AvatarFallback>
         </Avatar>
         <div className="flex flex-col space-y-1">
           <div className="flex items-center space-x-2">
-            <span className="text-white font-medium">{props.position.asset.name}</span>
+            <span className="text-white font-medium text-base">{props.position.asset.name}</span>
             <BitcoinIcon className="w-4 h-4 text-yellow-500" />
           </div>
           <div className="flex items-center space-x-2">

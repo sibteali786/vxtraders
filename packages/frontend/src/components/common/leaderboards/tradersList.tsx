@@ -35,7 +35,7 @@ export const TradersList: React.FC = () => {
         </div>
       ) : isError ? (
         <Error>{"Something went wrong, please try again!"}</Error>
-      ) : !data || data.traders.length !== 0 ? (
+      ) : !data || data.traders.length === 0 ? (
         <NoData
           illustrationSrc="/NoTraders.png"
           title="No Traders"
