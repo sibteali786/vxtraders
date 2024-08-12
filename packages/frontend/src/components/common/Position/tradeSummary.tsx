@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "../badge";
 import { InfoBlock } from "../infoBlock";
 
 export function TradeSummary() {
@@ -16,9 +16,7 @@ export function TradeSummary() {
       <InfoBlock label="Leverage">
         <div className="flex gap-2">
           <p> 10x</p>
-          <Badge className="py-0 " variant="default">
-            LONG
-          </Badge>
+          <Badge>LONG</Badge>
         </div>
       </InfoBlock>
       <InfoBlock label="PnL">

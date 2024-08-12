@@ -39,7 +39,7 @@ export function TradesTimeline() {
           ? tradesHistory.map((trade, index) => (
               <div className="relative" key={index}>
                 {/* Circle Indicator */}
-                <div className="absolute left-[-33px] top-[40px] w-3 h-3 rounded-full bg-[#605F5F]" />
+                <div className="absolute left-[-33px] top-[40px] w-3 h-3 rounded-full bg-[#4f4f4f]" />
 
                 <Card className="px-4 py-4 rounded-lg">
                   <div className="flex justify-between items-center">

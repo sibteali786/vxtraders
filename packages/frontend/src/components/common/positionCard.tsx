@@ -1,9 +1,9 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { PositionSummary } from "@vxtraders/shared";
 import { Card } from "../ui/card";
 import { formatCurrency } from "@/lib/utils";
 import { Link } from "react-router-dom";
+import { Badge } from "./badge";
 
 export function PositionPreview(props: { position: PositionSummary }) {
   return (
@@ -21,7 +21,7 @@ export function PositionPreview(props: { position: PositionSummary }) {
             </div>
             <div className="flex items-center space-x-2">
               <span className="text-muted-foreground text-xs">{props.position.leverage}x</span>
-              <Badge variant="default">{props.position.tradeMode}</Badge>
+              <Badge>{props.position.tradeMode}</Badge>
             </div>
           </div>
         </div>
