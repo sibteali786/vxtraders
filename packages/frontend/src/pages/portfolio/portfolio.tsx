@@ -20,14 +20,20 @@ export function Portfolio() {
   return (
     <div className="pt-4 space-y-4 pb-[80px]">
       <div className="flex justify-between items-center py-3 px-default"></div>
-      <div className="flex items-center space-x-4 px-default">
-        <Avatar>
-          <AvatarImage src="/avatar.png" alt="John Smith" />
-          <AvatarFallback>JS</AvatarFallback>
-        </Avatar>
-        <div>
-          <p className="font-semibold text-white">John Smith</p>
-          <p className="text-sm text-muted-foreground">@johns</p>
+      <div className="flex items-center justify-between space-x-4 px-default">
+        <div className="flex gap-3 items-center">
+          <Avatar>
+            <AvatarImage src="/avatar.png" alt="John Smith" />
+            <AvatarFallback>JS</AvatarFallback>
+          </Avatar>
+          <div>
+            <p className="font-semibold text-white">John Smith</p>
+            <p className="text-sm text-muted-foreground">@johns</p>
+          </div>
+        </div>
+        <div className="text-right">
+          <p className="text-purple-500 text-lg font-bold">1%</p>
+          <p className="text-xs text-muted-foreground">Top</p>
         </div>
       </div>
       <PortfolioChart isTopValue={false} />
