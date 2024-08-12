@@ -1,6 +1,6 @@
 import "./App.css";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/themeProvider";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -9,11 +9,11 @@ import { useEffect, useState } from "react";
 import { trpc } from "./trpc";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
-import { HorizontalMenu } from "./components/horizontal-menu";
+import { HorizontalMenu } from "./components/horizontalMenu";
 import { Help } from "./pages/help/help";
 import { Settings } from "./pages/settings/settings";
 import { Portfolio } from "./pages/portfolio/portfolio";
-import { PageNotFound } from "./pages/page-not-found";
+import { PageNotFound } from "./pages/pageNotFound";
 import { Leaderboards } from "./pages/leaderboards/leaderboards";
 import { SelectAsset } from "./pages/trade/select-asset";
 import { TopTraders } from "./pages/leaderboards/topTraders/topTraders";

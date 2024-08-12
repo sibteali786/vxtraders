@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { PeriodSelector } from "@/pages/leaderboards/period-selector";
+import { PeriodSelector } from "@/pages/leaderboards/periodSelector";
 import { Link } from "react-router-dom";
 import { PreviewSkeleton } from "../previewSkeleton";
 import { useTopPositionsPeriodStore } from "@/stores/useState";

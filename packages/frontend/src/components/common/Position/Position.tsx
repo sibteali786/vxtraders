@@ -2,7 +2,7 @@ import { ProfileHeader } from "./profileHeader";
 import { TradeSummary } from "./tradeSummary";
 import { TradesTimeline } from "./tradesTimeline";
 import { ClosePosition } from "./closePosition";
-import { PortfolioChart } from "@/pages/portfolio/portfolio-chart";
+import { PortfolioChart } from "@/pages/portfolio/portfolioChart";
 
 export function Position() {
   return (

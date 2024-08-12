@@ -1,4 +1,4 @@
-import { PeriodSelector } from "../period-selector";
+import { PeriodSelector } from "../periodSelector";
 import { trpc } from "@/trpc";
 import { PreviewSkeleton } from "@/components/common/previewSkeleton";
 import { useTopPositionsPeriodStore } from "@/stores/useState";

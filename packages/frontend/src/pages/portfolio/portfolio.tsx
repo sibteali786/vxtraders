@@ -1,11 +1,10 @@
 import { PositionPreview } from "@/components/common/positionCard";
 import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar";
-import { PortfolioChart } from "./portfolio-chart";
+import { PortfolioChart } from "./portfolioChart";
 import { ChannelList } from "@/components/common/settings/channelsList";
 import { trpc } from "@/trpc";
 import { MAX_LIST_COUNT } from "@/stores/constants";
 import { useTopPositionsPeriodStore } from "@/stores/useState";
-import { ProfileHeader } from "@/components/common/Position/profileHeader";
 
 export function Portfolio() {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
