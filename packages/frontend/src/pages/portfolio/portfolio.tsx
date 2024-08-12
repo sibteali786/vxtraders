@@ -5,6 +5,7 @@ import { ChannelList } from "@/components/common/settings/channelsList";
 import { trpc } from "@/trpc";
 import { MAX_LIST_COUNT } from "@/stores/constants";
 import { useTopPositionsPeriodStore } from "@/stores/useState";
+import { ProfileHeader } from "@/components/common/Position/profileHeader";
 
 export function Portfolio() {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
@@ -19,22 +20,7 @@ export function Portfolio() {
   console.log(positions.data);
   return (
     <div className="pt-4 space-y-4 pb-[80px]">
-      <div className="flex justify-between items-center py-3 px-default">
-        <div className="flex items-center space-x-4">
-          <Avatar>
-            <AvatarImage src="/avatar.png" alt="John Doe" />
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
-          <div>
-            <p className="font-semibold">John Doe</p>
-            <p className="text-sm text-muted-foreground">@john</p>
-          </div>
-        </div>
-        <div className="flex flex-col items-center text-right">
-          <p className="text-xs font-semibold tracking-widest">T O P</p>
-          <p className="text-xl font-bold">1%</p>
-        </div>
-      </div>
+      <div className="flex justify-between items-center py-3 px-default"></div>
       <PortfolioChart />
       <p className="w-full text-center text-base text-muted-foreground">+50% ROI in 2 days</p>
       <div className="px-default">
@@ -48,6 +34,10 @@ export function Portfolio() {
       <div className="px-default">
         <h2 className="text-2xl font-semibold mb-4">My Channels</h2>
         <ChannelList channels={data?.channels} isLoading={isLoading} isError={isError} />
+      </div>
+      <div className="flex flex-col px-default gap-4">
+        <h2 className="text-2xl font-semibold">Trader</h2>
+        <ProfileHeader />
       </div>
     </div>
   );

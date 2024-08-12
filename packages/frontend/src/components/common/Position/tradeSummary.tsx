@@ -14,7 +14,7 @@ export function TradeSummary() {
         </div>
       </InfoBlock>
       <InfoBlock label="Leverage">
-        <div className="flex gap-2">
+        <div className="flex flex-row items-center gap-2">
           <p> 10x</p>
           <Badge>LONG</Badge>
         </div>
