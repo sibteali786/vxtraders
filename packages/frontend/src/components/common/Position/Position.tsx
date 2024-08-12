@@ -6,12 +6,15 @@ import { PortfolioChart } from "@/pages/portfolio/portfolio-chart";
 
 export function Position() {
   return (
-    <div className="space-y-6 pb-[90px]">
-      <ProfileHeader />
+    <div className="space-y-6 pt-4 pb-[90px]">
       <PortfolioChart />
       <TradeSummary />
       <TradesTimeline />
       <ClosePosition />
+      <div className="flex flex-col px-default gap-4">
+        <h2 className="text-2xl font-semibold">Trader</h2>
+        <ProfileHeader />
+      </div>
     </div>
   );
 }
