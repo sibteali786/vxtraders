@@ -14,3 +14,13 @@ export const useTopPositionsPeriodStore = create<PeriodState>((set) => ({
   selectedPeriod: "90d",
   setPeriod: (selectedPeriod) => set(() => ({ selectedPeriod })),
 }));
+
+type ClosePositionState = {
+  size: number;
+  setSize: (size: number) => void;
+};
+
+export const useClosePositionStore = create<ClosePositionState>((set) => ({
+  size: 8,
+  setSize: (size) => set(() => ({ size })),
+}));
