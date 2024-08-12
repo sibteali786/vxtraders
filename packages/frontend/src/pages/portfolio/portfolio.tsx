@@ -36,6 +36,7 @@ export function Portfolio() {
         </div>
       </div>
       <PortfolioChart />
+      <p className="w-full text-center text-base text-muted-foreground">+50% ROI in 2 days</p>
       <div className="px-default">
         <h2 className="text-2xl font-semibold mb-4">Closed Positions</h2>
         <div className="flex flex-col gap-4">

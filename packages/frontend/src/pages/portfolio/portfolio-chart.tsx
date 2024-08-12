@@ -18,11 +18,6 @@ export function PortfolioChart() {
     { month: "June", desktop: 100 },
   ];
 
-  const formatXAxis = (tickItem: string) => {
-    // Since tickItem is already a month name, just return the first three letters
-    return tickItem.slice(0, 3);
-  };
-
   return (
     <ChartContainer config={chartConfig}>
       <AreaChart
@@ -48,10 +43,9 @@ export function PortfolioChart() {
         />
         <XAxis
           dataKey="month" // Change to 'month' to match your data structure
+          tick={false}
           tickLine={false}
           axisLine={false}
-          tickFormatter={formatXAxis} // Format to show only month abbreviation
-          interval="preserveStartEnd" // Ensures that ticks are not too crowded
         />
       </AreaChart>
     </ChartContainer>
