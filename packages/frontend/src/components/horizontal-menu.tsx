@@ -29,7 +29,7 @@ export function HorizontalMenu() {
         style={{
           maxWidth: "var(--max-width)",
           border: "1px solid hsl(var(--border))",
-          borderRadius: "8px",
+          borderRadius: "0px 0px 8px 8px",
           borderTop: "none",
         }}
       >
