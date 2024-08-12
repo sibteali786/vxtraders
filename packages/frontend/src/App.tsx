@@ -5,7 +5,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { trpc } from "./trpc";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
@@ -66,8 +66,12 @@ function MainRouting() {
     "/settings/editProfile",
     "/settings/privacyPolicy",
     "/settings/integration",
-    "/position",	// TODO: change it so that each position is for a specific user id
+    "/position", // TODO: change it so that each position is for a specific user id
   ];
+  useEffect(() => {
+    // Scroll to top when the route changes
+    window.scrollTo(0, 0);
+  }, [location]);
   const hideNavBar = subScreenPaths.includes(location.pathname);
   return (
     <div className="w-full max-w-[600px] flex flex-col justify-center">
