@@ -18,8 +18,7 @@ export function Portfolio() {
   });
   console.log(positions.data);
   return (
-    <div className="pt-4 space-y-4 pb-[80px]">
-      <div className="flex justify-between items-center py-3 px-default"></div>
+    <div className=" space-y-4 pb-[80px]">
       <div className="flex items-center justify-between space-x-4 px-default">
         <div className="flex gap-3 items-center">
           <Avatar>

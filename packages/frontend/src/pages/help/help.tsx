@@ -10,7 +10,7 @@ const commonButtonClasses = "bg-transparent text-left px-2 pb-4 w-full hover:no-
 
 export function Help() {
   return (
-    <div className="py-4 space-y-4 px-default pb-[80px]">
+    <div className="space-y-4 px-default pb-[80px]">
       <MainHeading title="Get Help" />
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">

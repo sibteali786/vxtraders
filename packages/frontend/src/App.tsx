@@ -15,13 +15,14 @@ import { Settings } from "./pages/settings/settings";
 import { Portfolio } from "./pages/portfolio/portfolio";
 import { PageNotFound } from "./pages/pageNotFound";
 import { Leaderboards } from "./pages/leaderboards/leaderboards";
-import { SelectAsset } from "./pages/trade/select-asset";
-import { TopTraders } from "./pages/leaderboards/topTraders/topTraders";
-import { TopPositions } from "./pages/leaderboards/topPositions/topPositions";
+import { SelectAsset } from "./pages/trade/selectAsset";
 import { EditProfile } from "./pages/settings/editProfile/editProfile";
 import PrivacyPolicy from "./pages/settings/Privacy policy/privacyPolicy";
 import ChannelIntegration from "./pages/settings/Channels/channelIntegration";
 import { Position } from "./components/common/Position/Position";
+import { TradersList } from "./components/common/leaderboards/tradersList";
+import { MAX_LIST_COUNT } from "./stores/constants";
+import { PositionsList } from "./components/common/leaderboards/positionList";
 
 const baseUrl =
   import.meta.env.MODE === "development"
@@ -76,14 +77,20 @@ function MainRouting() {
   const hideNavBar = subScreenPaths.includes(location.pathname);
 
   return (
-    <div className="w-full max-w-[600px] flex flex-col justify-start h-full rounded-[8px] max-allowed-width:border max-allowed-width:border-border">
+    <div className="w-full py-4 max-w-[600px] flex flex-col justify-start h-full rounded-[8px] max-allowed-width:border max-allowed-width:border-border">
       <TransitionGroup>
         <CSSTransition key={location.key} timeout={300} classNames="fade">
           <Routes location={location}>
             <Route path="/">
               <Route index element={<Leaderboards />} />
-              <Route path="/topTraders" element={<TopTraders />} />
-              <Route path="/topPositions" element={<TopPositions />} />
+              <Route
+                path="/topTraders"
+                element={<TradersList isScreen={true} maxCount={MAX_LIST_COUNT} />}
+              />
+              <Route
+                path="/topPositions"
+                element={<PositionsList isScreen={true} maxCount={MAX_LIST_COUNT} />}
+              />
             </Route>
             <Route path="/select-asset" element={<SelectAsset />} />
             <Route path="/position" element={<Position />} />

@@ -4,12 +4,12 @@ import { MainHeading } from "@/components/common/mainHeading";
 
 export function Leaderboards() {
   return (
-    <div className="py-4 space-y-12 pb-[8rem] h-full px-default">
-      <MainHeading title="Leaderboards" />
+    <div className="space-y-12 pb-[8rem] h-full">
+      <MainHeading title="Leaderboards" classes="px-default" />
       <div className="space-y-10">
-        <TradersList maxCount={5} />
-        <hr className="border-muted" />
-        <PositionsList maxCount={5} />
+        <TradersList isScreen={false} maxCount={5} />
+        <hr className="border-muted mx-[16px]" />
+        <PositionsList isScreen={false} maxCount={5} />
       </div>
     </div>
   );
