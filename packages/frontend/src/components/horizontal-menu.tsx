@@ -23,15 +23,9 @@ const navLinkClasses = cva(
 
 export function HorizontalMenu() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-1000 bg-background w-full flex justify-center h-[70px]">
+    <nav className="fixed bottom-0 left-0 right-0 z-1000 bg-background w-full flex justify-center h-[70px] pb-2">
       <div
-        className="flex justify-around max-w-global border-t border-border w-full"
-        style={{
-          maxWidth: "var(--max-width)",
-          border: "1px solid hsl(var(--border))",
-          borderRadius: "0px 0px 8px 8px",
-          borderTop: "none",
-        }}
+        className="flex justify-around max-w-global border-border w-full border-solid border-x-[1px] border-b-[1px] rounded-b-[8px] border-t-0"
       >
         <NavLink
           to="/select-asset"
