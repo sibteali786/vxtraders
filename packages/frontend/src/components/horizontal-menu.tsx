@@ -11,7 +11,7 @@ const navLinkClasses = cva(
   {
     variants: {
       active: {
-        true: "text-special",
+        true: "text-white",
         false: "text-muted-foreground hover:text-muted-foreground/80",
       },
     },
