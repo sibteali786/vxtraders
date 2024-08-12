@@ -76,7 +76,7 @@ function MainRouting() {
   const hideNavBar = subScreenPaths.includes(location.pathname);
 
   return (
-    <div className="w-full max-w-[600px] flex flex-col justify-center rounded-[8px] max-allowed-width:border max-allowed-width:border-border">
+    <div className="w-full max-w-[600px] flex flex-col justify-start h-full rounded-[8px] max-allowed-width:border max-allowed-width:border-border">
       <TransitionGroup>
         <CSSTransition key={location.key} timeout={300} classNames="fade">
           <Routes location={location}>
