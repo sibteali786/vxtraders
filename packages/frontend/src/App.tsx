@@ -60,6 +60,11 @@ function App() {
 
 function MainRouting() {
   const location = useLocation();
+  useEffect(() => {
+    // Scroll to top when the route changes
+    window.scrollTo(0, 0);
+  }, [location]);
+
   const subScreenPaths = [
     "/topTraders",
     "/topPositions",
@@ -68,13 +73,10 @@ function MainRouting() {
     "/settings/integration",
     "/position", // TODO: change it so that each position is for a specific user id
   ];
-  useEffect(() => {
-    // Scroll to top when the route changes
-    window.scrollTo(0, 0);
-  }, [location]);
   const hideNavBar = subScreenPaths.includes(location.pathname);
+
   return (
-    <div className="w-full max-w-[600px] flex flex-col justify-center">
+    <div className="w-full max-w-[600px] flex flex-col justify-center rounded-[8px] max-allowed-width:border max-allowed-width:border-border">
       <TransitionGroup>
         <CSSTransition key={location.key} timeout={300} classNames="fade">
           <Routes location={location}>

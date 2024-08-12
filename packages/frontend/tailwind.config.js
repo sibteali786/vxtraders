@@ -25,6 +25,7 @@ export const theme = {
       "mobile-small": "320px",
       "mobile-medium": "375px",
       "mobile-large": "425px",
+      "max-allowed-width": "600px",
     },
     maxWidth: {
       global: "var(--max-width)",

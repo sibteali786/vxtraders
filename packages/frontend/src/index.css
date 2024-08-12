@@ -20,8 +20,6 @@
   flex-direction: column;
   align-items: center;
   /* remove when finished with app dev */
-  border: 1px solid hsl(var(--border));
-  border-radius: 8px;
 }
 
 a {
@@ -39,7 +37,12 @@ body {
   /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
-  padding-top: 2rem;
+}
+
+@media (min-width: 600px) {
+  body {
+    padding-top: 1.5rem; /* Adjust the value as needed */
+  }
 }
 
 h1 {

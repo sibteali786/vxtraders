@@ -23,10 +23,8 @@ const navLinkClasses = cva(
 
 export function HorizontalMenu() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-1000 bg-background w-full flex justify-center h-[70px] pb-2">
-      <div
-        className="flex justify-around max-w-global border-border w-full border-solid border-x-[1px] border-b-[1px] rounded-b-[8px] border-t-0"
-      >
+    <nav className="fixed bottom-0 left-0 right-0 z-1000 bg-background w-full flex justify-center h-[70px] max-allowed-width:pb-2">
+      <div className="flex justify-around max-w-global max-allowed-width:border-border w-full max-allowed-width:border-x-[1px] max-allowed-width:border-b-[1px] rounded-b-[8px] border-t-0">
         <NavLink
           to="/select-asset"
           className={({ isActive }) => navLinkClasses({ active: isActive })}
