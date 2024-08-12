@@ -1,7 +1,11 @@
 import { ChartContainer } from "@/components/ui/chart";
 import { XAxis, AreaChart, Area } from "recharts";
 
-export function PortfolioChart() {
+type PortfolioChart = {
+  isTopValue?: boolean;
+};
+
+export const PortfolioChart: React.FC<PortfolioChart> = ({ isTopValue }) => {
   const chartConfig = {
     desktop: {
       label: "Desktop",
@@ -20,10 +24,12 @@ export function PortfolioChart() {
 
   return (
     <div className="space-y-6">
-      <div className="text-right px-default">
-        <p className="text-purple-500 text-lg font-bold">1%</p>
-        <p className="text-xs text-muted-foreground">Top</p>
-      </div>
+      {isTopValue ? (
+        <div className="text-right px-default">
+          <p className="text-purple-500 text-lg font-bold">1%</p>
+          <p className="text-xs text-muted-foreground">Top</p>
+        </div>
+      ) : null}
       <ChartContainer config={chartConfig}>
         <AreaChart
           data={chartData}
@@ -56,4 +62,4 @@ export function PortfolioChart() {
       </ChartContainer>
     </div>
   );
-}
+};

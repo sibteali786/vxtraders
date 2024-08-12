@@ -7,7 +7,7 @@ import { PortfolioChart } from "@/pages/portfolio/portfolio-chart";
 export function Position() {
   return (
     <div className="space-y-6 pt-4 pb-[90px]">
-      <PortfolioChart />
+      <PortfolioChart isTopValue={true} />
       <TradeSummary />
       <TradesTimeline />
       <ClosePosition />
