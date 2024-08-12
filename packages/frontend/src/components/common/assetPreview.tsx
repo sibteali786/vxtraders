@@ -27,19 +27,32 @@ export function AssetPreview(props: { asset: SearchAsset }) {
     : "#f0f0f0"; // Default color if not found
 
   return (
-    <Card className="flex items-center px-3 py-3 space-x-4 rounded-lg border border-border">
-      <IconComponent className="w-8 h-8" style={{ color: iconColor }} />
+    <Card className="flex items-center py-2 space-x-4 rounded-lg border border-border px-2 mobile-small:py-2 mobile-medium:px-3 mobile-medium:py-3">
+      <IconComponent
+        className="h-8 w-6 mobile-small:h-6 mobile-medium:w-7 mobile-medium:h-7"
+        style={{ color: iconColor }}
+      />
       <div className="flex-1">
-        <p className="font-semibold text-white">{props.asset.name}</p>
-        <p className="text-sm text-muted-foreground">{props.asset.ticker}</p>
+        <p className="font-semibold text-white text-sm mobile-medium:text-base">
+          {props.asset.name}
+        </p>
+        <p className=" text-muted-foreground text-xs mobile-medium:text-sm">
+          {props.asset.ticker}
+        </p>
       </div>
       <div className="text-right">
-        <p className="font-semibold text-white">${props.asset.price.toLocaleString()}</p>
-        <p className={`text-sm ${props.asset.change >= 0 ? "text-green-500" : "text-red-500"}`}>
+        <p className="font-semibold text-white text-sm mobile-medium:text-base">
+          ${props.asset.price.toLocaleString()}
+        </p>
+        <p
+          className={`text-xs mobile-medium:text-sm ${props.asset.change >= 0 ? "text-green-500" : "text-red-500"}`}
+        >
           {props.asset.change >= 0 ? `+${props.asset.change}` : props.asset.change}%
         </p>
       </div>
-      <Button className="w-16 h-8 bg-purple-600 text-white rounded-md">Trade</Button>
+      <Button className=" bg-purple-600 text-white rounded-md w-14 h-6 mobile-medium:w-15 mobile-medium:h-7">
+        Trade
+      </Button>
     </Card>
   );
 }

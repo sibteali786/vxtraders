@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 import colors from "tailwindcss/colors";
 import animate from "tailwindcss-animate";
+
 export const darkMode = ["class"];
 export const content = [
   "./pages/**/*.{ts,tsx}",
@@ -18,6 +19,13 @@ export const theme = {
     },
   },
   extend: {
+    screens: {
+      // Custom breakpoints
+      "mobile-xs": "270px",
+      "mobile-small": "320px",
+      "mobile-medium": "375px",
+      "mobile-large": "425px",
+    },
     maxWidth: {
       global: "var(--max-width)",
     },

@@ -24,7 +24,7 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount }) => {
     <div className="space-y-5">
       {/* Top section with title and period selector */}
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold">Top Traders</h2>
+        <h2 className="mobile-small:text-xl mobile-medium:text-2xl  font-semibold">Top Traders</h2>
         <PeriodSelector period={selectedTopTradersPeriod} setPeriod={setTradersPeriod} />
       </div>
 
