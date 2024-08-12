@@ -15,8 +15,8 @@ const ChannelIntegration = () => {
       <Divider />
 
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">How to add Channels?</h2>
-        <p className="mb-4">
+        <h2 className="text-xl mobile-medium:text-2xl font-bold mb-4">How to add Channels?</h2>
+        <p className="mb-4 ">
           Channel integration allows you to post your trades in channels that you own.
         </p>
         <h3 className="text-xl font-bold mb-2">Instructions</h3>
