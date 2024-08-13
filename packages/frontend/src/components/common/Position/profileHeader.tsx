@@ -1,24 +1,53 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { TopResults } from "../topResults";
+import { trpc } from "@/trpc";
+import { Error } from "../Error/Error";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Card } from "@/components/ui/card";
 
 type ProfileHeaderProps = {
   isFirstComponentOnPage?: boolean;
+  userId?: string;
 };
 
-export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isFirstComponentOnPage }) => {
+export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isFirstComponentOnPage, userId }) => {
+  const { isLoading, isError, data } = trpc.getUserById.useQuery({
+    id: userId || "1",
+  });
+  if (isLoading) {
+    return (
+      <Card className="flex items-center space-x-4 p-3 mx-[16px]">
+        <div className=" flex flex-row flex-1 gap-2">
+          <Skeleton className="h-8 w-8 rounded-full" />
+          <div className="space-y-2">
+            <Skeleton className="h-3 w-[80px]" />
+            <Skeleton className="h-3 w-[50px]" />
+          </div>
+        </div>
+        <div className="space-y-2 flex flex-col item-end">
+          <Skeleton className="h-3 w-[50px]" />
+          <Skeleton className="h-5 w-[40px]" />
+        </div>
+      </Card>
+    );
+  }
+  if (isError) {
+    return <Error>There is some problem please try again!</Error>;
+  }
+  if (!data?.user) return null;
   return (
     <div className="flex justify-between items-center py-3 px-default">
       <div className="flex items-center space-x-4">
         <Avatar>
-          <AvatarImage src="/avatar.png" alt="John Smith" />
-          <AvatarFallback>JS</AvatarFallback>
+          <AvatarImage src={data.user.avatar} alt={data.user.displayName} />
+          <AvatarFallback>{data.user.displayName.slice(0, 2).toUpperCase()}</AvatarFallback>
         </Avatar>
         <div>
-          <p className="font-semibold text-white">John Smith</p>
-          <p className="text-sm text-muted-foreground">@johns</p>
+          <p className="font-semibold text-white">{data.user.displayName}</p>
+          <p className="text-sm text-muted-foreground">{data.user.username}</p>
         </div>
       </div>
-      {isFirstComponentOnPage && <TopResults label="Top" value="1%" />}
+      {isFirstComponentOnPage && <TopResults label="TOP" value="1%" />}
     </div>
   );
 };
