@@ -5,9 +5,11 @@ import { trpc } from "@/trpc";
 import { MAX_LIST_COUNT } from "@/stores/constants";
 import { useTopPositionsPeriodStore } from "@/stores/useState";
 import { ProfileHeader } from "@/components/common/Position/profileHeader";
+import { useParams } from "react-router-dom";
 
 export function Portfolio() {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
+  const { id } = useParams();
   const positions = trpc.topPositions.useQuery({
     count: MAX_LIST_COUNT,
     timeframe: selectedTopPositionsPeriod,
@@ -16,11 +18,16 @@ export function Portfolio() {
     count: MAX_LIST_COUNT,
     user: "Ali",
   });
+
   return (
-    <div className=" space-y-4 pb-[80px]">
-      <ProfileHeader isFirstComponentOnPage={true} />
-      <PortfolioChart />
-      <p className="w-full text-center text-base text-muted-foreground">+50% ROI in 2 days</p>
+    <div className=" pb-[80px] flex flex-col gap-5">
+      <ProfileHeader userId={id} isFirstComponentOnPage={true} />
+      <div>
+        <PortfolioChart />
+        <p className="w-full text-center text-xs text-muted-foreground/80 -mt-5 font-mono tracking-widest">
+          +50% ROI in 2 days
+        </p>
+      </div>
       <div className="px-default">
         <h2 className="text-2xl font-semibold mb-4">Closed Positions</h2>
         <div className="flex flex-col gap-4">

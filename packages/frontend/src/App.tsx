@@ -101,7 +101,7 @@ function MainRouting() {
               <Route path="privacyPolicy" element={<PrivacyPolicy />} />
               <Route path="integration" element={<ChannelIntegration />} />
             </Route>
-            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/portfolio/:id" element={<Portfolio />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </CSSTransition>
