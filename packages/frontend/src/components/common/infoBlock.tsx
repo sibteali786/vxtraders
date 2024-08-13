@@ -13,11 +13,11 @@ export const InfoBlock: React.FC<InfoBlockProps> = ({ value, label, src, childre
       {children ? (
         children
       ) : src ? (
-        <img src={src} alt={label} className="w-6 h-6" />
+        <img src={src} alt={label} className="w-4 h-4" />
       ) : (
-        <p className="text-sm">{value}</p>
+        <p className="text-base font-semibold">{value}</p>
       )}
-      <p className="text-sm text-muted-foreground">{label}</p>
+      <p className="text-sm text-muted-foreground ">{label}</p>
     </div>
   );
 };
