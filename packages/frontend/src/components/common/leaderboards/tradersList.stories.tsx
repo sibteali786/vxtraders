@@ -17,34 +17,31 @@ const meta: Meta<typeof TradersList> = {
   ],
   args: {
     maxCount: 5,
-    isScreen: true,
+    isTopLevelComponent: true,
   },
 };
 
 export default meta;
 
 export const SimpletList = {
-  render: () => <TradersList maxCount={5} isScreen={true} />,
+  render: () => <TradersList maxCount={5} isTopLevelComponent={true} />,
   decorators: [
-    withTrpcContext((ctx) =>
-      ctx.topTraders.setData(
-        {
-          count: 5,
-          timeframe: "24h",
-        },
-        () => {
-          return {
+    withTrpcContext(
+      (ctx) =>
+        (ctx.topTraders.useQuery = () => ({
+          isLoading: false,
+          isError: true,
+          data: {
             traders: [
               {
-                displayName: "Alice",
-                avatar: "./avatar.png",
-                username: "alice",
-                roi: 10,
+                displayName: "John Doe",
+                username: "John Doe",
+                avatar: "/avatar.png",
+                roi: 100,
               },
             ],
-          };
-        },
-      ),
+          },
+        })),
     ),
   ],
 };
