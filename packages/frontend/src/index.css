@@ -64,8 +64,8 @@ button {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: white;
+    background-color: black;
   }
   button {
     background-color: #f9f9f9;
