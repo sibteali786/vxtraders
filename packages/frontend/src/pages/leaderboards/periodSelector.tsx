@@ -18,7 +18,7 @@ export function PeriodSelector({ period, setPeriod }: PeriodProps) {
       onValueChange={(value: PeriodState["selectedPeriod"]) => setPeriod(value)}
       value={period}
     >
-      <SelectTrigger id="timeframe" className="w-[fit-content] gap-2 px-2 py-1.5 h-[fit-content]">
+      <SelectTrigger id="timeframe" className="w-[fit-content] gap-2 px-2 py-1.5 h-[fit-content] bg-black">
         <SelectValue placeholder="24h" />
       </SelectTrigger>
       <SelectContent>
