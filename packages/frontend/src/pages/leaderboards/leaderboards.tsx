@@ -7,9 +7,9 @@ export function Leaderboards() {
     <div className="space-y-12 pb-[8rem] h-full">
       <MainHeading title="Leaderboards" classes="px-default" />
       <div className="space-y-10">
-        <TradersList isScreen={false} maxCount={5} />
+        <TradersList isTopLevelComponent={false} maxCount={5} />
         <hr className="border-muted mx-[16px]" />
-        <PositionsList isScreen={false} maxCount={5} />
+        <PositionsList isTopLevelComponent={false} maxCount={5} />
       </div>
     </div>
   );

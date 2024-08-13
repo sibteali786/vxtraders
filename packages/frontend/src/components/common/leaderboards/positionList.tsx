@@ -10,10 +10,10 @@ import { NoData } from "../EmptyState/NoData";
 
 type PositionsProps = {
   maxCount: number;
-  isScreen: boolean;
+  isTopLevelComponent: boolean;
 };
 
-export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isScreen }) => {
+export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isTopLevelComponent }) => {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
   const setPositionsPeriod = useTopPositionsPeriodStore((state) => state.setPeriod);
   const { isLoading, isError, data, isFetched } = trpc.topPositions.useQuery({
@@ -26,8 +26,10 @@ export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isScreen }) 
       {/* Top section with title and period selector */}
       <div className="flex justify-between items-center">
         {/* Conditional rendering based on screen size */}
-        {isScreen && <h2 className="text-2xl mobile-medium:text-3xl font-bold">Top Positions</h2>}
-        {!isScreen && (
+        {isTopLevelComponent && (
+          <h2 className="text-2xl mobile-medium:text-3xl font-bold">Top Positions</h2>
+        )}
+        {!isTopLevelComponent && (
           <h2 className="mobile-small:text-xl mobile-medium:text-2xl font-semibold">
             Top Positions
           </h2>

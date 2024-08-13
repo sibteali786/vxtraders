@@ -10,10 +10,10 @@ import { NoData } from "../EmptyState/NoData";
 
 type TradersProps = {
   maxCount: number;
-  isScreen: boolean;
+  isTopLevelComponent: boolean;
 };
 
-export const TradersList: React.FC<TradersProps> = ({ maxCount, isScreen }) => {
+export const TradersList: React.FC<TradersProps> = ({ maxCount, isTopLevelComponent }) => {
   const selectedTopTradersPeriod = useTopTradersPeriodStore((state) => state.selectedPeriod);
   const setTradersPeriod = useTopTradersPeriodStore((state) => state.setPeriod);
   const { isLoading, isError, data } = trpc.topTraders.useQuery({
@@ -26,8 +26,10 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount, isScreen }) => {
       {/* Top section with title and period selector */}
       <div className="flex justify-between items-center">
         {/* Conditional rendering based on screen size */}
-        {isScreen && <h2 className="text-2xl mobile-medium:text-3xl font-bold">Top Traders</h2>}
-        {!isScreen && (
+        {isTopLevelComponent && (
+          <h2 className="text-2xl mobile-medium:text-3xl font-bold">Top Traders</h2>
+        )}
+        {!isTopLevelComponent && (
           <h2 className="mobile-small:text-xl mobile-medium:text-2xl  font-semibold">
             Top Traders
           </h2>

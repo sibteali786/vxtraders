@@ -85,11 +85,11 @@ function MainRouting() {
               <Route index element={<Leaderboards />} />
               <Route
                 path="/topTraders"
-                element={<TradersList isScreen={true} maxCount={MAX_LIST_COUNT} />}
+                element={<TradersList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
               />
               <Route
                 path="/topPositions"
-                element={<PositionsList isScreen={true} maxCount={MAX_LIST_COUNT} />}
+                element={<PositionsList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
               />
             </Route>
             <Route path="/select-asset" element={<SelectAsset />} />

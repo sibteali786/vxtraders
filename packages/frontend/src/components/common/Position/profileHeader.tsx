@@ -1,9 +1,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
+import { TopResults } from "../topResults";
 
-export function ProfileHeader() {
+type ProfileHeaderProps = {
+  isFirstComponentOnPage?: boolean;
+};
+
+export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isFirstComponentOnPage }) => {
   return (
-    <Card className="flex justify-between items-center py-3 px-default">
+    <div className="flex justify-between items-center py-3 px-default">
       <div className="flex items-center space-x-4">
         <Avatar>
           <AvatarImage src="/avatar.png" alt="John Smith" />
@@ -14,6 +18,7 @@ export function ProfileHeader() {
           <p className="text-sm text-muted-foreground">@johns</p>
         </div>
       </div>
-    </Card>
+      {isFirstComponentOnPage && <TopResults label="Top" value="1%" />}
+    </div>
   );
-}
+};
