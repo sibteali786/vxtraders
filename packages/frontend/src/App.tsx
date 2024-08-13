@@ -25,7 +25,7 @@ import { PositionsList } from "./components/common/leaderboards/positionList";
 import { Position } from "./pages/Position/Position";
 import { PlaceVirtualOrder } from "./pages/trade/placeOrder";
 
-const baseUrl =
+export const baseUrl =
   import.meta.env.MODE === "development"
     ? "http://localhost:3000"
     : "https://tjfj3q2sck.execute-api.us-east-1.amazonaws.com/prod/";
