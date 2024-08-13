@@ -59,7 +59,7 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount, isTopLevelCompon
         />
       ) : (
         <div className="flex flex-col space-y-7">
-          <div className="space-y-3">
+          <div className="flex flex-col gap-3">
             {data.traders.map((trader, i) => (
               <TraderPreview key={i} trader={trader} />
             ))}
