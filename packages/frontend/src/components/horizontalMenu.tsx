@@ -41,7 +41,7 @@ export function HorizontalMenu() {
           )}
         </NavLink>
 
-        <NavLink to="/portfolio" className={({ isActive }) => navLinkClasses({ active: isActive })}>
+        <NavLink to="/portfolio/1" className={({ isActive }) => navLinkClasses({ active: isActive })}>
           {({ isActive }) => (
             <>
               {isActive ? <MdPieChart size={24} /> : <MdPieChartOutline size={24} />}
