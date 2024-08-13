@@ -29,7 +29,9 @@ export function Portfolio() {
         </p>
       </div>
       <div className="px-default">
-        <h2 className="text-2xl font-semibold mb-4">Closed Positions</h2>
+        <h2 className="mobile-small:text-xl mobile-medium:text-2xl font-semibold mb-4">
+          Closed Positions
+        </h2>
         <div className="flex flex-col gap-4">
           {positions?.data?.positions?.map((position, i) => (
             <PositionPreview key={i} position={position} />
@@ -37,7 +39,9 @@ export function Portfolio() {
         </div>
       </div>
       <div className="px-default">
-        <h2 className="text-2xl font-semibold mb-4">My Channels</h2>
+        <h2 className="mobile-small:text-xl mobile-medium:text-2xl font-semibold mb-4">
+          My Channels
+        </h2>
         <ChannelList channels={data?.channels} isLoading={isLoading} isError={isError} />
       </div>
     </div>

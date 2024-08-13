@@ -11,8 +11,8 @@ export function Position() {
       <TradeSummary />
       <TradesTimeline />
       <ClosePosition />
-      <div className="flex flex-col px-default gap-4">
-        <h2 className="text-2xl font-semibold">Trader</h2>
+      <div className="flex flex-col gap-4">
+        <h2 className="text-2xl font-semibold px-default">Trader</h2>
         <ProfileHeader userId="1" isFirstComponentOnPage={true} />
       </div>
     </div>

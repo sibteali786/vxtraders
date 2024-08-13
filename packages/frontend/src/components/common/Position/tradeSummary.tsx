@@ -9,18 +9,20 @@ export function TradeSummary() {
       <InfoBlock label="Liq. Price" value="$40,000" />
       <InfoBlock label="Asset" src="/solana.png">
         <div className="flex items-center gap-1">
-          <img src="/solana.png" className="w-6 h-6" />
-          <p>Solana</p>
+          <img src="/solana.png" className="h-4 w-4 mobile-medium:w-6 mobile-medium:h-6" />
+          <p className="text-xs mobile-small:text-sm mobile-medium:text-base">Solana</p>
         </div>
       </InfoBlock>
       <InfoBlock label="Leverage">
         <div className="flex flex-row items-center gap-2">
-          <p> 10x</p>
+          <p className="text-xs mobile-small:text-sm mobile-medium:text-base"> 10x</p>
           <Badge>LONG</Badge>
         </div>
       </InfoBlock>
       <InfoBlock label="PnL">
-        <p className="text-green-500 ml-2">+45%</p>
+        <p className="text-xs mobile-small:text-sm mobile-medium:text-base text-green-500 ml-2">
+          +45%
+        </p>
       </InfoBlock>
     </div>
   );

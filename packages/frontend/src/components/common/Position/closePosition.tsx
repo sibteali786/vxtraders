@@ -8,9 +8,9 @@ export function ClosePosition() {
   const setSize = useClosePositionStore((state) => state.setSize);
   return (
     <Card className="p-4 space-y-4 mx-[16px] flex flex-col gap-3">
-      <h2 className="text-xl font-semibold text-white">Close Position</h2>
+      <h2 className="text-base mobile-small:text-lg mobile-medium:text-xl font-semibold text-white">Close Position</h2>
       <div className="flex flex-col gap-3">
-        <p>Size ({size}%)</p>
+        <p className="text-sm mobile-medium:text-base">Size ({size}%)</p>
         <Slider
           defaultValue={[size]}
           onValueChange={(value) => setSize(value[0])}

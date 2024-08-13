@@ -27,7 +27,6 @@ export function SelectAsset() {
           : assets.data?.assets.map((asset, i) => <AssetPreview key={i} asset={asset} />)}
       </div>
 
-      <div className="w-full p-6"></div>
     </div>
   );
 }

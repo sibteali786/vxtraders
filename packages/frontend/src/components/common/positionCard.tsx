@@ -15,11 +15,11 @@ export function PositionPreview(props: { position: PositionSummary }) {
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
           <div className="flex flex-col space-y-1">
-            <div className="flex items-center space-x-2">
-              <span className="text-white font-medium text-base mobile-medium:text-base">
+            <div className="flex items-center gap-1">
+              <span className="text-white font-medium text-sm mobile-medium:text-base">
                 {props.position.asset.name}
               </span>
-              <BitcoinIcon className="w-4 h-4 text-yellow-500" />
+              <BitcoinIcon className="w-4 h-4 mobile-medium:w-5 mobile-medium:h-5 text-yellow-500" />
             </div>
             <div className="flex items-center space-x-2">
               <span className="text-muted-foreground text-xs mobile-medium:text-sm">
