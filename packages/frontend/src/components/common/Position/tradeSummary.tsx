@@ -3,13 +3,13 @@ import { InfoBlock } from "../infoBlock";
 
 export function TradeSummary() {
   return (
-    <div className="p-4 grid grid-cols-3 gap-y-6">
+    <div className="p-4 grid grid-cols-3 gap-y-6 -mt-6">
       <InfoBlock label="Value" value="$0.0157" />
       <InfoBlock label="Entry Price" value="$58,531" />
       <InfoBlock label="Liq. Price" value="$40,000" />
       <InfoBlock label="Asset" src="/solana.png">
         <div className="flex items-center gap-1">
-          <img src="/solana.png" />
+          <img src="/solana.png" className="w-6 h-6" />
           <p>Solana</p>
         </div>
       </InfoBlock>
