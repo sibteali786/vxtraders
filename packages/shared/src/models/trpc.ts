@@ -16,12 +16,25 @@ export type TradeMode = z.infer<typeof tradeModeSchema>;
 
 // For getting top traders
 export const traderSummarySchema = z.object({
+  id: z.string(),
   avatar: z.string(),
   displayName: z.string(),
   username: z.string(),
   roi: z.number(),
 });
 export type TraderSummary = z.infer<typeof traderSummarySchema>;
+
+export const getUserByIdInputSchema = z.object({
+  id: z.string(),
+});
+
+export type GetUserByIdInput = z.infer<typeof getUserByIdInputSchema>;
+
+export const getUserByIdOutputSchema = z.object({
+  user: traderSummarySchema.optional(),
+});
+
+export type GetUserByIdOutput = z.infer<typeof getUserByIdOutputSchema>;
 
 export const topTradersInputSchema = z.object({
   count: z.number().optional(),
