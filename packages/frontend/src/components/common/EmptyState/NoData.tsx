@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-type NoDataProps = {
+export type NoDataProps = {
   message: string;
   illustrationSrc?: string;
   title?: string;

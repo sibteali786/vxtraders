@@ -2,7 +2,7 @@
 import colors from "tailwindcss/colors";
 import animate from "tailwindcss-animate";
 
-export const darkMode = ["class"];
+export const darkMode = ["class", '[data-mode="dark"]'];
 export const content = [
   "./pages/**/*.{ts,tsx}",
   "./components/**/*.{ts,tsx}",
