@@ -36,7 +36,9 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isFirstComponentOn
   }
   if (!data?.user) return null;
   return (
-    <div className="flex justify-between items-center py-3 px-default">
+    <div
+      className={`flex justify-between items-center py-3 px-default  ${!isFirstComponentOnPage ? "border-[1px] rounded-lg shadow-sm mx-[16px]" : ""}`}
+    >
       <div className="flex items-center space-x-4">
         <Avatar>
           <AvatarImage src={data.user.avatar} alt={data.user.displayName} />
@@ -47,7 +49,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isFirstComponentOn
           <p className="text-sm text-muted-foreground">{data.user.username}</p>
         </div>
       </div>
-      {isFirstComponentOnPage && <TopResults label="TOP" value="1%" />}
+      <TopResults label="TOP" value="1%" />
     </div>
   );
 };

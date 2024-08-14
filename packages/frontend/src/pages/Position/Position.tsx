@@ -13,7 +13,7 @@ export function Position() {
       <ClosePosition />
       <div className="flex flex-col gap-4">
         <h2 className="text-2xl font-semibold px-default">Trader</h2>
-        <ProfileHeader userId="1" isFirstComponentOnPage={true} />
+        <ProfileHeader userId="1" isFirstComponentOnPage={false} />
       </div>
     </div>
   );

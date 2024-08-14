@@ -49,7 +49,7 @@ export function AssetPreview(props: { asset: SearchAsset }) {
           {props.asset.change >= 0 ? `+${props.asset.change}` : props.asset.change}%
         </p>
       </div>
-      <Link to={`${props.asset.ticker}`}>
+      <Link to={`${props.asset.name}`}>
         <Button className=" bg-purple-600 text-white rounded-sm mobile-medium:rounded-md text-xs w-12 h-6 mobile-medium:w-15 mobile-medium:h-7">
           Trade
         </Button>
