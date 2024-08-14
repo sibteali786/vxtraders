@@ -5,7 +5,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatCurrency(value: number) {
+export function formatCurrency(value: number | string) {
+  if (value === 0) return "$0";
+  if (typeof value === "string") value = Number(value);
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
