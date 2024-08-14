@@ -6,8 +6,13 @@ import { PortfolioChart } from "@/pages/portfolio/portfolioChart";
 
 export function Position() {
   return (
-    <div className="flex flex-col gap-4 pt-4">
-      <PortfolioChart />
+    <div className="flex flex-col gap-6 pt-4">
+      <div>
+        <PortfolioChart />
+        <p className="w-full text-center text-xs text-muted-foreground/80 -mt-5 font-mono tracking-widest">
+          +50% ROI in 2 days
+        </p>
+      </div>
       <TradeSummary />
       <TradesTimeline />
       <ClosePosition />
