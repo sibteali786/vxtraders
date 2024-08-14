@@ -25,6 +25,14 @@ export function HorizontalMenu() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-1000 bg-background w-full flex justify-center h-[70px] max-allowed-width:pb-2">
       <div className="flex justify-around max-w-global max-allowed-width:border-border w-full max-allowed-width:border-x-[1px] max-allowed-width:border-b-[1px] rounded-b-[8px] border-t-0">
+        <NavLink to="/" className={({ isActive }) => navLinkClasses({ active: isActive })}>
+          {({ isActive }) => (
+            <>
+              {isActive ? <AiFillTrophy size={24} /> : <AiOutlineTrophy size={24} />}
+              Leaderboard
+            </>
+          )}
+        </NavLink>
         <NavLink
           to="/select-asset"
           className={({ isActive }) => navLinkClasses({ active: isActive })}
@@ -41,20 +49,14 @@ export function HorizontalMenu() {
           )}
         </NavLink>
 
-        <NavLink to="/portfolio/1" className={({ isActive }) => navLinkClasses({ active: isActive })}>
+        <NavLink
+          to="/portfolio/1"
+          className={({ isActive }) => navLinkClasses({ active: isActive })}
+        >
           {({ isActive }) => (
             <>
               {isActive ? <MdPieChart size={24} /> : <MdPieChartOutline size={24} />}
               Portfolio
-            </>
-          )}
-        </NavLink>
-
-        <NavLink to="/" className={({ isActive }) => navLinkClasses({ active: isActive })}>
-          {({ isActive }) => (
-            <>
-              {isActive ? <AiFillTrophy size={24} /> : <AiOutlineTrophy size={24} />}
-              Leaderboard
             </>
           )}
         </NavLink>
