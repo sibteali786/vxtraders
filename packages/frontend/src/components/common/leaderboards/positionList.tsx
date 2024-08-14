@@ -16,7 +16,7 @@ type PositionsProps = {
 export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isTopLevelComponent }) => {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);
   const setPositionsPeriod = useTopPositionsPeriodStore((state) => state.setPeriod);
-  const { isLoading, isError, data, isFetched } = trpc.topPositions.useQuery({
+  const { isLoading, isError, data } = trpc.topPositions.useQuery({
     count: maxCount,
     timeframe: selectedTopPositionsPeriod,
   });
