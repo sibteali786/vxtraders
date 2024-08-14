@@ -36,7 +36,7 @@ export function PlaceVirtualOrder() {
       </div>
 
       <div className="space-y-4">
-        <Label className="font-bold">Mode</Label>
+        <Label className="font-bold text-base mobile-medium:text-lg">Mode</Label>
         <RadioGroup
           className="flex justify-around mobile-medium:justify-evenly space-x-6"
           value={mode}

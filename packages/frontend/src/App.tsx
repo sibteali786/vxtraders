@@ -8,7 +8,7 @@ import { httpBatchLink } from "@trpc/client";
 import { useEffect, useState } from "react";
 import { trpc } from "./trpc";
 
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation, matchPath } from "react-router-dom";
 import { HorizontalMenu } from "./components/horizontalMenu";
 import { Help } from "./pages/help/help";
 import { Settings } from "./pages/settings/settings";
@@ -73,9 +73,11 @@ function MainRouting() {
     "/settings/editProfile",
     "/settings/privacyPolicy",
     "/settings/integration",
-    "/position", // TODO: change it so that each position is for a specific user id
+    "/position",
+    "/select-asset/:ticker",
   ];
-  const hideNavBar = subScreenPaths.includes(location.pathname);
+
+  const hideNavBar = subScreenPaths.some((path) => matchPath(path, location.pathname));
 
   return (
     <div className="w-full py-4 max-w-[600px] flex flex-col justify-start h-full rounded-[8px] max-allowed-width:border max-allowed-width:border-border">
