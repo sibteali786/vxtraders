@@ -97,7 +97,7 @@ function MainRouting() {
             </Route>
             <Route path="select-asset">
               <Route index element={<SelectAsset />} />
-              <Route path=":ticker" element={<PlaceVirtualOrder />} />
+              <Route path=":assetName" element={<PlaceVirtualOrder />} />
             </Route>
             <Route path="/position" element={<Position />} />
             <Route path="/help" element={<Help />} />
