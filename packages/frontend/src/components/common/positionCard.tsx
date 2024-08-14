@@ -44,7 +44,7 @@ export function PositionPreview(props: { position: PositionSummary }) {
   );
 }
 
-function BitcoinIcon(props: any) {
+export function BitcoinIcon(props: any) {
   return (
     <svg
       {...props}
