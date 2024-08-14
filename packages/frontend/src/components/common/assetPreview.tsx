@@ -4,6 +4,7 @@ import { Card } from "../ui/card";
 import { FaBitcoin, FaEthereum, FaDollarSign } from "react-icons/fa";
 import { SiPolygon } from "react-icons/si";
 import { RiXrpFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 // Map tickers to their corresponding icons and colors
 const iconMap = {
@@ -36,9 +37,7 @@ export function AssetPreview(props: { asset: SearchAsset }) {
         <p className="font-semibold text-white text-sm mobile-medium:text-base">
           {props.asset.name}
         </p>
-        <p className=" text-muted-foreground text-xs mobile-medium:text-sm">
-          {props.asset.ticker}
-        </p>
+        <p className=" text-muted-foreground text-xs mobile-medium:text-sm">{props.asset.ticker}</p>
       </div>
       <div className="text-right">
         <p className="font-semibold text-white text-sm mobile-medium:text-base">
@@ -50,9 +49,11 @@ export function AssetPreview(props: { asset: SearchAsset }) {
           {props.asset.change >= 0 ? `+${props.asset.change}` : props.asset.change}%
         </p>
       </div>
-      <Button className=" bg-purple-600 text-white rounded-sm mobile-medium:rounded-md text-xs w-12 h-6 mobile-medium:w-15 mobile-medium:h-7">
-        Trade
-      </Button>
+      <Link to={`${props.asset.ticker}`}>
+        <Button className=" bg-purple-600 text-white rounded-sm mobile-medium:rounded-md text-xs w-12 h-6 mobile-medium:w-15 mobile-medium:h-7">
+          Trade
+        </Button>
+      </Link>
     </Card>
   );
 }

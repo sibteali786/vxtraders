@@ -23,6 +23,7 @@ import { TradersList } from "./components/common/leaderboards/tradersList";
 import { MAX_LIST_COUNT } from "./stores/constants";
 import { PositionsList } from "./components/common/leaderboards/positionList";
 import { Position } from "./pages/Position/Position";
+import { PlaceVirtualOrder } from "./pages/trade/placeOrder";
 
 const baseUrl =
   import.meta.env.MODE === "development"
@@ -92,7 +93,10 @@ function MainRouting() {
                 element={<PositionsList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
               />
             </Route>
-            <Route path="/select-asset" element={<SelectAsset />} />
+            <Route path="select-asset">
+              <Route index element={<SelectAsset />} />
+              <Route path=":ticker" element={<PlaceVirtualOrder />} />
+            </Route>
             <Route path="/position" element={<Position />} />
             <Route path="/help" element={<Help />} />
             <Route path="settings">
