@@ -19,10 +19,10 @@ import { SelectAsset } from "./pages/trade/selectAsset";
 import { EditProfile } from "./pages/settings/editProfile/editProfile";
 import PrivacyPolicy from "./pages/settings/Privacy policy/privacyPolicy";
 import ChannelIntegration from "./pages/settings/Channels/channelIntegration";
-import { Position } from "./components/common/Position/Position";
 import { TradersList } from "./components/common/leaderboards/tradersList";
 import { MAX_LIST_COUNT } from "./stores/constants";
 import { PositionsList } from "./components/common/leaderboards/positionList";
+import { Position } from "./pages/Position/Position";
 
 const baseUrl =
   import.meta.env.MODE === "development"

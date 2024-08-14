@@ -1,9 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { TopResults } from "../topResults";
 import { trpc } from "@/trpc";
-import { Error } from "../Error/Error";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card } from "@/components/ui/card";
+import { TopResults } from "@/components/common/topResults";
+import { Error } from "@/components/common/Error/Error";
 
 type ProfileHeaderProps = {
   isFirstComponentOnPage?: boolean;

@@ -4,8 +4,8 @@ import { ChannelList } from "@/components/common/settings/channelsList";
 import { trpc } from "@/trpc";
 import { MAX_LIST_COUNT } from "@/stores/constants";
 import { useTopPositionsPeriodStore } from "@/stores/useState";
-import { ProfileHeader } from "@/components/common/Position/profileHeader";
 import { useParams } from "react-router-dom";
+import { ProfileHeader } from "../Position/profileHeader";
 
 export function Portfolio() {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);

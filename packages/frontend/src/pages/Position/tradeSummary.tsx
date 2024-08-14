@@ -1,5 +1,5 @@
-import { Badge } from "../badge";
-import { InfoBlock } from "../infoBlock";
+import { Badge } from "@/components/common/badge";
+import { InfoBlock } from "@/components/common/infoBlock";
 
 export function TradeSummary() {
   return (
