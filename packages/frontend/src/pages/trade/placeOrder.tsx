@@ -6,7 +6,6 @@ import { CheckCheck, TrendingDown, TrendingUp } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { MainHeading } from "@/components/common/mainHeading";
 import { Card } from "@/components/ui/card";
-import { BitcoinIcon } from "@/components/common/positionCard";
 import { LabelValueRow } from "./labelValueRow";
 import { formatCurrency } from "@/lib/utils";
 import { FaBitcoin } from "react-icons/fa";
