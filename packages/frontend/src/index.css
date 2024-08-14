@@ -42,6 +42,7 @@ body {
 @media (min-width: 600px) {
   body {
     padding-top: 0.5rem; /* Adjust the value as needed */
+	padding-bottom: 0.5rem;
   }
 }
 
