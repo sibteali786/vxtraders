@@ -64,7 +64,7 @@ export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isTopLevelCo
               <PositionPreview key={i} position={position} />
             ))}
           </div>
-          {isFetched && (
+          {isTopLevelComponent ? null : (
             <Button className="w-full" asChild>
               <Link to="topPositions" className="text-white hover:text-white">
                 View More

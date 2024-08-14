@@ -64,11 +64,14 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount, isTopLevelCompon
               <TraderPreview key={i} trader={trader} />
             ))}
           </div>
-          <Button className="w-full" asChild>
-            <Link to="topTraders" className="text-white hover:text-white">
-              View More
-            </Link>
-          </Button>
+
+          {isTopLevelComponent ? null : (
+            <Button className="w-full" asChild>
+              <Link to="topTraders" className="text-white hover:text-white">
+                View More
+              </Link>
+            </Button>
+          )}
         </div>
       )}
     </div>
