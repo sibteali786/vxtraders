@@ -29,23 +29,3 @@ export const StoryBookTrpcProvider: React.FC<PropsWithChildren<{}>> = ({ childre
     </trpc.Provider>
   );
 };
-
-type TrpcContext = ReturnType<typeof trpc["useContext"]>;
-
-// Hack to be able to access trpcContext
-const ActOnTrpcContext = ({
-  callback,
-  children,
-}: PropsWithChildren<{
-  callback: (trpcContext: TrpcContext) => void;
-}>) => {
-  const trpcContext = trpc.useContext();
-  callback(trpcContext);
-  return <>{children}</>;
-};
-
-export const withTrpcContext = (callback: (context: TrpcContext) => void) => (Story: any) => (
-  <ActOnTrpcContext callback={callback}>
-    <Story />
-  </ActOnTrpcContext>
-);
