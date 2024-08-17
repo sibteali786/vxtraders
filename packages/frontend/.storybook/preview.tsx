@@ -6,7 +6,9 @@ import { TRPCReactProvider } from "../src/trpcContextProvider"; // Ensure correc
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-initialize();
+initialize({
+  onUnhandledRequest: "bypass",
+});
 
 const preview: Preview = {
   parameters: {
