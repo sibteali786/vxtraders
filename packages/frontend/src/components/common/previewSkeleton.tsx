@@ -3,11 +3,16 @@ import { Skeleton } from "../ui/skeleton";
 
 export function PreviewSkeleton() {
   return (
-    <Card className="flex items-center space-x-4 p-3">
-      <Skeleton className="h-8 w-8 mobile-small:w-10 mobile-medium:w-9 rounded-full" />
-      <div className="space-y-2 w-full">
-        <Skeleton className="h-3 w-[70%] " />
-	<Skeleton className="h-3 w-[50%]" />
+    <Card className="flex items-center justify-between space-x-4 px-4 py-3">
+      <div className="flex gap-4">
+        <Skeleton className="h-8 w-8 rounded-full" />
+        <div className="space-y-2 ">
+          <Skeleton className="h-3 w-12" />
+          <Skeleton className="h-3 w-7" />
+        </div>
+      </div>
+      <div>
+        <Skeleton className="h-3 w-8 rounded-full" />
       </div>
     </Card>
   );

@@ -5,6 +5,16 @@ import { delay, http, HttpResponse } from "msw";
 export default {
   title: "Components/TradersList",
   component: TradersList,
+  argTypes: {
+    maxCount: {
+      control: "number",
+      description: "The maximum number of traders to display.",
+    },
+    isTopLevelComponent: {
+      control: "boolean",
+      description: "Whether this component is at the top level of the page.",
+    },
+  },
   args: {
     maxCount: 5,
     isTopLevelComponent: true,
@@ -17,7 +27,8 @@ export const Loading: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get("http://localhost:3000/topTraders", async () => {
+        http.get("http://localhost:3000/topTraders", () => {
+          console.log("State");
           return delay("infinite");
         }),
       ],
@@ -30,10 +41,7 @@ export const Error: Story = {
       handlers: [
         http.get("http://localhost:3000/topTraders", () => {
           console.log("Intercepted request for empty traders list");
-          return new HttpResponse(
-            JSON.stringify({ error: "Internal Server Error" }),
-            { status: 500 }, // Immediate error response with no delay
-          );
+          return HttpResponse.json({ error: "Internal Server Error" }, { status: 401 });
         }),
       ],
     },
@@ -46,14 +54,14 @@ export const Empty: Story = {
       handlers: [
         http.get("http://localhost:3000/topTraders", () => {
           console.log("Intercepted request for empty traders list");
-          return new HttpResponse(
-            JSON.stringify({
+          return HttpResponse.json(
+            {
               result: {
                 data: {
                   traders: [], // Ensure this matches the expected structure
                 },
               },
-            }),
+            },
             {
               status: 200,
               headers: { "Content-Type": "application/json" }, // Properly set content type
@@ -71,8 +79,8 @@ export const withData: Story = {
       handlers: [
         http.get("http://localhost:3000/topTraders", () => {
           console.log("Intercepted request for empty traders list");
-          return new HttpResponse(
-            JSON.stringify({
+          return HttpResponse.json(
+            {
               result: {
                 data: {
                   traders: [
@@ -93,7 +101,7 @@ export const withData: Story = {
                   ], // Ensure this matches the expected structure
                 },
               },
-            }),
+            },
             {
               status: 200,
               headers: { "Content-Type": "application/json" }, // Properly set content type
