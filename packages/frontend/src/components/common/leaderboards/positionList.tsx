@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { PeriodSelector } from "@/pages/leaderboards/periodSelector";
 import { Link } from "react-router-dom";
-import { PreviewSkeleton } from "../previewSkeleton";
 import { useTopPositionsPeriodStore } from "@/stores/useState";
 import { trpc } from "@/trpc";
 import { PositionPreview } from "../positionCard";
 import { Error } from "../Error/Error";
 import { NoData } from "../EmptyState/NoData";
+import { PositionPreviewSkeleton } from "../Skeletons/positionSkeleton";
 
 type PositionsProps = {
   maxCount: number;
@@ -43,7 +43,7 @@ export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isTopLevelCo
           {Array(5)
             .fill(0)
             .map((_, i) => (
-              <PreviewSkeleton key={i} />
+              <PositionPreviewSkeleton key={i} />
             ))}
         </div>
       ) : isError ? (
