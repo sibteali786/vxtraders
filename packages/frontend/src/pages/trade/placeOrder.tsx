@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { CheckCheck, TrendingDown, TrendingUp } from "lucide-react";
+import { TrendingDown, TrendingUp } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { MainHeading } from "@/components/common/mainHeading";
 import { Card } from "@/components/ui/card";
@@ -13,18 +13,21 @@ import { FaBitcoin } from "react-icons/fa";
 export function PlaceVirtualOrder() {
   const [mode, setMode] = useState<"long" | "short">("long");
   const [orderSize, setOrderSize] = useState(50); // Default to 50%
-  const [leverage, setLeverage] = useState(5); // Default to 5x
+  const [leverage, setLeverage] = useState(1); // Default to 1x
   const [price] = useState(50000); // Example market price
   const [balance] = useState(10000); // Example balance
 
   const liqFactor = mode === "long" ? -1 : 1;
-  const liqPrice = leverage === 1 && mode === "long" ? "N/A" : price * (1 + liqFactor / leverage);
-  const orderValue = (balance * orderSize * leverage) / 100;
+  const liqPrice = price * (1 + liqFactor / leverage);
   const { assetName } = useParams<{ assetName: string }>();
   return (
     <div className="px-default flex flex-col gap-4">
       <MainHeading title="Place a Virtual Order" classes="mb-[4px]" />
-      <p className="text-sm text-right">{`1 BTC = ${formatCurrency(price)}`}</p>
+      {/* <p className="text-sm text-right">{`1 BTC = ${formatCurrency(price)}`}</p> */}
+      <div className="text-sm space-y-1 mt-2">
+        <LabelValueRow label="Market Price" value={price} />
+        <LabelValueRow label="Virtual Balance" value={balance} />
+      </div>
       <Card className="flex flex-col gap-6 p-4">
         <div className="space-y-4">
           <Tabs
@@ -36,18 +39,12 @@ export function PlaceVirtualOrder() {
                 value="long"
                 className="flex gap-1 mobile-medium:gap-2 text-base relative"
               >
-                {mode === "long" ? (
-                  <CheckCheck className="w-4 h-4 mobile-large:w-5 mobile-xs:h-5 absolute left-3" />
-                ) : null}
-                <TrendingUp className="w-3 h-3 mobile-large:w-5 mobile-large:h-5" />
-                <p className="text-xs mobile-large:text-base ">Long</p>
+                <TrendingUp className="w-3 h-3 mobile-large:w-5 mobile-large:h-5 absolute left-3" />
+                <p className="text-xs mobile-large:text-base ">LONG</p>
               </TabsTrigger>
               <TabsTrigger value="short" className="flex gap-1 mobile-medium:gap-2 relative">
-                {mode === "short" ? (
-                  <CheckCheck className="w-4 h-4 mobile-large:w-5 mobile-xs:h-5 absolute left-3" />
-                ) : null}
-                <TrendingDown className="w-3 h-3 mobile-large:w-5 mobile-large:h-5" />
-                <p className="text-xs mobile-large:text-base ">Short</p>
+                <TrendingDown className="w-3 h-3 mobile-large:w-5 mobile-large:h-5 absolute left-3" />
+                <p className="text-xs mobile-large:text-base ">SHORT</p>
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -64,8 +61,11 @@ export function PlaceVirtualOrder() {
           className="w-full"
         />
         <div className="flex justify-between">
-          <label className="block text-sm font-medium">Leverage</label>
-          <div className="text-sm">{leverage}x</div>
+          <label className="block text-sm font-medium">Leverage ({leverage}x)</label>
+          <div className="text-sm">
+            {liqPrice === 0 && "No liquidation"}
+            {liqPrice !== 0 && formatCurrency(liqPrice)}
+          </div>
         </div>
 
         <Slider
@@ -77,16 +77,11 @@ export function PlaceVirtualOrder() {
         />
         <Link to="/position" className="my-4">
           <Button className="w-full flex gap-2">
-            {mode === "long" ? "Long" : "Short"} {assetName}{" "}
+            {mode === "long" ? "LONG" : "SHORT"} {assetName}{" "}
             <FaBitcoin className="h-5 w-5 mobile-medium:w-5 mobile-medium:h-5 text-[#f7931a]" />{" "}
           </Button>
         </Link>
       </Card>
-      <div className="text-sm space-y-1 mt-2">
-        <LabelValueRow label="Virtual Balance" value={balance} />
-        <LabelValueRow label="Liquidation Price" value={liqPrice} />
-        <LabelValueRow label="Order Value" value={orderValue} />
-      </div>
     </div>
   );
 }
