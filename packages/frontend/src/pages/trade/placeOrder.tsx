@@ -14,10 +14,11 @@ export function PlaceVirtualOrder() {
   const [mode, setMode] = useState<"long" | "short">("long");
   const [orderSize, setOrderSize] = useState(50); // Default to 50%
   const [leverage, setLeverage] = useState(5); // Default to 5x
-  const [price] = useState(56715); // Example market price
+  const [price] = useState(50000); // Example market price
   const [balance] = useState(10000); // Example balance
 
-  const liqPrice = leverage === 1 ? "N/A" : price * (1 - 1 / leverage);
+  const liqFactor = mode === "long" ? -1 : 1;
+  const liqPrice = leverage === 1 && mode === "long" ? "N/A" : price * (1 + liqFactor / leverage);
   const orderValue = (balance * orderSize * leverage) / 100;
   const { assetName } = useParams<{ assetName: string }>();
   return (
