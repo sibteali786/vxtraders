@@ -7,6 +7,7 @@ export const topPositionsController = async (opts: {
   return {
     positions: [
       {
+        userId: "1",
         asset: { name: "Bitcion", ticker: "BTC", image: "" },
         leverage: 10,
         tradeMode: "LONG",
@@ -15,6 +16,7 @@ export const topPositionsController = async (opts: {
         roi: 140,
       },
       {
+        userId: "2",
         asset: { name: "Ethereum", ticker: "ETH", image: "" },
         leverage: 20,
         tradeMode: "SHORT",
@@ -23,6 +25,7 @@ export const topPositionsController = async (opts: {
         roi: 70,
       },
       {
+        userId: "3",
         asset: { name: "Litecoin", ticker: "LTC", image: "" },
         leverage: 5,
         tradeMode: "LONG",
@@ -31,6 +34,7 @@ export const topPositionsController = async (opts: {
         roi: 50,
       },
       {
+        userId: "4",
         asset: { name: "Ripple", ticker: "XRP", image: "" },
         leverage: 10,
         tradeMode: "SHORT",
@@ -39,6 +43,7 @@ export const topPositionsController = async (opts: {
         roi: 50,
       },
       {
+        userId: "5",
         asset: { name: "Dogecoin", ticker: "DOGE", image: "" },
         leverage: 20,
         tradeMode: "LONG",

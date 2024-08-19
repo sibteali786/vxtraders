@@ -55,6 +55,7 @@ export const positionSummarySchema = z.object({
   entryPrice: z.number(),
   exitPrice: z.number(),
   roi: z.number(),
+  userId: z.string(),
 });
 export type PositionSummary = z.infer<typeof positionSummarySchema>;
 
