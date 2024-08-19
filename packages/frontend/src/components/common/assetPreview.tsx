@@ -28,16 +28,20 @@ export function AssetPreview(props: { asset: SearchAsset }) {
     : "#f0f0f0"; // Default color if not found
 
   return (
-    <Card className="flex items-center py-2 space-x-4 rounded-lg border border-border px-2 mobile-small:py-2 mobile-medium:px-3 mobile-medium:py-3">
-      <IconComponent
-        className="h-8 w-6 mobile-small:h-6 mobile-medium:w-7 mobile-medium:h-7"
-        style={{ color: iconColor }}
-      />
-      <div className="flex-1">
-        <p className="font-semibold text-white text-sm mobile-medium:text-base">
-          {props.asset.name}
-        </p>
-        <p className=" text-muted-foreground text-xs mobile-medium:text-sm">{props.asset.ticker}</p>
+    <Card className="flex items-center py-3 justify-between rounded-lg border border-border px-2 mobile-medium:px-3">
+      <div className="flex gap-2 mobile-medium:gap-2">
+        <IconComponent
+          className="w-8 h-8 mobile-medium:w-9 mobile-medium:h-9"
+          style={{ color: iconColor }}
+        />
+        <div className="flex-1">
+          <p className="font-semibold text-white text-sm mobile-medium:text-base">
+            {props.asset.name}
+          </p>
+          <p className=" text-muted-foreground text-xs mobile-medium:text-sm">
+            {props.asset.ticker}
+          </p>
+        </div>
       </div>
       <div className="text-right">
         <p className="font-semibold text-white text-sm mobile-medium:text-base">

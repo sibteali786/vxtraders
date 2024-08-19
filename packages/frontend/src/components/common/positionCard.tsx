@@ -8,20 +8,20 @@ import { Badge } from "./badge";
 export function PositionPreview(props: { position: PositionSummary }) {
   return (
     <Link to="/position">
-      <Card className="flex justify-between items-center py-3 rounded-lg space-x-4 px-2 mobile-medium:px-6">
-        <div className="flex items-center rounded-lg space-x-4">
-          <Avatar className="w-10 h-10 mobile-medium:w-9 mobile-medium:h-9">
+      <Card className="flex justify-between items-center py-3 rounded-lg space-x-4 px-2 mobile-medium:px-3">
+        <div className="flex items-center rounded-lg gap-1 mobile-large:gap-2">
+          <Avatar className="w-8 h-8 mobile-medium:w-9 mobile-medium:h-9">
             <AvatarImage src="/avatar.png" alt="User Avatar" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
-          <div className="flex flex-col space-y-1">
+          <div className="flex flex-col">
             <div className="flex items-center gap-1">
               <span className="text-white font-medium text-sm mobile-medium:text-base">
                 {props.position.asset.name}
               </span>
               <BitcoinIcon className="w-4 h-4 mobile-medium:w-5 mobile-medium:h-5 text-yellow-500" />
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center gap-x-2">
               <span className="text-muted-foreground text-xs mobile-medium:text-sm">
                 {props.position.leverage}x
               </span>

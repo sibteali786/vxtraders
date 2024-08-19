@@ -6,7 +6,7 @@ import { trpc } from "@/trpc";
 import { PositionPreview } from "../positionCard";
 import { Error } from "../Error/Error";
 import { NoData } from "../EmptyState/NoData";
-import { PositionPreviewSkeleton } from "../Skeletons/positionSkeleton";
+import { PreviewSkeleton } from "../previewSkeleton";
 
 type PositionsProps = {
   maxCount: number;
@@ -43,7 +43,7 @@ export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isTopLevelCo
           {Array(5)
             .fill(0)
             .map((_, i) => (
-              <PositionPreviewSkeleton key={i} />
+              <PreviewSkeleton key={i} />
             ))}
         </div>
       ) : isError ? (

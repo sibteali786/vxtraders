@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input"; // Assuming you are using ShadCN's Input component
 import { Error } from "@/components/common/Error/Error";
 import { NoData } from "@/components/common/EmptyState/NoData";
-import { AssetPreviewSkeleton } from "@/components/common/Skeletons/assetSkeleton";
+import { PreviewSkeleton } from "@/components/common/previewSkeleton";
 
 export function SelectAsset() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,7 +24,7 @@ export function SelectAsset() {
         {isLoading ? (
           Array(15)
             .fill(0)
-            .map((_, i) => <AssetPreviewSkeleton key={i} />)
+            .map((_, i) => <PreviewSkeleton key={i} />)
         ) : isError ? (
           <Error>{"Something went wrong, please try again!"}</Error>
         ) : !data || data.assets.length === 0 ? (

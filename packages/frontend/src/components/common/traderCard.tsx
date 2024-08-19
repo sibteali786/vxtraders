@@ -11,7 +11,7 @@ export function TraderPreview(props: { trader: TraderSummary }) {
           <AvatarImage src="/avatar.png" alt="Maxine Shu" />
           <AvatarFallback>MS</AvatarFallback>
         </Avatar>
-        <div className="flex-1 flex flex-col gap-1">
+        <div className="flex-1 flex flex-col">
           <p className="font-semibold text-sm mobile-medium:text-base leading-[14px]">
             {props.trader.displayName}
           </p>
