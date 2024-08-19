@@ -7,7 +7,7 @@ import { RiXrpFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 // Map tickers to their corresponding icons and colors
-const iconMap = {
+export const iconMap = {
   BTC: { icon: FaBitcoin, color: "#f7931a" }, // Bitcoin (Orange)
   ETH: { icon: FaEthereum, color: "#3c3c3d" }, // Ethereum (Blue/Gray)
   MATIC: { icon: SiPolygon, color: "#8247e5" }, // Polygon (Purple)
@@ -15,7 +15,7 @@ const iconMap = {
   XRP: { icon: RiXrpFill, color: "#fff" }, // XRP (Black/Gray)
 };
 
-function isValidTicker(ticker: string): ticker is keyof typeof iconMap {
+export function isValidTicker(ticker: string): ticker is keyof typeof iconMap {
   return ticker in iconMap;
 }
 
