@@ -85,6 +85,7 @@ export const withData: Story = {
                 data: {
                   positions: [
                     {
+                      userId: "1",
                       asset: {
                         name: "Bitcion",
                         ticker: "BTC",
@@ -97,6 +98,7 @@ export const withData: Story = {
                       roi: 10,
                     },
                     {
+                      userId: "1",
                       asset: {
                         name: "Ethereum",
                         ticker: "ETH",

@@ -73,7 +73,7 @@ function MainRouting() {
     "/settings/editProfile",
     "/settings/privacyPolicy",
     "/settings/integration",
-    "/position",
+    "/position/:id",
     "/select-asset/:ticker",
   ];
 
@@ -99,7 +99,7 @@ function MainRouting() {
               <Route index element={<SelectAsset />} />
               <Route path=":assetName" element={<PlaceVirtualOrder />} />
             </Route>
-            <Route path="/position" element={<Position />} />
+            <Route path="/position/:id" element={<Position />} />
             <Route path="/help" element={<Help />} />
             <Route path="settings">
               <Route index element={<Settings />} />
