@@ -4,6 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Card } from "@/components/ui/card";
 import { TopResults } from "@/components/common/topResults";
 import { Error } from "@/components/common/Error/Error";
+import { Link } from "react-router-dom";
 
 type ProfileHeaderProps = {
   isFirstComponentOnPage?: boolean;
@@ -36,20 +37,22 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isFirstComponentOn
   }
   if (!data?.user) return null;
   return (
-    <div
-      className={`flex justify-between items-center py-3 px-default  ${!isFirstComponentOnPage ? "border-[1px] rounded-lg shadow-sm mx-[16px]" : ""}`}
-    >
-      <div className="flex items-center space-x-4">
-        <Avatar>
-          <AvatarImage src={data.user.avatar} alt={data.user.displayName} />
-          <AvatarFallback>{data.user.displayName.slice(0, 2).toUpperCase()}</AvatarFallback>
-        </Avatar>
-        <div>
-          <p className="font-semibold text-white">{data.user.displayName}</p>
-          <p className="text-sm text-muted-foreground">{data.user.username}</p>
+    <Link to={`/portfolio/${userId}`}>
+      <div
+        className={`flex justify-between items-center py-3 px-default  ${!isFirstComponentOnPage ? "border-[1px] rounded-lg shadow-sm mx-[16px]" : ""}`}
+      >
+        <div className="flex items-center space-x-4">
+          <Avatar>
+            <AvatarImage src={data.user.avatar} alt={data.user.displayName} />
+            <AvatarFallback>{data.user.displayName.slice(0, 2).toUpperCase()}</AvatarFallback>
+          </Avatar>
+          <div>
+            <p className="font-semibold text-white">{data.user.displayName}</p>
+            <p className="text-sm text-muted-foreground">{data.user.username}</p>
+          </div>
         </div>
+        <TopResults label="TOP" value="1%" />
       </div>
-      <TopResults label="TOP" value="1%" />
-    </div>
+    </Link>
   );
 };
