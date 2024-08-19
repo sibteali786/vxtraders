@@ -8,7 +8,7 @@ import { Badge } from "./badge";
 export function PositionPreview(props: { position: PositionSummary }) {
   return (
     <Link to={`/position/${props.position.id}`}>
-      <Card className="flex justify-between items-center py-3 rounded-lg space-x-4 px-2 mobile-medium:px-3">
+      <Card className="flex justify-between items-center py-3 rounded-lg space-x-4 px-2 mobile-medium:px-3 bg-black">
         <div className="flex items-center rounded-lg gap-1 mobile-large:gap-2">
           <Avatar className="w-8 h-8 mobile-medium:w-9 mobile-medium:h-9">
             <AvatarImage src="/avatar.png" alt="User Avatar" />
