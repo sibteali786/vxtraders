@@ -14,6 +14,18 @@ export type Asset = z.infer<typeof assetSchema>;
 export const tradeModeSchema = z.enum(["LONG", "SHORT"]);
 export type TradeMode = z.infer<typeof tradeModeSchema>;
 
+// For getting top trading positions
+export const positionSummarySchema = z.object({
+  asset: assetSchema,
+  leverage: z.number(),
+  tradeMode: tradeModeSchema,
+  entryPrice: z.number(),
+  exitPrice: z.number(),
+  roi: z.number(),
+  pnL: z.number(),
+  userId: z.string(),
+  id: z.string(),
+});
 // For getting top traders
 export const traderSummarySchema = z.object({
   id: z.string(),
@@ -21,6 +33,7 @@ export const traderSummarySchema = z.object({
   displayName: z.string(),
   username: z.string(),
   roi: z.number(),
+  positions: z.array(positionSummarySchema),
 });
 export type TraderSummary = z.infer<typeof traderSummarySchema>;
 
@@ -47,16 +60,6 @@ export const topTradersOutputSchema = z.object({
 });
 export type TopTradersOutput = z.infer<typeof topTradersOutputSchema>;
 
-// For getting top trading positions
-export const positionSummarySchema = z.object({
-  asset: assetSchema,
-  leverage: z.number(),
-  tradeMode: tradeModeSchema,
-  entryPrice: z.number(),
-  exitPrice: z.number(),
-  roi: z.number(),
-  userId: z.string(),
-});
 export type PositionSummary = z.infer<typeof positionSummarySchema>;
 
 export const ChannelCardSchema = z.object({
@@ -107,3 +110,13 @@ export const searchAssetsOutputSchema = z.object({
   assets: z.array(searchAssetSchema),
 });
 export type SearchAssetsOutput = z.infer<typeof searchAssetsOutputSchema>;
+
+export const getPositionByIdInputSchema = z.object({
+  id: z.string(),
+});
+export type GetPositionByIdInput = z.infer<typeof getPositionByIdInputSchema>;
+
+export const getPositionByIdOutputSchema = z.object({
+  position: positionSummarySchema.optional(),
+});
+export type GetPositionByIdOutput = z.infer<typeof getPositionByIdOutputSchema>;

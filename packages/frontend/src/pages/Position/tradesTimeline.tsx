@@ -42,7 +42,7 @@ export function TradesTimeline() {
               style={{ top: "45%" }}
             />
 
-            <Card className="px-3 mobile-medium:px-4 py-4 rounded-lg flex-1">
+            <Card className="px-3 mobile-medium:px-4 py-4 rounded-lg flex-1 bg-black">
               <div className="flex justify-between items-center">
                 <div className="flex flex-col gap-[1px]">
                   <p className="text-sm mobile-medium:text-base font-semibold">{trade.type}</p>

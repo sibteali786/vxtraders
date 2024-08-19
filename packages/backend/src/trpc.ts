@@ -2,6 +2,8 @@ import { initTRPC } from "@trpc/server";
 import {
   channelInputSchema,
   channelOutputSchema,
+  getPositionByIdInputSchema,
+  getPositionByIdOutputSchema,
   getUserByIdInputSchema,
   getUserByIdOutputSchema,
   searchAssetsInputSchema,
@@ -16,6 +18,7 @@ import { topTradersController } from "./controllers/top-traders-controller";
 import { topPositionsController } from "./controllers/top-positions-controller";
 import { channelsController } from "./controllers/channels-controller";
 import { getUserByIdController } from "./controllers/get-user-by-id-controller";
+import { getPositionByIdController } from "./controllers/get-position-controller";
 
 const t = initTRPC.create();
 export const router = t.router;
@@ -46,6 +49,10 @@ export const appRouter = router({
     .input(getUserByIdInputSchema)
     .output(getUserByIdOutputSchema)
     .query(getUserByIdController),
+  getPositionById: publicProcedure
+    .input(getPositionByIdInputSchema)
+    .output(getPositionByIdOutputSchema)
+    .query(getPositionByIdController),
 });
 
 export type AppRouter = typeof appRouter;
