@@ -6,12 +6,36 @@ import { TRPCReactProvider } from "../src/trpcContextProvider"; // Ensure correc
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
+import { MINIMAL_VIEWPORTS, INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+
 initialize({
   onUnhandledRequest: "bypass",
 });
 
+const customViewports = {
+  CustomOne: {
+    name: "customOne",
+    styles: {
+      width: "600px",
+	  height: "963px",
+    },
+  },
+};
+
 const preview: Preview = {
   parameters: {
+    viewports: {
+      ...INITIAL_VIEWPORTS,
+      ...MINIMAL_VIEWPORTS,
+    },
+    viewport: {
+      viewports: {
+        ...INITIAL_VIEWPORTS,
+        ...MINIMAL_VIEWPORTS,
+        ...customViewports,
+      },
+    },
+    defaultViewport: "custom600", // Set as default if desired
     controls: {
       matchers: {
         color: /(background|color)$/i,
