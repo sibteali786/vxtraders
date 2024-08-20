@@ -23,7 +23,7 @@ export function Portfolio() {
     <div className=" pb-[80px] flex flex-col gap-5">
       <ProfileHeader userId={id} isFirstComponentOnPage={true} />
       <div>
-        <PortfolioChart />
+        <PortfolioChart isLoading={isLoading} />
         <p className="w-full text-center text-xs text-muted-foreground/80 -mt-5 font-mono tracking-widest">
           +50% ROI in 2 days
         </p>
