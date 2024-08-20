@@ -1,13 +1,29 @@
 import { iconMap, isValidTicker } from "@/components/common/assetPreview";
 import { Badge } from "@/components/common/badge";
+import { BoxSkeleton } from "@/components/common/boxSkeleton";
 import { InfoBlock } from "@/components/common/infoBlock";
 import { formatCurrency } from "@/lib/utils";
 import { PositionSummary } from "@vxtraders/shared";
 import { FaDollarSign } from "react-icons/fa";
 
-export function TradeSummary(props: { position: PositionSummary }) {
-  const { position } = props;
-  console.log(position);
+type TradeSummaryProps = {
+  isLoading: boolean;
+  position?: PositionSummary;
+};
+
+export function TradeSummary(props: TradeSummaryProps) {
+  const { position, isLoading } = props;
+  console.log(isLoading);
+  if (isLoading) {
+    return (
+      <div className="p-4-mt-6">
+        <BoxSkeleton classes="w-full h-36" />
+      </div>
+    );
+  }
+  if (!position) {
+    return;
+  }
   const IconComponent = isValidTicker(position.asset.ticker)
     ? iconMap[position.asset.ticker].icon
     : FaDollarSign;
@@ -15,8 +31,7 @@ export function TradeSummary(props: { position: PositionSummary }) {
     ? iconMap[position.asset.ticker].color
     : "#f0f0f0"; // Default color if not found
   return (
-    <div className="p-4 grid grid-cols-3 gap-y-6 -mt-6">
-      <InfoBlock label="Value" value="$0.0157" />
+    <div className="p-4 grid grid-cols-3 gap-y-6 ">
       <InfoBlock label="Entry Price" value={formatCurrency(position.entryPrice)} />
       <InfoBlock label="Liq. Price" value="$40,000" />
       <InfoBlock label="Asset" src="/solana.png">
@@ -46,6 +61,7 @@ export function TradeSummary(props: { position: PositionSummary }) {
           {position.pnL > 0 ? `+${position.pnL}` : position.pnL}%
         </p>
       </InfoBlock>
+      <InfoBlock label="Value" value="$0.0157" />
     </div>
   );
 }

@@ -29,16 +29,20 @@ export const wtihData: Story = {
       handlers: [
         http.get(`${baseUrl}/getPositionById`, () => {
           return HttpResponse.json({
-            position: {
-              id: "1",
-              userId: "1",
-              asset: { name: "Bitcion", ticker: "BTC", image: "" },
-              leverage: 10,
-              tradeMode: "LONG",
-              entryPrice: 50000,
-              exitPrice: 60000,
-              roi: 140,
-              pnL: 12,
+            result: {
+              data: {
+                position: {
+                  id: "1",
+                  userId: "1",
+                  asset: { name: "Bitcion", ticker: "BTC", image: "" },
+                  leverage: 10,
+                  tradeMode: "LONG",
+                  entryPrice: 50000,
+                  exitPrice: 60000,
+                  roi: 140,
+                  pnL: 12,
+                },
+              },
             },
           });
         }),

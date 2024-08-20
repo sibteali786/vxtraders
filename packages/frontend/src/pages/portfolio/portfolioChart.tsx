@@ -1,7 +1,12 @@
+import { ChartSkeleton } from "@/components/common/chartSkeleton";
 import { ChartContainer } from "@/components/ui/chart";
 import { XAxis, AreaChart, Area } from "recharts";
 
-export const PortfolioChart = () => {
+type ChartProps = {
+  isLoading: boolean;
+};
+
+export const PortfolioChart = ({ isLoading }: ChartProps) => {
   const chartConfig = {
     desktop: {
       label: "Desktop",
@@ -20,36 +25,45 @@ export const PortfolioChart = () => {
 
   return (
     <div>
-      <ChartContainer config={chartConfig}>
-        <AreaChart
-          data={chartData}
-          margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
-          style={{ filter: "drop-shadow(0px 0px 4px hsl(120, 100%, 50%))" }} // Adds glow effect
-        >
-          <defs>
-            <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#008000" stopOpacity={0.25} />
-              <stop offset="100%" stopColor="#008000" stopOpacity={0.01} />
-            </linearGradient>
-          </defs>
-          <Area
-            type="monotone"
-            dataKey="desktop"
-            stroke="hsl(120, 100%, 50%)"
-            fillOpacity={1}
-            fill="url(#fillDesktop)"
-            strokeWidth={2}
-            dot={false}
-            activeDot={{ r: 5, stroke: "#fff", strokeWidth: 2 }}
-          />
-          <XAxis
-            dataKey="month" // Change to 'month' to match your data structure
-            tick={false}
-            tickLine={false}
-            axisLine={false}
-          />
-        </AreaChart>
-      </ChartContainer>
+      {isLoading ? (
+        <ChartSkeleton />
+      ) : (
+        <div className="">
+          <ChartContainer config={chartConfig}>
+            <AreaChart
+              data={chartData}
+              margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
+              style={{ filter: "drop-shadow(0px 0px 4px hsl(120, 100%, 50%))" }} // Adds glow effect
+            >
+              <defs>
+                <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#008000" stopOpacity={0.25} />
+                  <stop offset="100%" stopColor="#008000" stopOpacity={0.01} />
+                </linearGradient>
+              </defs>
+              <Area
+                type="monotone"
+                dataKey="desktop"
+                stroke="hsl(120, 100%, 50%)"
+                fillOpacity={1}
+                fill="url(#fillDesktop)"
+                strokeWidth={2}
+                dot={false}
+                activeDot={{ r: 5, stroke: "#fff", strokeWidth: 2 }}
+              />
+              <XAxis
+                dataKey="month" // Change to 'month' to match your data structure
+                tick={false}
+                tickLine={false}
+                axisLine={false}
+              />
+            </AreaChart>
+          </ChartContainer>
+          <p className="w-full text-center text-xs text-muted-foreground/80 -mt-5 font-mono tracking-widest">
+            +50% ROI in 2 days
+          </p>
+        </div>
+      )}
     </div>
   );
 };

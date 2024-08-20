@@ -1,4 +1,6 @@
+import { PreviewSkeleton } from "@/components/common/previewSkeleton";
 import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const tradesHistory = [
   {
@@ -27,7 +29,11 @@ const tradesHistory = [
   },
 ];
 
-export function TradesTimeline() {
+type TimelineProps = {
+  isLoading: boolean;
+};
+
+export function TradesTimeline({ isLoading }: TimelineProps) {
   return (
     <div className="relative pr-default">
       {/* Timeline line */}
@@ -42,30 +48,36 @@ export function TradesTimeline() {
               style={{ top: "45%" }}
             />
 
-            <Card className="px-2 mobile-medium:px-3 py-3 rounded-lg flex-1 bg-black">
-              <div className="flex justify-between items-center">
-                <div className="flex flex-col gap-[1px]">
-                  <p className="text-sm mobile-medium:text-base font-semibold">{trade.type}</p>
-                  <p className="text-xs mobile-medium:text-sm text-gray-400">{trade.date}</p>
+            {isLoading ? (
+              <PreviewSkeleton haveAvatar={false} classes="w-full" />
+            ) : (
+              <Card className="px-2 mobile-medium:px-3 py-3 rounded-lg flex-1 bg-black">
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-col gap-[1px]">
+                    <p className="text-sm mobile-medium:text-base font-semibold">{trade.type}</p>
+                    <p className="text-xs mobile-medium:text-sm text-gray-400">{trade.date}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm mobile-medium:text-base font-semibold">{trade.amount}</p>
+                    {trade.leverage ? (
+                      <p className="text-xs mobile-medium:text-sm text-gray-400">
+                        {trade.leverage}
+                      </p>
+                    ) : (
+                      <p
+                        className={`text-xs mobile-medium:text-sm ${
+                          trade?.percentage && trade.percentage > 0
+                            ? "text-green-500"
+                            : "text-red-500"
+                        }`}
+                      >
+                        {trade.percentage}%
+                      </p>
+                    )}
+                  </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm mobile-medium:text-base font-semibold">{trade.amount}</p>
-                  {trade.leverage ? (
-                    <p className="text-xs mobile-medium:text-sm text-gray-400">{trade.leverage}</p>
-                  ) : (
-                    <p
-                      className={`text-xs mobile-medium:text-sm ${
-                        trade?.percentage && trade.percentage > 0
-                          ? "text-green-500"
-                          : "text-red-500"
-                      }`}
-                    >
-                      {trade.percentage}%
-                    </p>
-                  )}
-                </div>
-              </div>
-            </Card>
+              </Card>
+            )}
           </div>
         ))}
       </div>

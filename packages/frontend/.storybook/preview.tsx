@@ -17,7 +17,7 @@ const customViewports = {
     name: "customOne",
     styles: {
       width: "600px",
-	  height: "963px",
+      height: "963px",
     },
   },
 };
@@ -34,8 +34,8 @@ const preview: Preview = {
         ...MINIMAL_VIEWPORTS,
         ...customViewports,
       },
+      defaultViewport: "customOne", // Set as default if desired
     },
-    defaultViewport: "custom600", // Set as default if desired
     controls: {
       matchers: {
         color: /(background|color)$/i,
