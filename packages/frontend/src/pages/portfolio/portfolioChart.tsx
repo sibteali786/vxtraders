@@ -4,9 +4,10 @@ import { XAxis, AreaChart, Area } from "recharts";
 
 type ChartProps = {
   isLoading: boolean;
+  noData?: boolean;
 };
 
-export const PortfolioChart = ({ isLoading }: ChartProps) => {
+export const PortfolioChart = ({ isLoading, noData }: ChartProps) => {
   const chartConfig = {
     desktop: {
       label: "Desktop",
@@ -28,8 +29,8 @@ export const PortfolioChart = ({ isLoading }: ChartProps) => {
       {isLoading ? (
         <ChartSkeleton />
       ) : (
-        <div className="">
-          <ChartContainer config={chartConfig}>
+        <div className="relative">
+          <ChartContainer config={chartConfig} className={`${noData ? "blur-md" : ""}`}>
             <AreaChart
               data={chartData}
               margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
@@ -59,9 +60,16 @@ export const PortfolioChart = ({ isLoading }: ChartProps) => {
               />
             </AreaChart>
           </ChartContainer>
-          <p className="w-full text-center text-xs text-muted-foreground/80 -mt-5 font-mono tracking-widest">
-            +50% ROI in 2 days
-          </p>
+          {noData ? (
+            <div className="absolute top-[50%] left-[50%] translate-x-[-50%]">
+              <p className="text-lg tracking-wider text-center">There is no data to show here !</p>
+            </div>
+          ) : null}
+          {!noData && (
+            <p className="w-full text-center text-xs text-muted-foreground/80 -mt-5 font-mono tracking-widest">
+              +50% ROI in 2 days
+            </p>
+          )}
         </div>
       )}
     </div>
