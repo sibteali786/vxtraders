@@ -2,7 +2,7 @@ import { Card } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
 
 type PreviewProps = {
-  haveAvatar: boolean;
+  haveAvatar?: boolean;
   classes?: string;
 };
 

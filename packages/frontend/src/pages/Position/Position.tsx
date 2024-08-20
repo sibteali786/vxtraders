@@ -6,12 +6,17 @@ import { PortfolioChart } from "@/pages/portfolio/portfolioChart";
 import { useParams } from "react-router-dom";
 import { trpc } from "@/trpc";
 import { NoData } from "@/components/common/EmptyState/NoData";
+import { Error } from "@/components/common/Error/Error";
 
 export function Position() {
   const { id } = useParams();
   const { isLoading, isError, data } = trpc.getPositionById.useQuery({
     id: id || "1",
   });
+  if (isError) {
+    return <Error>Something went wrong, please try again!</Error>;
+  }
+
   if (!data?.position) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">

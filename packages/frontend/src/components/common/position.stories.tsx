@@ -101,3 +101,30 @@ export const wtihData: Story = {
     },
   },
 };
+export const Error: Story = {
+  parameters: {
+    msw: {
+      handlers: [
+        http.get(`${baseUrl}/getPositionById`, () => {
+          return HttpResponse.json({ error: "Internal Server Error" }, { status: 401 });
+        }),
+        http.get(`${baseUrl}/getUserById`, () => {
+          return HttpResponse.json({
+            result: {
+              data: {
+                user: {
+                  id: "1",
+                  avatar: "/avatar.png",
+                  displayName: "Alice Smith",
+                  username: "@alice",
+                  roi: 50,
+                  positions: [],
+                },
+              },
+            },
+          });
+        }),
+      ],
+    },
+  },
+};
