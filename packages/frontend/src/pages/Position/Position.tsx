@@ -11,19 +11,36 @@ export function Position() {
   const { isLoading, isError, data } = trpc.getPositionById.useQuery({
     id: id || "1",
   });
-
   return (
     <div className="flex flex-col gap-4 pt-4">
       <div>
-        <PortfolioChart isLoading={isLoading} />
-      </div> 
-      <TradeSummary position={data?.position} isLoading={isLoading} />
-      <TradesTimeline isLoading={isLoading} />
-      <ClosePosition isLoading={isLoading} />
+        <PortfolioChart isLoading={isLoading} noData={data?.position === undefined} />
+      </div>
+      {isLoading ? (
+        <TradeSummary isLoading={isLoading} />
+      ) : data?.position ? (
+        <TradeSummary position={data.position} isLoading={isLoading} />
+      ) : (
+        <TradeSummary isLoading={false} classes="blur-md" />
+      )}
+      {isLoading ? (
+        <TradesTimeline isLoading={isLoading} />
+      ) : data?.position ? (
+        <TradesTimeline isLoading={false} />
+      ) : (
+        <TradesTimeline isLoading={false} classes="blur-md" />
+      )}
+      {isLoading ? (
+        <ClosePosition isLoading={isLoading} />
+      ) : data?.position ? (
+        <ClosePosition isLoading={isLoading} />
+      ) : null}
       <div className="flex flex-col gap-4">
-        <h2 className="text-2xl font-semibold px-default">Trader</h2>
         {data?.position?.userId && (
-          <ProfileHeader userId={data.position.userId} isFirstComponentOnPage={false} />
+          <>
+            <h2 className="text-2xl font-semibold px-default">Trader</h2>
+            <ProfileHeader userId={data.position.userId} isFirstComponentOnPage={false} />
+          </>
         )}
       </div>
     </div>

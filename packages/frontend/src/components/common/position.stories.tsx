@@ -23,6 +23,41 @@ export const Loading: Story = {
     },
   },
 };
+
+export const Empty: Story = {
+  parameters: {
+    msw: {
+      handlers: [
+        http.get(`${baseUrl}/getPositionById`, () => {
+          return HttpResponse.json({
+            result: {
+              data: {
+                position: undefined,
+              },
+            },
+          });
+        }),
+        http.get(`${baseUrl}/getUserById`, () => {
+          return HttpResponse.json({
+            result: {
+              data: {
+                user: {
+                  id: "1",
+                  avatar: "/avatar.png",
+                  displayName: "Alice Smith",
+                  username: "@alice",
+                  roi: 50,
+                  positions: [],
+                },
+              },
+            },
+          });
+        }),
+      ],
+    },
+  },
+};
+
 export const wtihData: Story = {
   parameters: {
     msw: {
