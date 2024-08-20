@@ -1,6 +1,5 @@
 import { PreviewSkeleton } from "@/components/common/previewSkeleton";
 import { Card } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 
 const tradesHistory = [
   {
@@ -31,11 +30,12 @@ const tradesHistory = [
 
 type TimelineProps = {
   isLoading: boolean;
+  classes?: string;
 };
 
-export function TradesTimeline({ isLoading }: TimelineProps) {
+export function TradesTimeline({ isLoading, classes }: TimelineProps) {
   return (
-    <div className="relative pr-default">
+    <div className={`${classes} relative pr-default`}>
       {/* Timeline line */}
       <div className="absolute left-5 top-[40px] bottom-[35px] w-0.5 bg-muted opacity-50" />
 
