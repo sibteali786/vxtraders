@@ -15,8 +15,8 @@ export const iconMap = {
   XRP: { icon: RiXrpFill, color: "#fff" }, // XRP (Black/Gray)
 };
 
-export function isValidTicker(ticker: string): ticker is keyof typeof iconMap {
-  return ticker in iconMap;
+export function isValidTicker(ticker?: string): ticker is keyof typeof iconMap {
+  return ticker ? ticker in iconMap : false;
 }
 
 export function AssetPreview(props: { asset: SearchAsset }) {
