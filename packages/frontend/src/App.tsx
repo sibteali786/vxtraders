@@ -24,6 +24,7 @@ import { MAX_LIST_COUNT } from "./stores/constants";
 import { PositionsList } from "./components/common/leaderboards/positionList";
 import { Position } from "./pages/Position/Position";
 import { PlaceVirtualOrder } from "./pages/trade/placeOrder";
+import { Register } from "./pages/Register/register";
 
 export const baseUrl =
   import.meta.env.MODE === "development"
@@ -75,15 +76,17 @@ function MainRouting() {
     "/settings/integration",
     "/position/:id",
     "/select-asset/:ticker",
+    "/register",
   ];
 
   const hideNavBar = subScreenPaths.some((path) => matchPath(path, location.pathname));
 
   return (
     <div className="w-full py-4 max-w-[600px] flex flex-col justify-start h-full rounded-[8px] max-allowed-width:border max-allowed-width:border-border">
-      <TransitionGroup>
+      <TransitionGroup className="h-full">
         <CSSTransition key={location.key} timeout={300} classNames="fade">
           <Routes location={location}>
+            <Route path="/register" element={<Register />} />
             <Route path="/">
               <Route index element={<Leaderboards />} />
               <Route

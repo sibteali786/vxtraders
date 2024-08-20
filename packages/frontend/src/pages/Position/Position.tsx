@@ -19,7 +19,7 @@ export function Position() {
 
   if (!data?.position) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col items-center justify-center h-full">
         <div className="relative z-10 flex flex-col items-center">
           <NoData
             illustrationSrc="./NoData.png"
