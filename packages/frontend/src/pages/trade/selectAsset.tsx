@@ -11,7 +11,7 @@ export function SelectAsset() {
   const [searchTerm, setSearchTerm] = useState("");
   const { isLoading, isError, data } = trpc.searchAssets.useQuery({ keyword: searchTerm });
   return (
-    <div className="pb-[80px] px-default">
+    <div className="pb-[80px] px-default ">
       <MainHeading title="Select Assets" />
       <Input
         type="text"

@@ -5,42 +5,40 @@ import { ClosePosition } from "./closePosition";
 import { PortfolioChart } from "@/pages/portfolio/portfolioChart";
 import { useParams } from "react-router-dom";
 import { trpc } from "@/trpc";
+import { NoData } from "@/components/common/EmptyState/NoData";
 
 export function Position() {
   const { id } = useParams();
   const { isLoading, isError, data } = trpc.getPositionById.useQuery({
     id: id || "1",
   });
+  if (!data?.position) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="relative z-10 flex flex-col items-center">
+          <NoData
+            illustrationSrc="./NoData.png"
+            message="Oops, nothing to display right now. Begin a trade to view your portfolio"
+            buttonText="Start a new trade"
+            onButtonClick={() => console.log("Button is clicked!")}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-4 pt-4">
       <div>
-        <PortfolioChart isLoading={isLoading} noData={data?.position === undefined} />
+        <PortfolioChart isLoading={isLoading} />
       </div>
-      {isLoading ? (
-        <TradeSummary isLoading={isLoading} />
-      ) : data?.position ? (
-        <TradeSummary position={data.position} isLoading={isLoading} />
-      ) : (
-        <TradeSummary isLoading={false} classes="blur-md" />
-      )}
-      {isLoading ? (
-        <TradesTimeline isLoading={isLoading} />
-      ) : data?.position ? (
-        <TradesTimeline isLoading={false} />
-      ) : (
-        <TradesTimeline isLoading={false} classes="blur-md" />
-      )}
-      {isLoading ? (
-        <ClosePosition isLoading={isLoading} />
-      ) : data?.position ? (
-        <ClosePosition isLoading={isLoading} />
-      ) : null}
+      <TradeSummary position={data?.position} isLoading={isLoading} />
+      <TradesTimeline isLoading={isLoading} />
+      <ClosePosition isLoading={isLoading} />
       <div className="flex flex-col gap-4">
+        <h2 className="text-2xl font-semibold px-default">Trader</h2>
         {data?.position?.userId && (
-          <>
-            <h2 className="text-2xl font-semibold px-default">Trader</h2>
-            <ProfileHeader userId={data.position.userId} isFirstComponentOnPage={false} />
-          </>
+          <ProfileHeader userId={data.position.userId} isFirstComponentOnPage={false} />
         )}
       </div>
     </div>

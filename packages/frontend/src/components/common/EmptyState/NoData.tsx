@@ -7,6 +7,7 @@ export type NoDataProps = {
   buttonText?: string;
   onButtonClick?: () => void;
   secondaryMessage?: string;
+  classes?: string;
 };
 
 export const NoData: React.FC<NoDataProps> = ({
@@ -16,10 +17,11 @@ export const NoData: React.FC<NoDataProps> = ({
   buttonText, // Optional button text
   onButtonClick, // Optional button click handler
   secondaryMessage, // Optional secondary message
+  classes,
 }) => {
   return (
     <motion.div
-      className="flex flex-col justify-center items-center gap-4 mb-6 h-full"
+      className={`${classes} flex flex-col justify-center items-center gap-4 mb-6 h-full`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -43,7 +45,7 @@ export const NoData: React.FC<NoDataProps> = ({
           {title}
         </motion.h3>
         <motion.p
-          className="text-muted-foreground text-xs mobile-medium:text-sm"
+          className="text-muted-foreground text-xs mobile-medium:text-sm w-[80%] self-center"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
