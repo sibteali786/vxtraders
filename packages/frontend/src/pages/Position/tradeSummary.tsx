@@ -17,7 +17,7 @@ export function TradeSummary(props: TradeSummaryProps) {
   if (isLoading) {
     return (
       <div className="p-4-mt-6">
-        <BoxSkeleton classes="w-full h-36" />
+        <BoxSkeleton classes="w-full h-32 max-allowed-width:h-36" />
       </div>
     );
   }
@@ -32,6 +32,7 @@ export function TradeSummary(props: TradeSummaryProps) {
     : "#f0f0f0"; // Default color if not found
   return (
     <div className="p-4 grid grid-cols-3 gap-y-6 ">
+      <InfoBlock label="Value" value="$0.0157" />
       <InfoBlock label="Entry Price" value={formatCurrency(position.entryPrice)} />
       <InfoBlock label="Liq. Price" value="$40,000" />
       <InfoBlock label="Asset" src="/solana.png">
@@ -61,7 +62,6 @@ export function TradeSummary(props: TradeSummaryProps) {
           {position.pnL > 0 ? `+${position.pnL}` : position.pnL}%
         </p>
       </InfoBlock>
-      <InfoBlock label="Value" value="$0.0157" />
     </div>
   );
 }
