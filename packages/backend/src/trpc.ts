@@ -1,3 +1,4 @@
+import { publicProcedure } from "./trpc";
 import { initTRPC } from "@trpc/server";
 import {
   channelInputSchema,
@@ -19,6 +20,8 @@ import { topPositionsController } from "./controllers/top-positions-controller";
 import { channelsController } from "./controllers/channels-controller";
 import { getUserByIdController } from "./controllers/get-user-by-id-controller";
 import { getPositionByIdController } from "./controllers/get-position-controller";
+import { z } from "zod";
+import { checkUserAvailability } from "./controllers/check-user-availability";
 
 const t = initTRPC.create();
 export const router = t.router;
@@ -53,6 +56,14 @@ export const appRouter = router({
     .input(getPositionByIdInputSchema)
     .output(getPositionByIdOutputSchema)
     .query(getPositionByIdController),
+  userNameAvailablity: publicProcedure
+    .input(
+      z.object({
+        userName: z.string(),
+      }),
+    )
+    .output(z.boolean())
+    .query(checkUserAvailability),
 });
 
 export type AppRouter = typeof appRouter;
