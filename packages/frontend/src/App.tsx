@@ -8,7 +8,14 @@ import { httpBatchLink } from "@trpc/client";
 import { useEffect, useState } from "react";
 import { trpc } from "./trpc";
 
-import { BrowserRouter as Router, Route, Routes, useLocation, matchPath } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+  matchPath,
+  useParams,
+} from "react-router-dom";
 import { HorizontalMenu } from "./components/horizontalMenu";
 import { Help } from "./pages/help/help";
 import { Settings } from "./pages/settings/settings";
@@ -80,7 +87,8 @@ function MainRouting() {
   ];
 
   const hideNavBar = subScreenPaths.some((path) => matchPath(path, location.pathname));
-
+  const isUserSigned = useLocation();
+  console.log(isUserSigned);
   return (
     <div className="w-full py-4 max-w-[600px] flex flex-col justify-start h-full rounded-[8px] max-allowed-width:border max-allowed-width:border-border">
       <TransitionGroup className="h-full">
@@ -90,11 +98,11 @@ function MainRouting() {
             <Route path="/">
               <Route index element={<Leaderboards />} />
               <Route
-                path="/topTraders"
+                path="topTraders"
                 element={<TradersList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
               />
               <Route
-                path="/topPositions"
+                path="topPositions"
                 element={<PositionsList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
               />
             </Route>
@@ -115,7 +123,7 @@ function MainRouting() {
           </Routes>
         </CSSTransition>
       </TransitionGroup>
-      {!hideNavBar && <HorizontalMenu />}
+      {!hideNavBar && <HorizontalMenu isLoading={false} isUserRegistered={false} />}
     </div>
   );
 }
