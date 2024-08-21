@@ -45,7 +45,7 @@
 }
 
 /* Added to enforce storybook previews to take whole available vertical space */
-html {
+/* html {
   height: 100%;
 }
 body {
@@ -54,4 +54,4 @@ body {
 
 #storybook-root {
   height: 100%;
-}
+} */

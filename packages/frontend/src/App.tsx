@@ -123,7 +123,7 @@ function MainRouting() {
           </Routes>
         </CSSTransition>
       </TransitionGroup>
-      {!hideNavBar && <HorizontalMenu isLoading={false} isUserRegistered={false} />}
+      {!hideNavBar && <HorizontalMenu isLoading={false} isUserRegistered={true} />}
     </div>
   );
 }
