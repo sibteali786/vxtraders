@@ -37,13 +37,13 @@ export function PlaceVirtualOrder() {
             <TabsList className="grid grid-cols-2 gap-2">
               <TabsTrigger
                 value="long"
-                className="flex gap-1 mobile-medium:gap-2 text-base relative"
+                className={`flex gap-1 mobile-medium:gap-2 text-base relative data-[state=active]:bg-green-500`}
               >
                 <TrendingUp className="w-3 h-3 mobile-large:w-5 mobile-large:h-5 absolute left-3" />
                 <p className="text-xs mobile-large:text-base ">LONG</p>
               </TabsTrigger>
-              <TabsTrigger value="short" className="flex gap-1 mobile-medium:gap-2 relative">
-                <TrendingDown className="w-3 h-3 mobile-large:w-5 mobile-large:h-5 absolute left-3" />
+              <TabsTrigger value="short" className="flex gap-1 mobile-medium:gap-2 relative data-[state=active]:bg-red-500">
+                <TrendingDown className="w-3 h-3 mobile-large:w-5 mobile-large:h-5 absolute left-3 " />
                 <p className="text-xs mobile-large:text-base ">SHORT</p>
               </TabsTrigger>
             </TabsList>
