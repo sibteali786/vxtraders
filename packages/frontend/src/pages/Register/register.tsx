@@ -4,6 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { trpc } from "@/trpc";
+import { useCallback, useEffect, useState } from "react";
+import { FaSpinner } from "react-icons/fa";
+import { LoaderCircle } from "lucide-react";
 
 const signInSchema = z.object({
   displayName: z.string().min(3, { message: "Display name is required" }),
@@ -15,14 +19,58 @@ const signInSchema = z.object({
 
 type SignInFormValues = z.infer<typeof signInSchema>;
 
+// Debounce function
+const debounce = (fn: (...args: any[]) => void, delay: number) => {
+  let timerId: ReturnType<typeof setTimeout>;
+  return function (...args: any[]) {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      fn(...args);
+    }, delay);
+  };
+};
+
 export function Register() {
   const {
     register,
     handleSubmit,
+    clearErrors,
     formState: { errors },
+    setError,
   } = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
   });
+  const [userName, setUserName] = useState("");
+  const [isUsernameAvailable, setIsUsernameAvailable] = useState<boolean | null>(null);
+  // Example tRPC hook to check username availability
+  const checkUsername = trpc.userNameAvailablity.useQuery(
+    { userName: userName }, // This will be overridden by onChange
+    {
+      enabled: false,
+    },
+  );
+  useEffect(() => {
+    if (userName) {
+      checkUsername.refetch().then((result) => {
+        if (!result.data) {
+          setIsUsernameAvailable(false);
+          setError("username", {
+            type: "manual",
+            message: "Username is already taken, please try another one",
+          });
+        } else {
+          setIsUsernameAvailable(true);
+          clearErrors("username");
+        }
+      });
+    }
+  }, [userName]);
+  const handleUsernameChange = useCallback(
+    debounce((username: string) => {
+      setUserName(username);
+    }, 500),
+    [],
+  );
 
   const onSubmit = (data: SignInFormValues) => {
     console.log(data);
@@ -49,25 +97,44 @@ export function Register() {
               {errors.displayName && (
                 <p className="mt-1 text-sm text-red-500">{errors.displayName.message}</p>
               )}
-              <p className="mt-1 text-sm text-gray-500">Enter your display name</p>
             </div>
 
-            <div>
+            <div className="flex flex-col gap-4">
               <Label htmlFor="username" className="text-white">
                 Username*
               </Label>
-              <Input
-                id="username"
-                placeholder="Username"
-                {...register("username")}
-                className="mt-1 block w-full"
-              />
-              {errors.username && (
-                <p className="mt-1 text-sm text-red-500">{errors.username.message}</p>
-              )}
-              <p className="mt-1 text-sm text-gray-500">Enter your username</p>
+              <>
+                <Input
+                  id="username"
+                  placeholder="Username"
+                  {...register("username")}
+                  className="mt-1 block w-full"
+                  onChange={(e) => {
+                    if (!e.target.value) {
+                      setError("username", {
+                        type: "manual",
+                        message: "",
+                      });
+                    }
+                    return handleUsernameChange(e.target.value);
+                  }}
+                />
+                {errors.username ? (
+                  <p className="text-sm text-red-500">{errors.username.message}</p>
+                ) : null}
+                {checkUsername.isLoading ? (
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm text-gray-500">Checking username availability </p>
+                    <LoaderCircle size={14} className="animate-spin" />
+                  </div>
+                ) : null}
+                {isUsernameAvailable ? (
+                  <p className="text-sm text-green-500">Username `{userName}` is available</p>
+                ) : null}
+              </>
             </div>
           </div>
+
           <div className="h-full"></div>
           <Button type="submit" className="w-full bg-purple-600 text-white">
             Create Account
@@ -76,11 +143,11 @@ export function Register() {
 
         <p className="text-center text-xs text-gray-400 mt-6">
           By creating an account with us, you agree to accept our{" "}
-          <a href="#" className="text-purple-400 underline">
+          <a href="#" className="text-purple-400 hover:text-purple-500">
             terms of use
           </a>{" "}
           and{" "}
-          <a href="#" className="text-purple-400 underline">
+          <a href="#" className="text-purple-400 hover:text-purple-500">
             privacy policy
           </a>
           .
