@@ -43,3 +43,15 @@
     @apply dark:bg-black dark:text-white;
   }
 }
+
+/* Added to enforce storybook previews to take whole available vertical space */
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+
+#storybook-root {
+  height: 100%;
+}

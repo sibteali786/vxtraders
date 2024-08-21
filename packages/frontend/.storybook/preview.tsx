@@ -34,7 +34,6 @@ const preview: Preview = {
         ...MINIMAL_VIEWPORTS,
         ...customViewports,
       },
-      defaultViewport: "customOne", // Set as default if desired
     },
     controls: {
       matchers: {
