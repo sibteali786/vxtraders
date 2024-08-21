@@ -43,21 +43,23 @@ export function AssetPreview(props: { asset: SearchAsset }) {
           </p>
         </div>
       </div>
-      <div className="text-right">
-        <p className="font-semibold text-white text-sm mobile-medium:text-base">
-          ${props.asset.price.toLocaleString()}
-        </p>
-        <p
-          className={`text-xs mobile-medium:text-sm ${props.asset.change >= 0 ? "text-green-500" : "text-red-500"}`}
-        >
-          {props.asset.change >= 0 ? `+${props.asset.change}` : props.asset.change}%
-        </p>
+      <div className="flex gap-3 items-center">
+        <div className="text-right">
+          <p className="font-semibold text-white text-sm mobile-medium:text-base">
+            ${props.asset.price.toLocaleString()}
+          </p>
+          <p
+            className={`text-xs mobile-medium:text-sm ${props.asset.change >= 0 ? "text-green-500" : "text-red-500"}`}
+          >
+            {props.asset.change >= 0 ? `+${props.asset.change}` : props.asset.change}%
+          </p>
+        </div>
+        <Link to={`${props.asset.name}`}>
+          <Button className=" bg-purple-600 text-white rounded-sm mobile-medium:rounded-md text-xs w-12 h-6 mobile-medium:w-15 mobile-medium:h-7">
+            Trade
+          </Button>
+        </Link>
       </div>
-      <Link to={`${props.asset.name}`}>
-        <Button className=" bg-purple-600 text-white rounded-sm mobile-medium:rounded-md text-xs w-12 h-6 mobile-medium:w-15 mobile-medium:h-7">
-          Trade
-        </Button>
-      </Link>
     </Card>
   );
 }
