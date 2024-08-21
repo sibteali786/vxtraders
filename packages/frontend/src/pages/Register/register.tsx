@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/trpc";
 import { useCallback, useEffect, useState } from "react";
-import { FaSpinner } from "react-icons/fa";
 import { LoaderCircle } from "lucide-react";
 
 const signInSchema = z.object({

@@ -14,7 +14,6 @@ import {
   Routes,
   useLocation,
   matchPath,
-  useParams,
 } from "react-router-dom";
 import { HorizontalMenu } from "./components/horizontalMenu";
 import { Help } from "./pages/help/help";

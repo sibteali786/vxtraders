@@ -1,4 +1,3 @@
-import { publicProcedure } from "./trpc";
 import { initTRPC } from "@trpc/server";
 import {
   channelInputSchema,
