@@ -24,9 +24,6 @@ export function Portfolio() {
       <ProfileHeader userId={id} isFirstComponentOnPage={true} />
       <div>
         <PortfolioChart isLoading={isLoading} />
-        <p className="w-full text-center text-xs text-muted-foreground/80 -mt-5 font-mono tracking-widest">
-          +50% ROI in 2 days
-        </p>
       </div>
       <div className="px-default">
         <h2 className="mobile-small:text-xl mobile-medium:text-2xl font-semibold mb-4">
