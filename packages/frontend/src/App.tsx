@@ -8,14 +8,7 @@ import { httpBatchLink } from "@trpc/client";
 import { useEffect, useState } from "react";
 import { trpc } from "./trpc";
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-  matchPath,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation, matchPath } from "react-router-dom";
 import { HorizontalMenu } from "./components/horizontalMenu";
 import { Help } from "./pages/help/help";
 import { Settings } from "./pages/settings/settings";
