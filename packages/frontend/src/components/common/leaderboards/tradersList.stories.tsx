@@ -1,6 +1,8 @@
+import { baseUrl } from "@/App";
 import { TradersList } from "./tradersList";
 import { Meta, StoryObj } from "@storybook/react";
 import { delay, http, HttpResponse } from "msw";
+import { userEvent, within, expect, screen } from "@storybook/test";
 
 export default {
   title: "Components/TradersList",
@@ -27,7 +29,7 @@ export const Loading: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get("http://localhost:3000/topTraders", () => {
+        http.get(`${baseUrl}/topTraders`, () => {
           console.log("State");
           return delay("infinite");
         }),
@@ -39,7 +41,7 @@ export const Error: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get("http://localhost:3000/topTraders", () => {
+        http.get(`${baseUrl}/topTraders`, () => {
           console.log("Intercepted request for empty traders list");
           return HttpResponse.json({ error: "Internal Server Error" }, { status: 401 });
         }),
@@ -52,7 +54,7 @@ export const Empty: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get("http://localhost:3000/topTraders", () => {
+        http.get(`${baseUrl}/topTraders`, () => {
           console.log("Intercepted request for empty traders list");
           return HttpResponse.json(
             {
@@ -77,7 +79,7 @@ export const withData: Story = {
   parameters: {
     msw: {
       handlers: [
-        http.get("http://localhost:3000/topTraders", () => {
+        http.get(`${baseUrl}/topTraders`, () => {
           console.log("Intercepted request for empty traders list");
           return HttpResponse.json(
             {
@@ -110,5 +112,25 @@ export const withData: Story = {
         }),
       ],
     },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    // verifying initial state to be 90d
+    expect(canvas.getByText("90d")).toBeInTheDocument();
+    // changing period to 30d
+    const periodSelector = canvas.getByRole("combobox");
+    await userEvent.click(periodSelector);
+
+    // Check if the dropdown panel is actually open
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    // Wait for and click the "30d" option
+    // const newPeriodOption = await waitFor(() =>
+    // );
+    const listDiv = screen.getAllByRole("option");
+    const item = listDiv.find((el) => el.textContent === "30d");
+    if (!item) return;
+    await userEvent.click(item);
+    // Verify that the new period is reflected
+    expect(canvas.getByText("30d")).toBeInTheDocument();
   },
 };
