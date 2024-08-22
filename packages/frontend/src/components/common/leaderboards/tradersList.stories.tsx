@@ -2,7 +2,7 @@ import { baseUrl } from "@/App";
 import { TradersList } from "./tradersList";
 import { Meta, StoryObj } from "@storybook/react";
 import { delay, http, HttpResponse } from "msw";
-import { userEvent, within, expect, screen } from "@storybook/test";
+import { userEvent, within, expect, screen, waitFor } from "@storybook/test";
 
 export default {
   title: "Components/TradersList",
@@ -132,5 +132,61 @@ export const withData: Story = {
     await userEvent.click(item);
     // Verify that the new period is reflected
     expect(canvas.getByText("30d")).toBeInTheDocument();
+  },
+};
+
+export const LoadMoreTradersButton: Story = {
+  args: {
+    isTopLevelComponent: false,
+  },
+  parameters: {
+    msw: {
+      handlers: [
+        http.get(`${baseUrl}/topTraders`, () => {
+          return HttpResponse.json(
+            {
+              result: {
+                data: {
+                  traders: [
+                    {
+                      id: "1",
+                      displayName: "John Doe",
+                      avatar: "/avatar.png",
+                      username: "@johndoe",
+                      roi: 100,
+                    },
+                    {
+                      id: "2",
+                      displayName: "Jane Doe",
+                      avatar: "/avatar.png",
+                      username: "@janedoe",
+                      roi: -20,
+                    },
+                  ],
+                },
+              },
+            },
+            {
+              status: 200,
+              headers: { "Content-Type": "application/json" },
+            },
+          );
+        }),
+      ],
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Verify that the "View More" button is rendered, using waitFor to make sure it appears and only then we process it.
+    const viewMoreButton = await waitFor(() => canvas.getByTestId("visit-traders"));
+    expect(viewMoreButton).toBeInTheDocument();
+
+    // Simulate a click on the "View More" button
+    await userEvent.click(viewMoreButton);
+
+    // Verify that the navigation to "topTraders" is triggered
+    // check the current route.
+    expect(window.location.pathname).toBe("/topTraders");
   },
 };

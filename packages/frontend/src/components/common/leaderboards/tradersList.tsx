@@ -67,7 +67,11 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount, isTopLevelCompon
 
           {isTopLevelComponent ? null : (
             <Button className="w-full" asChild>
-              <Link to="topTraders" className="text-white hover:text-white">
+              <Link
+                data-testid="visit-traders"
+                to="topTraders"
+                className="text-white hover:text-white"
+              >
                 View More
               </Link>
             </Button>
