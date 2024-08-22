@@ -14,6 +14,7 @@ import {
   Routes,
   useLocation,
   matchPath,
+  useParams,
 } from "react-router-dom";
 import { HorizontalMenu } from "./components/horizontalMenu";
 import { Help } from "./pages/help/help";
@@ -86,15 +87,16 @@ function MainRouting() {
   ];
 
   const hideNavBar = subScreenPaths.some((path) => matchPath(path, location.pathname));
-  const isUserSigned = useLocation();
-  console.log(isUserSigned);
+  const url = useLocation();
+  const isUserSigned = Boolean(url.pathname.slice(1));
   return (
     <div className="w-full py-4 max-w-[600px] flex flex-col justify-start h-full rounded-[8px] max-allowed-width:border max-allowed-width:border-border">
       <TransitionGroup className="h-full">
         <CSSTransition key={location.key} timeout={300} classNames="fade">
           <Routes location={location}>
             <Route path="/register" element={<Register />} />
-            <Route path="/">
+            <Route path="/" element={<Leaderboards />} />
+            <Route path="/:id">
               <Route index element={<Leaderboards />} />
               <Route
                 path="topTraders"
@@ -122,7 +124,7 @@ function MainRouting() {
           </Routes>
         </CSSTransition>
       </TransitionGroup>
-      {!hideNavBar && <HorizontalMenu isLoading={false} isUserRegistered={true} />}
+      {!hideNavBar && <HorizontalMenu isLoading={false} isUserRegistered={isUserSigned} />}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { trpc } from "@/trpc";
 import { useCallback, useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const signInSchema = z.object({
   displayName: z.string().min(3, { message: "Display name is required" }),
@@ -135,9 +136,11 @@ export function Register() {
           </div>
 
           <div className="h-full"></div>
-          <Button type="submit" className="w-full bg-purple-600 text-white">
-            Create Account
-          </Button>
+          <Link to={`/${userName}`}>
+            <Button type="submit" className="w-full bg-purple-600 text-white">
+              Create Account
+            </Button>
+          </Link>
         </form>
 
         <p className="text-center text-xs text-gray-400 mt-6">
