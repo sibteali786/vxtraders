@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { LabelValueRow } from "./labelValueRow";
 import { formatCurrency } from "@/lib/utils";
 import { FaBitcoin } from "react-icons/fa";
+import { BackButton } from "@twa-dev/sdk/react";
 
 export function PlaceVirtualOrder() {
   const [mode, setMode] = useState<"long" | "short">("long");
@@ -22,6 +23,7 @@ export function PlaceVirtualOrder() {
   const { assetName } = useParams<{ assetName: string }>();
   return (
     <div className="px-default flex flex-col gap-4">
+      <BackButton />
       <MainHeading title="Place a Virtual Order" classes="mb-[4px]" />
       {/* <p className="text-sm text-right">{`1 BTC = ${formatCurrency(price)}`}</p> */}
       <div className="text-sm space-y-1 mt-2">

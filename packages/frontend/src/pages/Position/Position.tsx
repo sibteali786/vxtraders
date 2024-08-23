@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { trpc } from "@/trpc";
 import { NoData } from "@/components/common/EmptyState/NoData";
 import { Error } from "@/components/common/Error/Error";
+import { BackButton } from "@twa-dev/sdk/react";
 
 export function Position() {
   const { id } = useParams();
@@ -20,6 +21,7 @@ export function Position() {
   if (!data?.position) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
+        <BackButton />
         <div className="relative z-10 flex flex-col items-center">
           <NoData
             illustrationSrc="./NoData.png"
@@ -34,6 +36,7 @@ export function Position() {
 
   return (
     <div className="flex flex-col gap-4 pt-4">
+      <BackButton />
       <div>
         <PortfolioChart isLoading={isLoading} />
       </div>

@@ -7,6 +7,7 @@ import { PositionPreview } from "../positionCard";
 import { Error } from "../Error/Error";
 import { NoData } from "../EmptyState/NoData";
 import { PreviewSkeleton } from "../previewSkeleton";
+import { BackButton } from "@twa-dev/sdk/react";
 
 type PositionsProps = {
   maxCount: number;
@@ -23,6 +24,7 @@ export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isTopLevelCo
 
   return (
     <div className="space-y-5 px-default">
+      {isTopLevelComponent && <BackButton />}
       {/* Top section with title and period selector */}
       <div className="flex justify-between items-center">
         {/* Conditional rendering based on screen size */}

@@ -7,6 +7,7 @@ import { useTopTradersPeriodStore } from "@/stores/useState";
 import { trpc } from "@/trpc";
 import { Error } from "../Error/Error";
 import { NoData } from "../EmptyState/NoData";
+import { BackButton } from "@twa-dev/sdk/react";
 
 type TradersProps = {
   maxCount: number;
@@ -23,6 +24,7 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount, isTopLevelCompon
 
   return (
     <div className="space-y-5 px-default">
+      {isTopLevelComponent && <BackButton />}
       {/* Top section with title and period selector */}
       <div className="flex justify-between items-center">
         {/* Conditional rendering based on screen size */}
@@ -30,7 +32,7 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount, isTopLevelCompon
           <h2 className="text-2xl mobile-medium:text-3xl font-bold">Top Traders</h2>
         )}
         {!isTopLevelComponent && (
-          <h2 className="mobile-small:text-xl mobile-medium:text-2xl  font-semibold">
+          <h2 className="mobile-small:text-xl mobile-medium:text-2xl font-semibold">
             Top Traders
           </h2>
         )}

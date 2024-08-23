@@ -8,6 +8,7 @@ import { trpc } from "@/trpc";
 import { useCallback, useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BackButton } from "@twa-dev/sdk/react";
 
 const signInSchema = z.object({
   displayName: z.string().min(3, { message: "Display name is required" }),
@@ -79,6 +80,7 @@ export function Register() {
 
   return (
     <div className="flex flex-col items-center h-full bg-black px-default py-4">
+      <BackButton />
       <div className="w-full flex flex-col h-full">
         <h1 className="text-3xl font-bold text-white mb-8 text-left">Create An Account</h1>
 
