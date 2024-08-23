@@ -15,8 +15,12 @@ const signInSchema = z.object({
   displayName: z.string().min(3, { message: "Display name is required" }),
   username: z
     .string()
-    .min(4, { message: "Username is required" })
-    .regex(/^[a-zA-Z0-9_]+$/, { message: "Invalid username format" }),
+    .min(4, { message: "Username must be at least 4 characters long" })
+    .max(20, { message: "Username must be less than 20 characters long" })
+    .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d_]{4,20}$/, {
+      message:
+        "Username must contain at least one letter, one number, and can optionally include underscores.",
+    }),
 });
 
 type SignInFormValues = z.infer<typeof signInSchema>;
@@ -119,17 +123,20 @@ export function Register() {
                   className="mt-1 block w-full"
                   onChange={(e) => {
                     if (!e.target.value) {
-                      setError("username", {
-                        type: "manual",
-                        message: "",
-                      });
+                      clearErrors("username");
+                      setIsUsernameAvailable(false);
                     }
                     return handleUsernameChange(e.target.value);
                   }}
                 />
-                {errors.username ? (
-                  <p className="text-sm text-destructive">{errors.username.message}</p>
-                ) : null}
+                <div>
+                  <p className="text-sm text-white">Example: john_doe12, ali786@#</p>
+                  {errors.username ? (
+                    <div>
+                      <p className="text-sm text-destructive mt-1">{errors.username.message}</p>
+                    </div>
+                  ) : null}
+                </div>
                 {checkUsername.isLoading ? (
                   <div className="flex items-center gap-2">
                     <p className="text-sm text-gray-500">Checking username availability </p>
