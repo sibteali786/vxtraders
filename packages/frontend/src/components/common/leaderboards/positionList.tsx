@@ -23,7 +23,7 @@ export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isTopLevelCo
   });
 
   return (
-    <div className="space-y-5 px-default">
+    <div className="gap-6 h-full flex flex-col px-default">
       {isTopLevelComponent && <BackButton />}
       {/* Top section with title and period selector */}
       <div className="flex justify-between items-center">
@@ -49,7 +49,13 @@ export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isTopLevelCo
             ))}
         </div>
       ) : isError ? (
-        <Error>{"Something went wrong, please try again!"}</Error>
+        <Error
+          title="Oops, something went wrong"
+          buttonText="Refresh"
+          onClick={() => window.location.reload()}
+        >
+          {"Seems like there was an issue. Please refresh the page to resume!"}
+        </Error>
       ) : !data || data.positions.length === 0 ? (
         <NoData
           illustrationSrc="/NoPositions.png"
@@ -68,7 +74,7 @@ export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isTopLevelCo
           </div>
           {isTopLevelComponent ? null : (
             <Button className="w-full" asChild>
-              <Link to="topPositions" className="text-white hover:text-white">
+              <Link to="/topPositions" className="text-white hover:text-white">
                 View More
               </Link>
             </Button>

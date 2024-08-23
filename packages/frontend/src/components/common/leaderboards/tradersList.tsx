@@ -23,7 +23,7 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount, isTopLevelCompon
   });
 
   return (
-    <div className="space-y-5 px-default">
+    <div className="px-default gap-6 flex flex-col">
       {isTopLevelComponent && <BackButton />}
       {/* Top section with title and period selector */}
       <div className="flex justify-between items-center">
@@ -49,7 +49,13 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount, isTopLevelCompon
             ))}
         </div>
       ) : isError ? (
-        <Error>{"Something went wrong, please try again!"}</Error>
+        <Error
+          title="Oops, something went wrong"
+          buttonText="Refresh"
+          onClick={() => window.location.reload()}
+        >
+          {"Seems like there was an issue. Please refresh the page to resume!"}
+        </Error>
       ) : !data || data.traders.length === 0 ? (
         <NoData
           illustrationSrc="/NoTraders.png"
@@ -71,7 +77,7 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount, isTopLevelCompon
             <Button className="w-full" asChild>
               <Link
                 data-testid="visit-traders"
-                to="topTraders"
+                to="/topTraders"
                 className="text-white hover:text-white"
               >
                 View More

@@ -20,13 +20,19 @@ export function SelectAsset() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <div className="mt-[38px] flex flex-col gap-4">
+      <div className="mt-[38px] flex flex-col gap-4 my-auto">
         {isLoading ? (
           Array(15)
             .fill(0)
             .map((_, i) => <PreviewSkeleton key={i} />)
         ) : isError ? (
-          <Error>{"Something went wrong, please try again!"}</Error>
+          <Error
+            title="Oops, something went wrong"
+            buttonText="Refresh"
+            onClick={() => window.location.reload()}
+          >
+            {"Seems like there was an issue. Please refresh the page to resume!"}
+          </Error>
         ) : !data || data.assets.length === 0 ? (
           <NoData
             illustrationSrc="/NoAssets.png"

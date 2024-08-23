@@ -15,7 +15,15 @@ export function Position() {
     id: id || "1",
   });
   if (isError) {
-    return <Error>Something went wrong, please try again!</Error>;
+    return (
+      <Error
+        title="Oops, something went wrong"
+        buttonText="Refresh"
+        onClick={() => window.location.reload()}
+      >
+        {"Seems like there was an issue. Please refresh the page to resume!"}
+      </Error>
+    );
   }
 
   if (!data?.position) {
