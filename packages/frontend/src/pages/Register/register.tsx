@@ -7,14 +7,15 @@ import { Button } from "@/components/ui/button";
 import { trpc } from "@/trpc";
 import { useCallback, useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react";
+import { useUserSignInStore } from "@/stores/useState";
 
 const signInSchema = z.object({
   displayName: z.string().min(3, { message: "Display name is required" }),
   username: z
     .string()
-    .min(5, { message: "Username is required" })
+    .min(4, { message: "Username is required" })
     .regex(/^[a-zA-Z0-9_]+$/, { message: "Invalid username format" }),
 });
 
@@ -42,6 +43,7 @@ export function Register() {
     resolver: zodResolver(signInSchema),
   });
   const [userName, setUserName] = useState("");
+  const [setUserSigned] = useUserSignInStore((state) => [state.setUserSigned]);
   const [isUsernameAvailable, setIsUsernameAvailable] = useState<boolean | null>(null);
   // Example tRPC hook to check username availability
   const checkUsername = trpc.userNameAvailablity.useQuery(
@@ -72,10 +74,14 @@ export function Register() {
     }, 500),
     [],
   );
-
+  const move = useNavigate();
   const onSubmit = (data: SignInFormValues) => {
     console.log(data);
     // Handle sign-in logic here
+    localStorage.setItem("user", data.username);
+    setUserSigned(true);
+    // Navigate to the user's dashboard or a different route if needed
+    move(`/`);
   };
 
   return (
@@ -138,11 +144,9 @@ export function Register() {
           </div>
 
           <div className="h-full"></div>
-          <Link to={`/${userName}`}>
-            <Button type="submit" className="w-full bg-purple-600 text-white">
-              Create Account
-            </Button>
-          </Link>
+          <Button type="submit" className="w-full bg-purple-600 text-white">
+            Create Account
+          </Button>
         </form>
 
         <p className="text-center text-xs text-gray-400 mt-6">

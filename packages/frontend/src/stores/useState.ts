@@ -24,3 +24,13 @@ export const useClosePositionStore = create<ClosePositionState>((set) => ({
   size: 8,
   setSize: (size) => set(() => ({ size })),
 }));
+
+type userSignInState = {
+  isUserSigned: boolean;
+  setUserSigned: (isUserSigned: boolean) => void;
+};
+
+export const useUserSignInStore = create<userSignInState>((set) => ({
+  isUserSigned: false,
+  setUserSigned: (isUserSigned) => set(() => ({ isUserSigned })),
+}));
