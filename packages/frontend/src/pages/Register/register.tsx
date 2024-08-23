@@ -103,7 +103,7 @@ export function Register() {
                 className="mt-1 block w-full"
               />
               {errors.displayName && (
-                <p className="mt-1 text-sm text-red-500">{errors.displayName.message}</p>
+                <p className="mt-1 text-sm text-destructive">{errors.displayName.message}</p>
               )}
             </div>
 
@@ -128,7 +128,7 @@ export function Register() {
                   }}
                 />
                 {errors.username ? (
-                  <p className="text-sm text-red-500">{errors.username.message}</p>
+                  <p className="text-sm text-destructive">{errors.username.message}</p>
                 ) : null}
                 {checkUsername.isLoading ? (
                   <div className="flex items-center gap-2">

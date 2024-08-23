@@ -49,7 +49,7 @@ export function AssetPreview(props: { asset: SearchAsset }) {
             ${props.asset.price.toLocaleString()}
           </p>
           <p
-            className={`text-xs mobile-medium:text-sm ${props.asset.change >= 0 ? "text-green-500" : "text-red-500"}`}
+            className={`text-xs mobile-medium:text-sm ${props.asset.change >= 0 ? "text-green-500" : "text-destructive"}`}
           >
             {props.asset.change >= 0 ? `+${props.asset.change}` : props.asset.change}%
           </p>

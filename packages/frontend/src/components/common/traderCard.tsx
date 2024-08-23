@@ -21,7 +21,7 @@ export function TraderPreview(props: { trader: TraderSummary }) {
         </div>
         <div className="flex items-center">
           <p
-            className={`font-semibold mr-2 text-sm mobile-medium:text-base ${props.trader.roi >= 0 ? "text-success" : "text-red-500"}`}
+            className={`font-semibold mr-2 text-sm mobile-medium:text-base ${props.trader.roi >= 0 ? "text-success" : "text-destructive"}`}
           >
             {props.trader.roi}%
           </p>

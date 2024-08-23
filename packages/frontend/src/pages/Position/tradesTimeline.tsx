@@ -68,7 +68,7 @@ export function TradesTimeline({ isLoading, classes }: TimelineProps) {
                         className={`text-xs mobile-medium:text-sm ${
                           trade?.percentage && trade.percentage > 0
                             ? "text-green-500"
-                            : "text-red-500"
+                            : "text-destructive"
                         }`}
                       >
                         {trade.percentage}%

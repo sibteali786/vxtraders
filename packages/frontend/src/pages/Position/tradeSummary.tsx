@@ -52,7 +52,7 @@ export function TradeSummary(props: TradeSummaryProps) {
       </InfoBlock>
       <InfoBlock label="PnL">
         <p
-          className={`text-xs mobile-small:text-sm mobile-medium:text-base ${position?.pnL && position?.pnL < 0 ? "text-red-500" : "text-green-500"}  ml-2`}
+          className={`text-xs mobile-small:text-sm mobile-medium:text-base ${position?.pnL && position?.pnL < 0 ? "text-destructive" : "text-green-500"}  ml-2`}
         >
           {position?.pnL && position?.pnL > 0 ? `+${position?.pnL}` : position?.pnL}%
         </p>

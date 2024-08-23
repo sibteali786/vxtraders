@@ -34,7 +34,7 @@ export function PositionPreview(props: { position: PositionSummary }) {
             {formatCurrency(props.position.entryPrice)} → {formatCurrency(props.position.exitPrice)}
           </div>
           <p
-            className={`text-xs mobile-medium:text-sm ${props.position.roi >= 0 ? "text-green-500" : "text-red-500"}`}
+            className={`text-xs mobile-medium:text-sm ${props.position.roi >= 0 ? "text-green-500" : "text-destructive"}`}
           >
             {props.position.roi >= 0 ? `+${props.position.roi}` : props.position.roi}%
           </p>
