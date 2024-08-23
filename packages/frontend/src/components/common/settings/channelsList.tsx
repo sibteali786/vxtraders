@@ -24,13 +24,21 @@ export const ChannelList = ({ channels, isLoading, isError }: ChannelListProps) 
     );
   }
   if (isError) {
-    return <Error>{"Something went wrong, please try again!"}</Error>;
+    return (
+      <Error
+        title="Oops, something went wrong"
+        buttonText="Refresh"
+        onClick={() => window.location.reload()}
+      >
+        {"Seems like there was an issue. Please refresh the page to resume!"}
+      </Error>
+    );
   }
   if (!channels || channels.length === 0) {
     return (
       <NoData
         illustrationSrc="/noChannels.png"
-		title="No Channels"
+        title="No Channels"
         message="You have no Channels to show here!"
         secondaryMessage="Please add some channels and get back here"
         buttonText="Add Channels"
