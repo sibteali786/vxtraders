@@ -9,12 +9,11 @@ const ChannelIntegration = () => {
     user: "Ali",
   });
   return (
-    <div className="bg-black text-white p-8 max-w-2xl mx-auto">
+    <div className="bg-black text-white p-8 max-w-2xl flex flex-col gap-4 mx-auto">
       <MainHeading title="Channels" />
       <ChannelList channels={data?.channels} isLoading={isLoading} isError={isError} />
       <Divider />
-
-      <div className="mt-8">
+      <div className="">
         <h2 className="text-xl mobile-medium:text-2xl font-bold mb-4">How to add Channels?</h2>
         <p className="mb-4 ">
           Channel integration allows you to post your trades in channels that you own.
