@@ -9,7 +9,7 @@ export function PositionPreview(props: { position: PositionSummary }) {
   return (
     <Link to={`/position/${props.position.id}`}>
       <BaseCard variant="default" size="medium">
-        <div className="flex items-center rounded-lg gap-1 mobile-large:gap-2">
+        <div className="flex items-center rounded-lg gap-2 mobile-large:gap-2">
           <Avatar className="w-8 h-8 mobile-medium:w-9 mobile-medium:h-9">
             <AvatarImage src="/avatar.png" alt="User Avatar" />
             <AvatarFallback>U</AvatarFallback>
