@@ -96,6 +96,6 @@ export const LoadMoreTradersButton: Story = {
 
     // Verify that the navigation to "topTraders" is triggered
     // check the current route.
-    expect(window.location.pathname).toBe("/topTraders");
+    expect(window.location.pathname).toBe("/top-traders");
   },
 };

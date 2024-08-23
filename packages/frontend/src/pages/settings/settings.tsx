@@ -12,7 +12,7 @@ export function Settings() {
             Account Settings
           </h2>
           <div className="flex flex-col gap-2">
-            <ScreenLink link="editProfile" title="Edit Profile" />
+            <ScreenLink link="edit-profile" title="Edit Profile" />
             <ScreenLink link="integration" title="Channel Integration" />
           </div>
         </div>
@@ -24,7 +24,7 @@ export function Settings() {
         </h2>
         <div className="flex flex-col gap-2">
           <ScreenLink link="aboutUs" title="About Us" />
-          <ScreenLink link="privacyPolicy" title="Privacy Policy" />
+          <ScreenLink link="privacy-policy" title="Privacy Policy" />
           <ScreenLink link="termsConditions" title="Terms and Conditions" />
         </div>
       </div>

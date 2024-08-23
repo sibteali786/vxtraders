@@ -71,10 +71,10 @@ function MainRouting() {
   }, [location]);
 
   const subScreenPaths = [
-    "/topTraders",
-    "/topPositions",
-    "/settings/editProfile",
-    "/settings/privacyPolicy",
+    "/top-traders",
+    "/top-positions",
+    "/settings/edit-profile",
+    "/settings/privacy-policy",
     "/settings/integration",
     "/position/:id",
     "/select-asset/:ticker",
@@ -102,11 +102,11 @@ function MainRouting() {
             <Route path="/">
               <Route index element={<Leaderboards />} />
               <Route
-                path="/topTraders"
+                path="/top-traders"
                 element={<TradersList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
               />
               <Route
-                path="/topPositions"
+                path="/top-positions"
                 element={<PositionsList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
               />
             </Route>
@@ -119,8 +119,8 @@ function MainRouting() {
               <Route path="/help" element={<Help />} />
               <Route path="settings">
                 <Route index element={<Settings />} />
-                <Route path="editProfile" element={<EditProfile />} />
-                <Route path="privacyPolicy" element={<PrivacyPolicy />} />
+                <Route path="edit-profile" element={<EditProfile />} />
+                <Route path="privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="integration" element={<ChannelIntegration />} />
               </Route>
               <Route path="/portfolio/:id" element={<Portfolio />} />

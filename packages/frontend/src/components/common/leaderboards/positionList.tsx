@@ -74,7 +74,7 @@ export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isTopLevelCo
           </div>
           {isTopLevelComponent ? null : (
             <Button className="w-full" asChild>
-              <Link to="/topPositions" className="text-white hover:text-white">
+              <Link to="/top-positions" className="text-white hover:text-white">
                 View More
               </Link>
             </Button>

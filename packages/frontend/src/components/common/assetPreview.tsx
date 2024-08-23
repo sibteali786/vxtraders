@@ -28,7 +28,7 @@ export function AssetPreview(props: { asset: SearchAsset }) {
     : "#f0f0f0"; // Default color if not found
 
   return (
-    <Card className="flex items-center py-3 justify-between rounded-lg border border-border px-2 mobile-medium:px-3">
+    <Card className="flex items-center py-3 justify-between rounded-lg border border-border px-2 mobile-medium:px-3 bg-black">
       <div className="flex gap-2 mobile-medium:gap-2">
         <IconComponent
           className="w-8 h-8 mobile-medium:w-9 mobile-medium:h-9"
