@@ -5,6 +5,7 @@ import { FaBitcoin, FaEthereum, FaDollarSign } from "react-icons/fa";
 import { SiPolygon } from "react-icons/si";
 import { RiXrpFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { BaseCard } from "./baseCard";
 
 // Map tickers to their corresponding icons and colors
 export const iconMap = {
@@ -28,7 +29,7 @@ export function AssetPreview(props: { asset: SearchAsset }) {
     : "#f0f0f0"; // Default color if not found
 
   return (
-    <Card className="flex items-center py-3 justify-between rounded-lg border border-border px-2 mobile-medium:px-3 bg-black">
+    <BaseCard variant="default" size="medium">
       <div className="flex gap-2 mobile-medium:gap-2">
         <IconComponent
           className="w-8 h-8 mobile-medium:w-9 mobile-medium:h-9"
@@ -60,6 +61,6 @@ export function AssetPreview(props: { asset: SearchAsset }) {
           </Button>
         </Link>
       </div>
-    </Card>
+    </BaseCard>
   );
 }

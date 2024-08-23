@@ -1,14 +1,14 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { PositionSummary } from "@vxtraders/shared";
-import { Card } from "../ui/card";
 import { formatCurrency } from "@/utils/utils";
 import { Link } from "react-router-dom";
 import { Badge } from "./badge";
+import { BaseCard } from "./baseCard";
 
 export function PositionPreview(props: { position: PositionSummary }) {
   return (
     <Link to={`/position/${props.position.id}`}>
-      <Card className="flex justify-between items-center py-3 rounded-lg space-x-4 px-2 mobile-medium:px-3 bg-black">
+      <BaseCard variant="default" size="medium">
         <div className="flex items-center rounded-lg gap-1 mobile-large:gap-2">
           <Avatar className="w-8 h-8 mobile-medium:w-9 mobile-medium:h-9">
             <AvatarImage src="/avatar.png" alt="User Avatar" />
@@ -39,7 +39,7 @@ export function PositionPreview(props: { position: PositionSummary }) {
             {props.position.roi >= 0 ? `+${props.position.roi}` : props.position.roi}%
           </p>
         </div>
-      </Card>
+      </BaseCard>
     </Link>
   );
 }

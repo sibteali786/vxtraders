@@ -39,7 +39,7 @@ export const ChannelList = ({ channels, isLoading, isError }: ChannelListProps) 
     );
   }
   return (
-    <div className="mb-3">
+    <div className="mb-3 flex flex-col gap-4">
       {channels?.map((channel, i) => <ChannelCard key={i} channel={channel} />)}
     </div>
   );

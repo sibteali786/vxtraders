@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { TopResults } from "@/components/common/topResults";
 import { Error } from "@/components/common/Error/Error";
 import { Link } from "react-router-dom";
+import { BaseCard } from "@/components/common/baseCard";
 
 type ProfileHeaderProps = {
   isFirstComponentOnPage?: boolean;
@@ -17,7 +18,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isFirstComponentOn
   });
   if (isLoading) {
     return (
-      <Card className="flex items-center space-x-4 p-3 mx-[16px]">
+      <Card className="flex items-center justify-between space-x-4 p-3 mx-[16px]">
         <div className=" flex flex-row flex-1 gap-2">
           <Skeleton className="h-8 w-8 rounded-full" />
           <div className="space-y-2">
@@ -33,13 +34,19 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isFirstComponentOn
     );
   }
   if (isError) {
-    return <Error>There is some problem please try again!</Error>;
+    return <Error
+	title="Oops, something went wrong"
+	buttonText="Refresh"
+	onClick={() => window.location.reload()}
+  >
+	{"Seems like there was an issue. Please refresh the page to resume!"}
+  </Error>;
   }
   if (!data?.user) return null;
   return (
     <Link to={`/portfolio/${userId}`}>
-      <div
-        className={`flex justify-between items-center py-3 px-default  ${!isFirstComponentOnPage ? "border-[1px] rounded-lg shadow-sm mx-[16px]" : ""}`}
+      <BaseCard
+        className={`flex justify-between items-center py-3 px-default  ${!isFirstComponentOnPage ? "border-[1px] rounded-lg shadow-sm mx-[16px]" : "border-[0px]"}`}
       >
         <div className="flex items-center space-x-4">
           <Avatar>
@@ -52,7 +59,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isFirstComponentOn
           </div>
         </div>
         <TopResults label="TOP" value="1%" />
-      </div>
+      </BaseCard>
     </Link>
   );
 };
