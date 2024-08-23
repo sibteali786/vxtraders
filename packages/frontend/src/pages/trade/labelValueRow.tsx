@@ -1,4 +1,4 @@
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency } from "@/utils/utils";
 
 export type LabelValueRowProps = {
   label: string;

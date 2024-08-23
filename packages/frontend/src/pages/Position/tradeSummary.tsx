@@ -2,7 +2,7 @@ import { iconMap, isValidTicker } from "@/components/common/assetPreview";
 import { Badge } from "@/components/common/badge";
 import { BoxSkeleton } from "@/components/common/boxSkeleton";
 import { InfoBlock } from "@/components/common/infoBlock";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency } from "@/utils/utils";
 import { PositionSummary } from "@vxtraders/shared";
 import { FaDollarSign } from "react-icons/fa";
 

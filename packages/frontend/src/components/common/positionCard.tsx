@@ -1,7 +1,7 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { PositionSummary } from "@vxtraders/shared";
 import { Card } from "../ui/card";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency } from "@/utils/utils";
 import { Link } from "react-router-dom";
 import { Badge } from "./badge";
 

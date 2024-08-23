@@ -26,7 +26,7 @@ import { Position } from "./pages/Position/Position";
 import { PlaceVirtualOrder } from "./pages/trade/placeOrder";
 import { Register } from "./pages/Register/register";
 import { useUserSignInStore } from "./stores/useState";
-import { ProtectedRoute } from "./lib/protectedRoutes";
+import { ProtectedRoute } from "./utils/protectedRoutes";
 
 export const baseUrl =
   import.meta.env.MODE === "development"

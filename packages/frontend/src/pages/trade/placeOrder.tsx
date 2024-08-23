@@ -7,7 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import { MainHeading } from "@/components/common/mainHeading";
 import { Card } from "@/components/ui/card";
 import { LabelValueRow } from "./labelValueRow";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency } from "@/utils/utils";
 import { FaBitcoin } from "react-icons/fa";
 import { BackButton } from "@twa-dev/sdk/react";
 
