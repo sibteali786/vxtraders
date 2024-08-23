@@ -10,6 +10,7 @@ import { LoaderCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react";
 import { useUserSignInStore } from "@/stores/useState";
+import { debounce } from "@/utils/utils";
 
 const signInSchema = z.object({
   displayName: z.string().min(3, { message: "Display name is required" }),
@@ -26,15 +27,6 @@ const signInSchema = z.object({
 type SignInFormValues = z.infer<typeof signInSchema>;
 
 // Debounce function
-const debounce = (fn: (...args: any[]) => void, delay: number) => {
-  let timerId: ReturnType<typeof setTimeout>;
-  return function (...args: any[]) {
-    clearTimeout(timerId);
-    timerId = setTimeout(() => {
-      fn(...args);
-    }, delay);
-  };
-};
 
 export function Register() {
   const {

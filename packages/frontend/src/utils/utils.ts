@@ -17,3 +17,13 @@ export function formatCurrency(value: number | string | undefined) {
   });
   return formatter.format(value);
 }
+
+export const debounce = (fn: (...args: any[]) => void, delay: number) => {
+  let timerId: ReturnType<typeof setTimeout>;
+  return function (...args: any[]) {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      fn(...args);
+    }, delay);
+  };
+};
