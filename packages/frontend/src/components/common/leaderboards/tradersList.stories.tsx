@@ -1,4 +1,3 @@
-import { baseUrl } from "@/App";
 import { TradersList } from "./tradersList";
 import { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, expect, screen, waitFor } from "@storybook/test";
