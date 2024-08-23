@@ -1,6 +1,5 @@
 import { SearchAsset } from "@vxtraders/shared";
 import { Button } from "../ui/button";
-import { Card } from "../ui/card";
 import { FaBitcoin, FaEthereum, FaDollarSign } from "react-icons/fa";
 import { SiPolygon } from "react-icons/si";
 import { RiXrpFill } from "react-icons/ri";
