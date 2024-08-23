@@ -25,6 +25,8 @@ import { PositionsList } from "./components/common/leaderboards/positionList";
 import { Position } from "./pages/Position/Position";
 import { PlaceVirtualOrder } from "./pages/trade/placeOrder";
 import { Register } from "./pages/Register/register";
+import { useUserSignInStore } from "./stores/useState";
+import { ProtectedRoute } from "./lib/protectedRoutes";
 
 export const baseUrl =
   import.meta.env.MODE === "development"
@@ -80,39 +82,49 @@ function MainRouting() {
   ];
 
   const hideNavBar = subScreenPaths.some((path) => matchPath(path, location.pathname));
-  const url = useLocation();
-  const isUserSigned = Boolean(url.pathname.slice(1));
+  const [isUserSigned] = useUserSignInStore((state) => [state.isUserSigned]);
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (!isUserSigned && user) {
+      useUserSignInStore.getState().setUserSigned(true);
+    }
+    if (!user) {
+      useUserSignInStore.getState().setUserSigned(false);
+    }
+  }, [isUserSigned]);
+
   return (
     <div className="w-full py-4 max-w-[600px] flex flex-col justify-start h-full rounded-[8px] max-allowed-width:border max-allowed-width:border-border">
-      <TransitionGroup className="h-full">
+      <TransitionGroup className="h-full flex flex-col">
         <CSSTransition key={location.key} timeout={300} classNames="fade">
           <Routes location={location}>
             <Route path="/register" element={<Register />} />
-            <Route path="/" element={<Leaderboards />} />
-            <Route path="/:id">
+            <Route path="/">
               <Route index element={<Leaderboards />} />
               <Route
-                path="topTraders"
+                path="/topTraders"
                 element={<TradersList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
               />
               <Route
-                path="topPositions"
+                path="/topPositions"
                 element={<PositionsList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
               />
             </Route>
-            <Route path="select-asset">
-              <Route index element={<SelectAsset />} />
-              <Route path=":assetName" element={<PlaceVirtualOrder />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="select-asset">
+                <Route index element={<SelectAsset />} />
+                <Route path=":assetName" element={<PlaceVirtualOrder />} />
+              </Route>
+              <Route path="/position/:id" element={<Position />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="settings">
+                <Route index element={<Settings />} />
+                <Route path="editProfile" element={<EditProfile />} />
+                <Route path="privacyPolicy" element={<PrivacyPolicy />} />
+                <Route path="integration" element={<ChannelIntegration />} />
+              </Route>
+              <Route path="/portfolio/:id" element={<Portfolio />} />
             </Route>
-            <Route path="/position/:id" element={<Position />} />
-            <Route path="/help" element={<Help />} />
-            <Route path="settings">
-              <Route index element={<Settings />} />
-              <Route path="editProfile" element={<EditProfile />} />
-              <Route path="privacyPolicy" element={<PrivacyPolicy />} />
-              <Route path="integration" element={<ChannelIntegration />} />
-            </Route>
-            <Route path="/portfolio/:id" element={<Portfolio />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </CSSTransition>
