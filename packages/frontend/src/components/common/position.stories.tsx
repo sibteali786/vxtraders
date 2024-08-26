@@ -1,5 +1,5 @@
 import { baseUrl } from "@/App";
-import { Position } from "@/pages/Position/Position";
+import { Position } from "@/pages/position/Position";
 import { Meta, StoryObj } from "@storybook/react";
 import { delay, http, HttpResponse } from "msw";
 

@@ -6,7 +6,6 @@ import { AiOutlineTrophy, AiFillTrophy, AiFillQuestionCircle } from "react-icons
 import { FiHelpCircle } from "react-icons/fi"; // Feather icons
 import { IoSettings, IoSettingsOutline } from "react-icons/io5";
 import { LogIn } from "lucide-react";
-import { Skeleton } from "./ui/skeleton";
 
 const navLinkClasses = cva(
   "flex flex-col items-center justify-center gap-[3px] text-xs font-medium",

@@ -3,8 +3,8 @@ import { MainHeading } from "@/components/common/mainHeading";
 import { trpc } from "@/trpc";
 import { useState } from "react";
 import { Input } from "@/components/ui/input"; // Assuming you are using ShadCN's Input component
-import { Error } from "@/components/common/Error/Error";
-import { NoData } from "@/components/common/EmptyState/NoData";
+import { Error } from "@/components/common/error/Error";
+import { NoData } from "@/components/common/empty-state/NoData";
 import { PreviewSkeleton } from "@/components/common/previewSkeleton";
 
 export function SelectAsset() {

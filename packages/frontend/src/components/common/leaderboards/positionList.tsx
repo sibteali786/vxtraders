@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { useTopPositionsPeriodStore } from "@/stores/useState";
 import { trpc } from "@/trpc";
 import { PositionPreview } from "../positionCard";
-import { Error } from "../Error/Error";
-import { NoData } from "../EmptyState/NoData";
+import { Error } from "../error/Error";
+import { NoData } from "../empty-state/NoData";
 import { PreviewSkeleton } from "../previewSkeleton";
 import { BackButton } from "@twa-dev/sdk/react";
 

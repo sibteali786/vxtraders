@@ -5,7 +5,7 @@ import { trpc } from "@/trpc";
 import { MAX_LIST_COUNT } from "@/stores/constants";
 import { useTopPositionsPeriodStore } from "@/stores/useState";
 import { useParams } from "react-router-dom";
-import { ProfileHeader } from "../Position/profileHeader";
+import { ProfileHeader } from "../position/profileHeader";
 
 export function Portfolio() {
   const selectedTopPositionsPeriod = useTopPositionsPeriodStore((state) => state.selectedPeriod);

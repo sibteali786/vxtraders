@@ -1,8 +1,8 @@
 import { ChannelOutput } from "@vxtraders/shared";
 import ChannelCard from "../channelCard";
 import { PreviewSkeleton } from "../previewSkeleton";
-import { Error } from "../Error/Error";
-import { NoData } from "../EmptyState/NoData";
+import { Error } from "../error/Error";
+import { NoData } from "../empty-state/NoData";
 
 type ChannelListProps = {
   channels?: ChannelOutput["channels"];

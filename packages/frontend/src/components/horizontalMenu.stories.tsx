@@ -8,35 +8,30 @@ export default {
     layout: "fullscreen",
   },
   args: {
-    isLoading: false,
     isUserRegistered: true,
   },
 } as Meta<typeof HorizontalMenu>;
 
 export const Default: StoryObj<typeof HorizontalMenu> = {
   args: {
-    isLoading: false,
     isUserRegistered: true,
   },
 };
 
 export const Loading: StoryObj<typeof HorizontalMenu> = {
   args: {
-    isLoading: true,
     isUserRegistered: true,
   },
 };
 
 export const GuestUser: StoryObj<typeof HorizontalMenu> = {
   args: {
-    isLoading: false,
     isUserRegistered: false,
   },
 };
 
 export const LoadingGuestUser: StoryObj<typeof HorizontalMenu> = {
   args: {
-    isLoading: true,
     isUserRegistered: false,
   },
 };

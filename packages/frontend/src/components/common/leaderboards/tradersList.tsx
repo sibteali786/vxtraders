@@ -5,8 +5,8 @@ import { TraderPreview } from "../traderCard";
 import { PreviewSkeleton } from "../previewSkeleton";
 import { useTopTradersPeriodStore } from "@/stores/useState";
 import { trpc } from "@/trpc";
-import { Error } from "../Error/Error";
-import { NoData } from "../EmptyState/NoData";
+import { Error } from "../error/Error";
+import { NoData } from "../empty-state/NoData";
 import { BackButton } from "@twa-dev/sdk/react";
 
 type TradersProps = {

@@ -17,14 +17,14 @@ import { PageNotFound } from "./pages/pageNotFound";
 import { Leaderboards } from "./pages/leaderboards/leaderboards";
 import { SelectAsset } from "./pages/trade/selectAsset";
 import { EditProfile } from "./pages/settings/editProfile/editProfile";
-import PrivacyPolicy from "./pages/settings/Privacy policy/privacyPolicy";
-import ChannelIntegration from "./pages/settings/Channels/channelIntegration";
+import PrivacyPolicy from "./pages/settings/privacyPolicy/privacyPolicy";
+import ChannelIntegration from "./pages/settings/channels/channelIntegration";
 import { TradersList } from "./components/common/leaderboards/tradersList";
 import { MAX_LIST_COUNT } from "./stores/constants";
 import { PositionsList } from "./components/common/leaderboards/positionList";
-import { Position } from "./pages/Position/Position";
+import { Position } from "./pages/position/Position";
 import { PlaceVirtualOrder } from "./pages/trade/placeOrder";
-import { Register } from "./pages/Register/register";
+import { Register } from "./pages/register/register";
 import { useUserSignInStore } from "./stores/useState";
 import { ProtectedRoute } from "./utils/protectedRoutes";
 import { LoaderCircle } from "lucide-react"; // Import your spinner icon

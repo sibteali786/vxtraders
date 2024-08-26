@@ -3,7 +3,7 @@ import { trpc } from "@/trpc";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card } from "@/components/ui/card";
 import { TopResults } from "@/components/common/topResults";
-import { Error } from "@/components/common/Error/Error";
+import { Error } from "@/components/common/error/Error";
 import { Link } from "react-router-dom";
 import { BaseCard } from "@/components/common/baseCard";
 

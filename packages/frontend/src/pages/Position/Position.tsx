@@ -5,8 +5,8 @@ import { ClosePosition } from "./closePosition";
 import { PortfolioChart } from "@/pages/portfolio/portfolioChart";
 import { useParams } from "react-router-dom";
 import { trpc } from "@/trpc";
-import { NoData } from "@/components/common/EmptyState/NoData";
-import { Error } from "@/components/common/Error/Error";
+import { NoData } from "@/components/common/empty-state/NoData";
+import { Error } from "@/components/common/error/Error";
 import { BackButton } from "@twa-dev/sdk/react";
 
 export function Position() {
