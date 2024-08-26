@@ -79,7 +79,7 @@ export function PlaceVirtualOrder() {
         />
         <Link to="/position" className="my-4">
           <Button
-            className={`w-full flex gap-2 ${mode === "long" ? "bg-success" : "bg-destructive"}`}
+            className={`w-full flex gap-2 ${mode === "long" ? "bg-success hover:bg-success/80" : "bg-destructive hover:bg-destructive/80"}`}
           >
             {mode === "long" ? "LONG" : "SHORT"} {assetName}{" "}
             <FaBitcoin className="h-5 w-5 mobile-medium:w-5 mobile-medium:h-5 text-[#f7931a]" />{" "}
