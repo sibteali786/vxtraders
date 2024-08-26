@@ -30,7 +30,7 @@ export function PlaceVirtualOrder() {
         <LabelValueRow label="Market Price" value={price} />
         <LabelValueRow label="Virtual Balance" value={balance} />
       </div>
-      <Card className="flex flex-col gap-6 p-4">
+      <Card className="flex flex-col gap-6 p-4 bg-black">
         <div className="space-y-4">
           <Tabs
             value={mode}
