@@ -5,12 +5,11 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/trpc";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { BackButton } from "@twa-dev/sdk/react";
 import { useUserSignInStore } from "@/stores/useState";
-import { debounce } from "@/utils/utils";
 
 const signInSchema = z.object({
   displayName: z.string().min(3, { message: "Display name is required" }),
@@ -64,13 +63,6 @@ export function Register() {
       });
     }
   }, [errors.username, userName, usernameValue]);
-
-  const handleUsernameChange = useCallback(
-    debounce((username: string) => {
-      setUserName(username.toLowerCase());
-    }, 500),
-    [],
-  );
 
   const move = useNavigate();
   const onSubmit = (data: SignInFormValues) => {
