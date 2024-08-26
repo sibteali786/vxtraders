@@ -27,6 +27,7 @@ import { PlaceVirtualOrder } from "./pages/trade/placeOrder";
 import { Register } from "./pages/Register/register";
 import { useUserSignInStore } from "./stores/useState";
 import { ProtectedRoute } from "./utils/protectedRoutes";
+import { LoaderCircle } from "lucide-react"; // Import your spinner icon
 
 export const baseUrl =
   import.meta.env.MODE === "development"
@@ -40,11 +41,6 @@ function App() {
       links: [
         httpBatchLink({
           url: baseUrl,
-          // async headers() {
-          //   return {
-          //     authorization: "Bearer 123",
-          //   };
-          // },
         }),
       ],
     }),
@@ -80,7 +76,16 @@ function MainRouting() {
     "/select-asset/:ticker",
     "/register",
   ];
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    // Simulate loading time for 2 seconds
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
   const hideNavBar = subScreenPaths.some((path) => matchPath(path, location.pathname));
   const [isUserSigned] = useUserSignInStore((state) => [state.isUserSigned]);
   useEffect(() => {
@@ -95,41 +100,49 @@ function MainRouting() {
 
   return (
     <div className="w-full py-4 max-w-[600px] flex flex-col justify-start h-full rounded-[8px] max-allowed-width:border max-allowed-width:border-border">
-      <TransitionGroup className="h-full flex flex-col">
-        <CSSTransition key={location.key} timeout={300} classNames="fade">
-          <Routes location={location}>
-            <Route path="/register" element={<Register />} />
-            <Route path="/">
-              <Route index element={<Leaderboards />} />
-              <Route
-                path="/top-traders"
-                element={<TradersList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
-              />
-              <Route
-                path="/top-positions"
-                element={<PositionsList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
-              />
-            </Route>
-            <Route path="/help" element={<Help />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path="select-asset">
-                <Route index element={<SelectAsset />} />
-                <Route path=":assetName" element={<PlaceVirtualOrder />} />
-              </Route>
-              <Route path="/position/:id" element={<Position />} />
-              <Route path="settings">
-                <Route index element={<Settings />} />
-                <Route path="edit-profile" element={<EditProfile />} />
-                <Route path="privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="integration" element={<ChannelIntegration />} />
-              </Route>
-              <Route path="/portfolio/:id" element={<Portfolio />} />
-            </Route>
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </CSSTransition>
-      </TransitionGroup>
-      {!hideNavBar && <HorizontalMenu isLoading={false} isUserRegistered={isUserSigned} />}
+      {loading ? (
+        <div className=" flex flex-col justify-center items-center h-full">
+          <LoaderCircle size={48} className="animate-spin text-gray-600 my-auto" />
+        </div>
+      ) : (
+        <>
+          <TransitionGroup className="h-full flex flex-col">
+            <CSSTransition key={location.key} timeout={300} classNames="fade">
+              <Routes location={location}>
+                <Route path="/register" element={<Register />} />
+                <Route path="/">
+                  <Route index element={<Leaderboards />} />
+                  <Route
+                    path="/top-traders"
+                    element={<TradersList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
+                  />
+                  <Route
+                    path="/top-positions"
+                    element={<PositionsList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
+                  />
+                </Route>
+                <Route path="/help" element={<Help />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="select-asset">
+                    <Route index element={<SelectAsset />} />
+                    <Route path=":assetName" element={<PlaceVirtualOrder />} />
+                  </Route>
+                  <Route path="/position/:id" element={<Position />} />
+                  <Route path="settings">
+                    <Route index element={<Settings />} />
+                    <Route path="edit-profile" element={<EditProfile />} />
+                    <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="integration" element={<ChannelIntegration />} />
+                  </Route>
+                  <Route path="/portfolio/:id" element={<Portfolio />} />
+                </Route>
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </CSSTransition>
+          </TransitionGroup>
+          {!hideNavBar && <HorizontalMenu isUserRegistered={isUserSigned} />}
+        </>
+      )}
     </div>
   );
 }
