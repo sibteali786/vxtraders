@@ -48,7 +48,7 @@ export function Register() {
   const checkUsername = trpc.userNameAvailablity.useQuery({ userName }, { enabled: false });
   useEffect(() => {
     setUserName(getValues("username").toLowerCase());
-    console.log(userName, usernameValue);
+    setIsUsernameAvailable(false);
     if (!errors.username && usernameValue) {
       checkUsername.refetch().then((result) => {
         if (!result.data) {
