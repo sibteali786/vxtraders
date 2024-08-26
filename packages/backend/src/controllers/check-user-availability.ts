@@ -3,7 +3,7 @@ export const checkUserAvailability = async (opts: {
 }): Promise<boolean> => {
   console.log("getUserByIdSchema called with input", opts.input);
   const { userName } = opts.input;
-  if (userName === "Mark110") {
+  if (userName === "Mark110".toLocaleLowerCase()) {
     return true;
   } else {
     return false;

@@ -6,7 +6,7 @@ export function ProtectedRoute() {
 
   if (!isUserSigned) {
     // Redirect to the leaderboards if not authenticated
-    return <Navigate to="/" />;
+    return <Navigate to="/register" />;
   }
 
   return <Outlet />;

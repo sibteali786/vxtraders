@@ -110,13 +110,13 @@ function MainRouting() {
                 element={<PositionsList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
               />
             </Route>
+            <Route path="/help" element={<Help />} />
             <Route element={<ProtectedRoute />}>
               <Route path="select-asset">
                 <Route index element={<SelectAsset />} />
                 <Route path=":assetName" element={<PlaceVirtualOrder />} />
               </Route>
               <Route path="/position/:id" element={<Position />} />
-              <Route path="/help" element={<Help />} />
               <Route path="settings">
                 <Route index element={<Settings />} />
                 <Route path="edit-profile" element={<EditProfile />} />

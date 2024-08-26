@@ -16,43 +16,43 @@ const signInSchema = z.object({
   displayName: z.string().min(3, { message: "Display name is required" }),
   username: z
     .string()
-    .min(4, { message: "Username must be at least 4 characters long" })
-    .max(20, { message: "Username must be less than 20 characters long" })
-    .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d_]{4,20}$/, {
-      message:
-        "Username must contain at least one letter, one number, and can optionally include underscores.",
-    }),
+    .min(1, { message: "Username is required" }) // Prioritize showing "Username is required" when empty
+    .refine((value) => /^[a-zA-Z0-9]+$/.test(value), {
+      message: "Username can only contain lowercase alphabets and numbers",
+    })
+    .refine((value) => value.length >= 5, {
+      message: "Username must be at least 5 characters long",
+    })
+    .transform((value) => value.toLowerCase()),
 });
 
 type SignInFormValues = z.infer<typeof signInSchema>;
-
-// Debounce function
 
 export function Register() {
   const {
     register,
     handleSubmit,
     clearErrors,
+    getValues,
     formState: { errors },
+    watch,
     setError,
   } = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
+    mode: "onChange",
   });
+
   const [userName, setUserName] = useState("");
   const [setUserSigned] = useUserSignInStore((state) => [state.setUserSigned]);
   const [isUsernameAvailable, setIsUsernameAvailable] = useState<boolean | null>(null);
-  // Example tRPC hook to check username availability
-  const checkUsername = trpc.userNameAvailablity.useQuery(
-    { userName: userName }, // This will be overridden by onChange
-    {
-      enabled: false,
-    },
-  );
+  const usernameValue = watch("username");
+  const checkUsername = trpc.userNameAvailablity.useQuery({ userName }, { enabled: false });
   useEffect(() => {
-    if (userName) {
+    setUserName(getValues("username").toLowerCase());
+    console.log(userName, usernameValue);
+    if (!errors.username && usernameValue) {
       checkUsername.refetch().then((result) => {
         if (!result.data) {
-          setIsUsernameAvailable(false);
           setError("username", {
             type: "manual",
             message: "Username is already taken, please try another one",
@@ -63,21 +63,22 @@ export function Register() {
         }
       });
     }
-  }, [userName]);
+  }, [errors.username, userName, usernameValue]);
+
   const handleUsernameChange = useCallback(
     debounce((username: string) => {
-      setUserName(username);
+      setUserName(username.toLowerCase());
     }, 500),
     [],
   );
+
   const move = useNavigate();
   const onSubmit = (data: SignInFormValues) => {
-    console.log(data);
-    // Handle sign-in logic here
-    localStorage.setItem("user", data.username);
-    setUserSigned(true);
-    // Navigate to the user's dashboard or a different route if needed
-    move(`/`);
+    if (isUsernameAvailable) {
+      localStorage.setItem("user", data.username);
+      setUserSigned(true);
+      move(`/`);
+    }
   };
 
   return (
@@ -107,38 +108,26 @@ export function Register() {
               <Label htmlFor="username" className="text-white">
                 Username*
               </Label>
-              <>
-                <Input
-                  id="username"
-                  placeholder="Username"
-                  {...register("username")}
-                  className="mt-1 block w-full"
-                  onChange={(e) => {
-                    if (!e.target.value) {
-                      clearErrors("username");
-                      setIsUsernameAvailable(false);
-                    }
-                    return handleUsernameChange(e.target.value);
-                  }}
-                />
+              <Input
+                id="username"
+                placeholder="e.g., johndoe, ali786"
+                {...register("username")}
+                className="mt-1 block w-full"
+              />
+              {errors.username && (
                 <div>
-                  <p className="text-sm text-white">Example: john_doe12, ali786@#</p>
-                  {errors.username ? (
-                    <div>
-                      <p className="text-sm text-destructive mt-1">{errors.username.message}</p>
-                    </div>
-                  ) : null}
+                  <p className="text-sm text-destructive mt-1">{errors.username.message}</p>
                 </div>
-                {checkUsername.isLoading ? (
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm text-gray-500">Checking username availability </p>
-                    <LoaderCircle size={14} className="animate-spin" />
-                  </div>
-                ) : null}
-                {isUsernameAvailable ? (
-                  <p className="text-sm text-green-500">Username `{userName}` is available</p>
-                ) : null}
-              </>
+              )}
+              {checkUsername.isLoading ? (
+                <div className="flex items-center gap-2">
+                  <p className="text-sm text-gray-500">Checking username availability </p>
+                  <LoaderCircle size={14} className="animate-spin" />
+                </div>
+              ) : null}
+              {isUsernameAvailable && !errors.username ? (
+                <p className="text-sm text-green-500">Username `{userName}` is available</p>
+              ) : null}
             </div>
           </div>
 
