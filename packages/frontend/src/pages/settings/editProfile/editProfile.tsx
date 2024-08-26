@@ -4,60 +4,58 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import { useCallback, useEffect, useState } from "react";
 import { trpc } from "@/trpc";
-import { debounce } from "@/utils/utils";
+import { useEffect, useState } from "react";
 import { LoaderCircle } from "lucide-react";
+import { BackButton } from "@twa-dev/sdk/react";
 
-const formSchema = z.object({
+const signInSchema = z.object({
   displayName: z
     .string()
-    .min(3, { message: "Display name is required" })
-    .max(50, { message: "Display name must be less than 50 characters" }),
+    .optional()
+    .refine((value) => !value || value.length >= 3, {
+      message: "Username must be at least 3 characters long",
+    }),
   username: z
     .string()
-    .min(4, { message: "Username must be at least 4 characters long" })
-    .max(20, { message: "Username must be less than 20 characters long" })
-    .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d_]{4,20}$/, {
-      message:
-        "Username must contain at least one letter, one number, and can optionally include underscores.",
-    }),
+    .optional()
+    .refine((value) => !value || /^[a-zA-Z0-9]+$/.test(value), {
+      message: "Username can only contain lowercase alphabets and numbers",
+    })
+    .refine((value) => !value || value.length >= 5, {
+      message: "Username must be at least 5 characters long",
+    })
+    .transform((value) => value?.toLowerCase() ?? ""),
 });
 
-type EditProfileFormValues = z.infer<typeof formSchema>;
+type SignInFormValues = z.infer<typeof signInSchema>;
 
-export const EditProfile = () => {
+export function EditProfile() {
   const {
     register,
     handleSubmit,
-    setError,
     clearErrors,
     formState: { errors },
-  } = useForm<EditProfileFormValues>({
-    resolver: zodResolver(formSchema),
+    watch,
+    setError,
+  } = useForm<SignInFormValues>({
+    resolver: zodResolver(signInSchema),
+    mode: "onChange",
   });
-  const navigate = useNavigate();
+
   const [userName, setUserName] = useState("");
   const [isUsernameAvailable, setIsUsernameAvailable] = useState<boolean | null>(null);
-  // Example tRPC hook to check username availability
-  const checkUsername = trpc.userNameAvailablity.useQuery(
-    { userName: userName }, // This will be overridden by onChange
-    {
-      enabled: false,
-    },
-  );
-  const onSubmit = (data: EditProfileFormValues) => {
-    console.log(data);
-    // Handle profile update logic here
-    localStorage.setItem("user", data.username);
-    navigate(`/`);
-  };
+  const usernameValue = watch("username");
+  const checkUsername = trpc.userNameAvailablity.useQuery({ userName }, { enabled: false });
+
   useEffect(() => {
-    if (userName) {
+    if (usernameValue) {
+      setUserName(usernameValue.toLowerCase());
+    }
+    setIsUsernameAvailable(false);
+    if (!errors.username && usernameValue) {
       checkUsername.refetch().then((result) => {
         if (!result.data) {
-          setIsUsernameAvailable(false);
           setError("username", {
             type: "manual",
             message: "Username is already taken, please try another one",
@@ -68,23 +66,26 @@ export const EditProfile = () => {
         }
       });
     }
-  }, [userName]);
-  const handleUsernameChange = useCallback(
-    debounce((username: string) => {
-      setUserName(username);
-    }, 500),
-    [],
-  );
+  }, [errors.username, userName, usernameValue]);
+
+  const onSubmit = (data: SignInFormValues) => {
+    alert(
+      "Profile updated successfully" +
+        Object.entries(data).map(([key, value]) => `\n${key}: ${value}`),
+    );
+  };
+
   return (
     <div className="flex flex-col items-center h-full bg-black px-default py-4">
+      <BackButton />
       <div className="w-full flex flex-col h-full">
         <h1 className="text-3xl font-bold text-white mb-8 text-left">Edit Profile</h1>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full gap-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-4">
               <Label htmlFor="displayName" className="text-white">
-                Display Name*
+                Display Name
               </Label>
               <Input
                 id="displayName"
@@ -99,36 +100,26 @@ export const EditProfile = () => {
 
             <div className="flex flex-col gap-4">
               <Label htmlFor="username" className="text-white">
-                Username*
+                Username
               </Label>
               <Input
                 id="username"
-                placeholder="Username"
+                placeholder="e.g., johndoe, ali786"
                 {...register("username")}
                 className="mt-1 block w-full"
-                onChange={(e) => {
-                  if (!e.target.value) {
-                    clearErrors("username");
-                    setIsUsernameAvailable(false);
-                  }
-                  return handleUsernameChange(e.target.value);
-                }}
               />
-              <div>
-                <p className="text-sm text-white">Example: john_doe12, ali786@#</p>
-                {errors.username ? (
-                  <div>
-                    <p className="text-sm text-destructive mt-1">{errors.username.message}</p>
-                  </div>
-                ) : null}
-              </div>
+              {errors.username && (
+                <div>
+                  <p className="text-sm text-destructive mt-1">{errors.username.message}</p>
+                </div>
+              )}
               {checkUsername.isLoading ? (
                 <div className="flex items-center gap-2">
                   <p className="text-sm text-gray-500">Checking username availability </p>
                   <LoaderCircle size={14} className="animate-spin" />
                 </div>
               ) : null}
-              {isUsernameAvailable ? (
+              {isUsernameAvailable && !errors.username ? (
                 <p className="text-sm text-green-500">Username `{userName}` is available</p>
               ) : null}
             </div>
@@ -136,10 +127,10 @@ export const EditProfile = () => {
 
           <div className="h-full"></div>
           <Button type="submit" className="w-full bg-purple-600 text-white">
-            Submit
+            Save
           </Button>
         </form>
       </div>
     </div>
   );
-};
+}
