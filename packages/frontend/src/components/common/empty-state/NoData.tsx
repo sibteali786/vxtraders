@@ -26,15 +26,7 @@ export const NoData: React.FC<NoDataProps> = ({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      {illustrationSrc && (
-        <motion.img
-          src={illustrationSrc}
-          alt="No data illustration"
-          initial={{ y: -10 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", repeatType: "reverse", repeat: Infinity }}
-        />
-      )}
+      {illustrationSrc && <img src={illustrationSrc} alt="No data illustration" />}
       <div className="text-center flex flex-col justify-center gap-1">
         <motion.h3
           className="font-bold text-xl text-white"

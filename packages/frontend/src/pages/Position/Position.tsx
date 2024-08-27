@@ -32,7 +32,7 @@ export function Position() {
         <BackButton />
         <div className="relative z-10 flex flex-col items-center">
           <NoData
-            illustrationSrc="./NoData.png"
+            illustrationSrc="/NoData.png"
             message="Oops, nothing to display right now. Begin a trade to view your portfolio"
             buttonText="Start a new trade"
             onButtonClick={() => console.log("Button is clicked!")}
