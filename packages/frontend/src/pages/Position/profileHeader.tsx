@@ -26,7 +26,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ isFirstComponentOn
             <Skeleton className="h-3 w-[50px]" />
           </div>
         </div>
-        <div className="space-y-2 flex flex-col item-end">
+        <div className="space-y-2 flex flex-col items-end">
           <Skeleton className="h-3 w-[50px]" />
           <Skeleton className="h-5 w-[40px]" />
         </div>

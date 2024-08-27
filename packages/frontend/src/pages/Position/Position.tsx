@@ -46,7 +46,7 @@ export function Position() {
     <div className="flex flex-col gap-4 pt-4">
       <BackButton />
       <div>
-        <PortfolioChart isLoading={isLoading} />
+        <PortfolioChart isError={isError} isLoading={isLoading} />
       </div>
       <TradeSummary position={data?.position} isLoading={isLoading} />
       <TradesTimeline isLoading={isLoading} />

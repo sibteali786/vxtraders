@@ -14,13 +14,13 @@ type ChannelListProps = {
 export const ChannelList = ({ channels, isLoading, isError }: ChannelListProps) => {
   if (isLoading) {
     return (
-      <>
+      <div className="flex flex-col gap-4">
         {Array(5)
           .fill(0)
           .map((_, i) => (
             <PreviewSkeleton key={i} />
           ))}
-      </>
+      </div>
     );
   }
   if (isError) {
