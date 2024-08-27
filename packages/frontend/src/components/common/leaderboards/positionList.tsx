@@ -23,7 +23,7 @@ export const PositionsList: React.FC<PositionsProps> = ({ maxCount, isTopLevelCo
   });
 
   return (
-    <div className="gap-6 h-full flex flex-col px-default">
+    <div className={`gap-6 h-full flex flex-col px-default ${isTopLevelComponent && "h-full"}`}>
       {isTopLevelComponent && <BackButton />}
       {/* Top section with title and period selector */}
       <div className="flex justify-between items-center">

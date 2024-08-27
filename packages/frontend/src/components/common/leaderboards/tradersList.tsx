@@ -23,7 +23,7 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount, isTopLevelCompon
   });
 
   return (
-    <div className="px-default gap-6 flex flex-col">
+    <div className={`px-default gap-6 flex flex-col ${isTopLevelComponent && "h-full"}`}>
       {isTopLevelComponent && <BackButton />}
       {/* Top section with title and period selector */}
       <div className="flex justify-between items-center">
@@ -32,9 +32,7 @@ export const TradersList: React.FC<TradersProps> = ({ maxCount, isTopLevelCompon
           <h2 className="text-2xl mobile-medium:text-3xl font-bold">Top Traders</h2>
         )}
         {!isTopLevelComponent && (
-          <h2 className="mobile-small:text-xl mobile-medium:text-2xl font-semibold">
-            Top Traders
-          </h2>
+          <h2 className="mobile-small:text-xl mobile-medium:text-2xl font-semibold">Top Traders</h2>
         )}
         <PeriodSelector period={selectedTopTradersPeriod} setPeriod={setTradersPeriod} />
       </div>
