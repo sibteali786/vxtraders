@@ -11,7 +11,7 @@ export function SelectAsset() {
   const [searchTerm, setSearchTerm] = useState("");
   const { isLoading, isError, data } = trpc.searchAssets.useQuery({ keyword: searchTerm });
   return (
-    <div className="pb-[80px] px-default ">
+    <div className="pb-[80px] px-default h-full flex flex-col gap-6">
       <MainHeading title="Select Assets" />
       <Input
         type="text"
@@ -20,7 +20,7 @@ export function SelectAsset() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <div className="mt-[38px] flex flex-col gap-4 my-auto">
+      <div className={`flex flex-col gap-4 h-full ${(isError || data?.assets.length === 0) && "my-auto"}`}>
         {isLoading ? (
           Array(15)
             .fill(0)

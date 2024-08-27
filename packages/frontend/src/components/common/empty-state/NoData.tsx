@@ -21,7 +21,7 @@ export const NoData: React.FC<NoDataProps> = ({
 }) => {
   return (
     <motion.div
-      className={`${classes} flex flex-col justify-center items-center gap-4 mb-6 h-full`}
+      className={`${classes} flex flex-col justify-center items-center gap-4 my-auto`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
