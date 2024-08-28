@@ -1,8 +1,7 @@
 import "./App.css";
 import "./globals.css";
 import { ThemeProvider } from "@/components/themeProvider";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-
+import { AnimatePresence, motion } from "framer-motion";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/client";
 import { useEffect, useState } from "react";
@@ -28,6 +27,7 @@ import { Register } from "./pages/register/register";
 import { useUserSignInStore } from "./stores/useState";
 import { ProtectedRoute } from "./utils/protectedRoutes";
 import { LoaderCircle } from "lucide-react"; // Import your spinner icon
+import { Animate } from "./utils/animateRoutes";
 
 export const baseUrl =
   import.meta.env.MODE === "development"
@@ -106,40 +106,123 @@ function MainRouting() {
         </div>
       ) : (
         <>
-          <TransitionGroup className="h-full flex flex-col">
-            <CSSTransition key={location.key} timeout={300} classNames="fade">
-              <Routes location={location}>
-                <Route path="/register" element={<Register />} />
-                <Route path="/">
-                  <Route index element={<Leaderboards />} />
+          <AnimatePresence mode="wait">
+            <Routes location={location}>
+              <Route path="/register" element={<Register />} />
+              <Route path="/">
+                <Route
+                  index
+                  element={
+                    <Animate>
+                      <Leaderboards />
+                    </Animate>
+                  }
+                />
+                <Route
+                  path="/top-traders"
+                  element={
+                    <Animate>
+                      <TradersList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />
+                    </Animate>
+                  }
+                />
+                <Route
+                  path="/top-positions"
+                  element={
+                    <Animate>
+                      <PositionsList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />
+                    </Animate>
+                  }
+                />
+              </Route>
+              <Route
+                path="/help"
+                element={
+                  <Animate>
+                    <Help />
+                  </Animate>
+                }
+              />
+              <Route element={<ProtectedRoute />}>
+                <Route path="select-asset">
                   <Route
-                    path="/top-traders"
-                    element={<TradersList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
+                    index
+                    element={
+                      <Animate>
+                        <SelectAsset />
+                      </Animate>
+                    }
                   />
                   <Route
-                    path="/top-positions"
-                    element={<PositionsList isTopLevelComponent={true} maxCount={MAX_LIST_COUNT} />}
+                    path=":assetName"
+                    element={
+                      <Animate>
+                        <PlaceVirtualOrder />
+                      </Animate>
+                    }
                   />
                 </Route>
-                <Route path="/help" element={<Help />} />
-                <Route element={<ProtectedRoute />}>
-                  <Route path="select-asset">
-                    <Route index element={<SelectAsset />} />
-                    <Route path=":assetName" element={<PlaceVirtualOrder />} />
-                  </Route>
-                  <Route path="/position/:id" element={<Position />} />
-                  <Route path="settings">
-                    <Route index element={<Settings />} />
-                    <Route path="edit-profile" element={<EditProfile />} />
-                    <Route path="privacy-policy" element={<PrivacyPolicy />} />
-                    <Route path="integration" element={<ChannelIntegration />} />
-                  </Route>
-                  <Route path="/portfolio/:id" element={<Portfolio />} />
+                <Route
+                  path="/position/:id"
+                  element={
+                    <Animate>
+                      <Position />
+                    </Animate>
+                  }
+                />
+                <Route path="settings">
+                  <Route
+                    index
+                    element={
+                      <Animate>
+                        <Settings />
+                      </Animate>
+                    }
+                  />
+                  <Route
+                    path="edit-profile"
+                    element={
+                      <Animate>
+                        <EditProfile />
+                      </Animate>
+                    }
+                  />
+                  <Route
+                    path="privacy-policy"
+                    element={
+                      <Animate>
+                        <PrivacyPolicy />
+                      </Animate>
+                    }
+                  />
+                  <Route
+                    path="integration"
+                    element={
+                      <Animate>
+                        <ChannelIntegration />
+                      </Animate>
+                    }
+                  />
                 </Route>
-                <Route path="*" element={<PageNotFound />} />
-              </Routes>
-            </CSSTransition>
-          </TransitionGroup>
+                <Route
+                  path="/portfolio/:id"
+                  element={
+                    <Animate>
+                      <Portfolio />
+                    </Animate>
+                  }
+                />
+              </Route>
+              <Route
+                path="*"
+                element={
+                  <Animate>
+                    <PageNotFound />
+                  </Animate>
+                }
+              />
+            </Routes>
+          </AnimatePresence>
           {!hideNavBar && <HorizontalMenu isUserRegistered={isUserSigned} />}
         </>
       )}
