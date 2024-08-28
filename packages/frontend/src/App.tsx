@@ -1,7 +1,7 @@
 import "./App.css";
 import "./globals.css";
 import { ThemeProvider } from "@/components/themeProvider";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/client";
 import { useEffect, useState } from "react";
