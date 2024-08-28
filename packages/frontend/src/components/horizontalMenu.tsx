@@ -28,9 +28,9 @@ export type MenuProps = {
 
 export function HorizontalMenu({ isUserRegistered }: MenuProps) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-1000 bg-black w-full flex justify-center h-[70px] max-allowed-width:pb-2">
+    <nav className="fixed bottom-0 left-0 right-0 z-1000 bg-black w-full flex justify-center h-[70px] max-allowed-width:pb-2 min-w-[320px]">
       <div
-        className={`grid ${isUserRegistered ? "grid-cols-5" : "grid-cols-3"}  max-w-global max-allowed-width:border-border w-full max-allowed-width:border-x-[1px] max-allowed-width:border-b-[1px] rounded-b-[8px] border-t-0 items-center `}
+        className={`flex flex-row justify-around  max-w-global max-allowed-width:border-border w-full max-allowed-width:border-x-[1px] max-allowed-width:border-b-[1px] rounded-b-[8px] border-t-0 items-center `}
       >
         <NavLink to="/" className={({ isActive }) => navLinkClasses({ active: isActive })}>
           {({ isActive }) => (
