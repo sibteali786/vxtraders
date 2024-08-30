@@ -28,6 +28,7 @@ import { useUserSignInStore } from "./stores/useState";
 import { ProtectedRoute } from "./utils/protectedRoutes";
 import { LoaderCircle } from "lucide-react"; // Import your spinner icon
 import { Animate } from "./utils/animateRoutes";
+import WebApp from "@twa-dev/sdk";
 
 export const baseUrl =
   import.meta.env.MODE === "development"
@@ -51,9 +52,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <Router>
-            <div className="container">
-              <MainRouting />
-            </div>
+            <MainRouting />
           </Router>
         </ThemeProvider>
       </QueryClientProvider>
@@ -66,29 +65,7 @@ function MainRouting() {
   useEffect(() => {
     // Scroll to top when the route changes
     window.scrollTo(0, 0);
-    // Prevent the whole app from being scrolled down to close on mobile
-    const preventScroll = (event: { preventDefault: () => void; }) => {
-      event.preventDefault();
-    };
-
-    const stopPropagation = (event: { stopPropagation: () => void; }) => {
-      event.stopPropagation();
-    };
-
-    document.addEventListener("touchmove", preventScroll, { passive: false });
-
-    const container = document.querySelector(".container");
-    if (container) {
-      container.addEventListener("touchmove", stopPropagation, { passive: false });
-    }
-
-    // Cleanup function
-    return () => {
-      document.removeEventListener("touchmove", preventScroll, { passive: false });
-      if (container) {
-        container.removeEventListener("touchmove", stopPropagation, { passive: false });
-      }
-    };
+    WebApp.disableVerticalSwipes();
   }, [location]);
 
   const subScreenPaths = [
