@@ -69,3 +69,12 @@ button {
     background-color: black;
   }
 }
+html,
+body {
+  overscroll-behavior-y: contain; /* Prevents the page from bouncing when scrolling */
+}
+
+.container {
+  overflow-y: auto; /* Allows scrolling within a specific container */
+  height: 100%; /* Ensure the container takes up the full viewport height */
+}

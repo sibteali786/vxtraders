@@ -11,13 +11,6 @@ export const content = [
 ];
 export const prefix = "";
 export const theme = {
-  container: {
-    center: true,
-    padding: "2rem",
-    screens: {
-      "2xl": "1400px",
-    },
-  },
   extend: {
     screens: {
       // Custom breakpoints
