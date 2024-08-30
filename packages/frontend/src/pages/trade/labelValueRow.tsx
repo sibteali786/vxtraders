@@ -1,11 +1,13 @@
+import { TooltipInfo } from "@/components/common/infoTooltip";
 import { formatCurrency } from "@/utils/utils";
 
 export type LabelValueRowProps = {
   label: string;
   value: string | number;
+  tooltipContent: string;
 };
 
-export const LabelValueRow: React.FC<LabelValueRowProps> = ({ label, value }) => {
+export const LabelValueRow: React.FC<LabelValueRowProps> = ({ label, value, tooltipContent }) => {
   let displayValue = value;
   if (typeof value === "number") {
     if (value === 0) {
@@ -16,7 +18,9 @@ export const LabelValueRow: React.FC<LabelValueRowProps> = ({ label, value }) =>
   }
   return (
     <div className="flex justify-between">
-      <span className="font-medium">{label} </span>
+      <div className="font-medium flex items-center gap-1">
+        {label} <TooltipInfo content={tooltipContent} />{" "}
+      </div>
       <p className="text-sm">{displayValue}</p>
     </div>
   );

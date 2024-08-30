@@ -10,6 +10,7 @@ import { LabelValueRow } from "./labelValueRow";
 import { formatCurrency } from "@/utils/utils";
 import { FaBitcoin } from "react-icons/fa";
 import { BackButton } from "@twa-dev/sdk/react";
+import { TooltipInfo } from "@/components/common/infoTooltip";
 
 export function PlaceVirtualOrder() {
   const [mode, setMode] = useState<"long" | "short">("long");
@@ -27,8 +28,8 @@ export function PlaceVirtualOrder() {
       <MainHeading title="Place a Virtual Order" classes="mb-[4px]" />
       {/* <p className="text-sm text-right">{`1 BTC = ${formatCurrency(price)}`}</p> */}
       <div className="text-sm space-y-1 mt-2">
-        <LabelValueRow label="Market Price" value={price} />
-        <LabelValueRow label="Virtual Balance" value={balance} />
+        <LabelValueRow label="Market Price" value={price} tooltipContent="Market Price" />
+        <LabelValueRow label="Virtual Balance" value={balance} tooltipContent="Virtual Balance" />
       </div>
       <Card className="flex flex-col gap-6 p-4 bg-black">
         <div className="space-y-4">
@@ -51,7 +52,10 @@ export function PlaceVirtualOrder() {
             </TabsList>
           </Tabs>
           <div className="flex justify-between">
-            <label className="block text-sm font-medium">Order Size ({orderSize}%)</label>
+            <div className="flex gap-1 items-center">
+              <label className="block text-sm font-medium">Order Size ({orderSize}%)</label>
+              <TooltipInfo content="Order Size" />
+            </div>
             <div className="text-sm">{formatCurrency((balance * orderSize) / 100)}</div>
           </div>
         </div>
@@ -63,7 +67,10 @@ export function PlaceVirtualOrder() {
           className="w-full"
         />
         <div className="flex justify-between">
-          <label className="block text-sm font-medium">Leverage ({leverage}x)</label>
+          <div className="flex items-center gap-1">
+            <label className="block text-sm font-medium">Leverage ({leverage}x)</label>
+            <TooltipInfo content="leverage" />
+          </div>
           <div className="text-sm">
             {liqPrice === 0 && "No liquidation"}
             {liqPrice !== 0 && formatCurrency(liqPrice)}
